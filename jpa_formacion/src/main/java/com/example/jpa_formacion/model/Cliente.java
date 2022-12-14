@@ -45,8 +45,6 @@ public class Cliente {
     @Column (name ="limite_credito_min")
     private Float limiteCreditoMin;
 
-    @Column (name ="limite_credito_max")
-    private Float limiteCreditoMax;
     @ManyToOne
     @JoinColumn(name = "codigo_empleado")
     Empleado empleado;
@@ -179,13 +177,6 @@ public class Cliente {
         this.limiteCreditoMin = limiteCreditoMin;
     }
 
-    public Float getLimiteCreditoMax() {
-        return limiteCreditoMax;
-    }
-
-    public void setLimiteCreditoMax(Float limiteCreditoMax) {
-        this.limiteCreditoMax = limiteCreditoMax;
-    }
 
     public Cliente() {
 
