@@ -1,28 +1,40 @@
 package es.eoi.model;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+@Entity
+@Table(name = "tblHistorialReservas")
 public class HistorialReservas {
-    private int idHistorialReservas;
-    private int idReserva;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "id_reserva")
+    private Long idReserva;
+
+    @Column(name = "accion")
     private String accion;
+
+    @Column(name = "fecha_update")
     private Date fechaUpdate;
 
-    public HistorialReservas() {}
+    // Getters and setters
 
-    public int getIdHistorialReservas() {
-        return idHistorialReservas;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdHistorialReservas(int idHistorialReservas) {
-        this.idHistorialReservas = idHistorialReservas;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public int getIdReserva() {
+    public Long getIdReserva() {
         return idReserva;
     }
 
-    public void setIdReserva(int idReserva) {
+    public void setIdReserva(Long idReserva) {
         this.idReserva = idReserva;
     }
 
@@ -42,5 +54,3 @@ public class HistorialReservas {
         this.fechaUpdate = fechaUpdate;
     }
 }
-
-

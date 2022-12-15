@@ -1,42 +1,41 @@
 package es.eoi.model;
 
+import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import java.util.Date;
 
-
+@Entity
+@EntityScan
+@Table(name = "tblReservas")
 public class Reservas {
-    // Atributos de la entidad "Reservas"
-    private int idUsuario;
-    private int idCatalogo;
+    @Id
+    @GeneratedValue
+    @Column(name = "id_usuario")
+    private long id_usuario;
+
+    @Column(name = "id_catalogo")
+    private long id_catalogo;
+
     private int reservas;
-    private Date fechaUpdate;
+    private Date fecha_update;
     private String historial;
     private String progresos;
 
-    // Constructor de la clase "Reservas"
-    public Reservas(int idUsuario, int idCatalogo, int reservas, Date fechaUpdate, String historial, String progresos) {
-        this.idUsuario = idUsuario;
-        this.idCatalogo = idCatalogo;
-        this.reservas = reservas;
-        this.fechaUpdate = fechaUpdate;
-        this.historial = historial;
-        this.progresos = progresos;
+    public long getId_usuario() {
+        return id_usuario;
     }
 
-    // Métodos de acceso para los atributos de la clase "Reservas"
-    public int getIdUsuario() {
-        return idUsuario;
+    public void setId_usuario(long id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public long getId_catalogo() {
+        return id_catalogo;
     }
 
-    public int getIdCatalogo() {
-        return idCatalogo;
-    }
-
-    public void setIdCatalogo(int idCatalogo) {
-        this.idCatalogo = idCatalogo;
+    public void setId_catalogo(long id_catalogo) {
+        this.id_catalogo = id_catalogo;
     }
 
     public int getReservas() {
@@ -47,12 +46,12 @@ public class Reservas {
         this.reservas = reservas;
     }
 
-    public Date getFechaUpdate() {
-        return fechaUpdate;
+    public Date getFecha_update() {
+        return fecha_update;
     }
 
-    public void setFechaUpdate(Date fechaUpdate) {
-        this.fechaUpdate = fechaUpdate;
+    public void setFecha_update(Date fecha_update) {
+        this.fecha_update = fecha_update;
     }
 
     public String getHistorial() {

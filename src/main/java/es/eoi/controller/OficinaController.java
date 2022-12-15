@@ -1,7 +1,8 @@
-package com.example.jpa_formacion.controller;
+package es.eoi.controller;
 
-import com.example.jpa_formacion.model.Oficina;
-import com.example.jpa_formacion.repository.OficinaRepository;
+
+import es.eoi.model.Oficina;
+import es.eoi.repository.OficinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

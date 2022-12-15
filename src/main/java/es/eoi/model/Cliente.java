@@ -1,4 +1,4 @@
-package com.example.jpa_formacion.model;
+package es.eoi.model;
 
 
 

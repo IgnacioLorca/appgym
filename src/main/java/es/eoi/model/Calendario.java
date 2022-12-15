@@ -1,44 +1,56 @@
 package es.eoi.model;
 
+import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import java.util.Date;
 
+@Entity
+@EntityScan
+@Table(name = "tblCalendario")
 public class Calendario {
-    private int idCalendario;
-    private int idReservas;
-    private Date fechaReserva;
-    private Date fechaUpdate;
+    @Id
+    @GeneratedValue
+    private long id;
 
-    public Calendario() {}
+    @Column(name = "id_reservas")
+    private long id_reservas;
 
-    public int getIdCalendario() {
-        return idCalendario;
+    @Column(name = "fecha_reserva")
+    private Date fecha_reserva;
+
+    @Column(name = "fecha_update")
+    private Date fecha_update;
+
+    public long getId() {
+        return id;
     }
 
-    public void setIdCalendario(int idCalendario) {
-        this.idCalendario = idCalendario;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public int getIdReservas() {
-        return idReservas;
+    public long getId_reservas() {
+        return id_reservas;
     }
 
-    public void setIdReservas(int idReservas) {
-        this.idReservas = idReservas;
+    public void setId_reservas(long id_reservas) {
+        this.id_reservas = id_reservas;
     }
 
-    public Date getFechaReserva() {
-        return fechaReserva;
+    public Date getFecha_reserva() {
+        return fecha_reserva;
     }
 
-    public void setFechaReserva(Date fechaReserva) {
-        this.fechaReserva = fechaReserva;
+    public void setFecha_reserva(Date fechaReserva) {
+        this.fecha_reserva = fechaReserva;
     }
 
-    public Date getFechaUpdate() {
-        return fechaUpdate;
+    public Date getFecha_update() {
+        return fecha_update;
     }
 
-    public void setFechaUpdate(Date fechaUpdate) {
-        this.fechaUpdate = fechaUpdate;
+    public void setFecha_update(Date fechaUpdate) {
+        this.fecha_update = fecha_update;
     }
 }
