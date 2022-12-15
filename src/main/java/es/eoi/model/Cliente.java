@@ -1,11 +1,7 @@
-package com.example.jpa_formacion.model;
-
-
+package es.eoi.model;
 
 import jakarta.persistence.*;
-
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 
 @Entity
 @EntityScan
@@ -52,7 +48,6 @@ public class Cliente {
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -60,7 +55,6 @@ public class Cliente {
     public String getNombreCliente() {
         return nombreCliente;
     }
-
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
     }
@@ -68,7 +62,6 @@ public class Cliente {
     public String getNombreContacto() {
         return nombreContacto;
     }
-
     public void setNombreContacto(String nombreContacto) {
         this.nombreContacto = nombreContacto;
     }
@@ -76,7 +69,6 @@ public class Cliente {
     public String getApellidoContacto() {
         return apellidoContacto;
     }
-
     public void setApellidoContacto(String apellidoContacto) {
         this.apellidoContacto = apellidoContacto;
     }
@@ -84,7 +76,6 @@ public class Cliente {
     public String getTelefono() {
         return telefono;
     }
-
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
@@ -92,7 +83,6 @@ public class Cliente {
     public String getFax() {
         return fax;
     }
-
     public void setFax(String fax) {
         this.fax = fax;
     }
@@ -100,7 +90,6 @@ public class Cliente {
     public String getLineaDireccion1() {
         return lineaDireccion1;
     }
-
     public void setLineaDireccion1(String lineaDireccion1) {
         this.lineaDireccion1 = lineaDireccion1;
     }
@@ -108,7 +97,6 @@ public class Cliente {
     public String getLineaDireccion2() {
         return lineaDireccion2;
     }
-
     public void setLineaDireccion2(String lineaDireccion2) {
         this.lineaDireccion2 = lineaDireccion2;
     }
@@ -116,7 +104,6 @@ public class Cliente {
     public String getCiudad() {
         return ciudad;
     }
-
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
@@ -124,7 +111,6 @@ public class Cliente {
     public String getRegion() {
         return region;
     }
-
     public void setRegion(String region) {
         this.region = region;
     }
@@ -132,7 +118,6 @@ public class Cliente {
     public String getPais() {
         return pais;
     }
-
     public void setPais(String pais) {
         this.pais = pais;
     }
@@ -140,7 +125,6 @@ public class Cliente {
     public String getCodigoPostal() {
         return codigoPostal;
     }
-
     public void setCodigoPostal(String codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
@@ -148,7 +132,6 @@ public class Cliente {
     public int getCodigoEmpleado_rep_ventas() {
         return codigoEmpleado_rep_ventas;
     }
-
     public void setCodigoEmpleado_rep_ventas(int codigoEmpleado_rep_ventas) {
         this.codigoEmpleado_rep_ventas = codigoEmpleado_rep_ventas;
     }
@@ -156,7 +139,6 @@ public class Cliente {
     public Float getLimiteCredito() {
         return limiteCredito;
     }
-
     public void setLimiteCredito(Float limiteCredito) {
         this.limiteCredito = limiteCredito;
     }
@@ -164,16 +146,16 @@ public class Cliente {
     public Empleado getEmpleado() {
         return empleado;
     }
-
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
 
-    public Cliente() {
+    public Cliente() {}
 
-    }
-
-    public Cliente(long id, String nombreCliente, String nombreContacto, String apellidoContacto, String telefono, String fax, String lineaDireccion1, String lineaDireccion2, String ciudad, String region, String pais, String codigoPostal, int codigoEmpleado_rep_ventas, Float limiteCredito, Empleado empleado) {
+    public Cliente(long id, String nombreCliente, String nombreContacto, String apellidoContacto, String telefono,
+                   String fax, String lineaDireccion1, String lineaDireccion2, String ciudad, String region,
+                   String pais, String codigoPostal, int codigoEmpleado_rep_ventas, Float limiteCredito,
+                   Empleado empleado) {
         this.id = id;
         this.nombreCliente = nombreCliente;
         this.nombreContacto = nombreContacto;

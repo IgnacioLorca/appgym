@@ -1,13 +1,10 @@
-package com.example.jpa_formacion.repository;
+package es.eoi.repository;
 
-import com.example.jpa_formacion.model.Cliente;
+import es.eoi.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-
-
-
-
+@Repository
 public interface ClienteRepository extends JpaRepository<Cliente,Long>{
-    //List<Cliente> findBynombreCliente(String nombre);
 
 }
