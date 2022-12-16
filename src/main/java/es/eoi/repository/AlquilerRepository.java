@@ -1,10 +1,9 @@
 package es.eoi.repository;
 
-import es.eoi.model.Cliente;
+import es.eoi.model.Alquiler;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente,Long>{
-
+public interface AlquilerRepository extends JpaRepository<Alquiler,Long> {
 }

@@ -1,9 +1,9 @@
 package es.eoi.repository;
 
-import es.eoi.model.Oficina;
+import es.eoi.model.ClasesPrecio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OficinaRepository extends JpaRepository<Oficina,Long> {
+public interface ClasesPrecioRepository extends JpaRepository<ClasesPrecio,Long> {
 }
