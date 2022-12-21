@@ -12,7 +12,7 @@ import java.util.Set;
 public class Usuario {
 
     @Id
-    @Column(name = "id_usuario")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idUsuario;
     @Column (name = "nombre", length = 50)
@@ -46,7 +46,7 @@ public class Usuario {
 
     @ManyToMany
     @JoinTable(
-            name = "contactos",
+            name = "tblListaContactos_tblDatosUsuario",
             joinColumns = @JoinColumn(name = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "id_contacto"))
     Set<Contactos> contactos;

@@ -13,7 +13,7 @@ import java.util.Set;
 public class Contactos {
 
     @Id
-    @Column(name ="id_contacto")
+    @Column(name ="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idContacto;
     @Column (name = "id_usuario")
