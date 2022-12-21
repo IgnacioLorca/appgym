@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @EntityScan
-@Table(name = "tbl_alquiler")
+@Table(name = "tblAlquiler")
 public class Alquiler {
 
     @Id

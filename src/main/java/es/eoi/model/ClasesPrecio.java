@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @EntityScan
-@Table(name = "tbl_clases_precio")
+@Table(name = "tblClasesPrecio")
 public class ClasesPrecio {
 
     @Id
