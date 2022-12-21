@@ -35,6 +35,7 @@ public class HistorialReservas {
     }
 
     public void setIdReserva(Long idReserva) {
+
         this.idReserva = idReserva;
     }
 
@@ -43,6 +44,7 @@ public class HistorialReservas {
     }
 
     public void setAccion(String accion) {
+
         this.accion = accion;
     }
 
@@ -51,6 +53,7 @@ public class HistorialReservas {
     }
 
     public void setFechaUpdate(Date fechaUpdate) {
+
         this.fechaUpdate = fechaUpdate;
     }
 }
