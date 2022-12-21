@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,8 +15,6 @@ public class Usuario {
     @Column(name = "id_usuario")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idUsuario;
-    @Column (name = "id_perfil")
-    private long idPerfil;
     @Column (name = "nombre", length = 50)
     private String nombre;
     @Column (name = "apellidos", length = 50)
@@ -59,7 +56,6 @@ public class Usuario {
 
     public Usuario(long idUsuario, long idPerfil, String nombre, String apellidos, String direccion, String ciudad, String email, String username, String password, float peso, float altura, Date fechaInsert, Date fechaUpdate, boolean BL, PerfilUsuario perfilUsuario, Set<Contactos> contactos) {
         this.idUsuario = idUsuario;
-        this.idPerfil = idPerfil;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
@@ -82,14 +78,6 @@ public class Usuario {
 
     public void setIdUsuario(long idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public long getIdPerfil() {
-        return idPerfil;
-    }
-
-    public void setIdPerfil(long idPerfil) {
-        this.idPerfil = idPerfil;
     }
 
     public String getNombre() {
@@ -208,7 +196,6 @@ public class Usuario {
     public String toString() {
         return "Usuario{" +
                 "idUsuario=" + idUsuario +
-                ", idPerfil=" + idPerfil +
                 ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", direccion='" + direccion + '\'' +
