@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Entity
 @EntityScan
-@Table(name = "tipo_producto")
+@Table(name = "tbl_tipo_producto")
 public class TipoProducto {
 
     @Id

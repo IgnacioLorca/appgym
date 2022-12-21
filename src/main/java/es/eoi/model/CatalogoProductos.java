@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @EntityScan
-@Table(name = "catalogo")
+@Table(name = "tbl_catalogo")
 public class CatalogoProductos {
 
     @Id
