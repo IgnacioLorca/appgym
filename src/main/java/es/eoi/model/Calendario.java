@@ -13,13 +13,13 @@ public class Calendario {
     @GeneratedValue
     private long id;
 
-    @Column(name = "id_reservas")
+    @Column(name = "idReservas")
     private long id_reservas;
 
-    @Column(name = "fecha_reserva")
+    @Column(name = "fechaReserva")
     private Date fecha_reserva;
 
-    @Column(name = "fecha_update")
+    @Column(name = "fechaUpdate")
     private Date fecha_update;
 
     public long getId() {

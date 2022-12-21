@@ -11,13 +11,13 @@ public class HistorialReservas {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_reserva")
+    @Column(name = "idReserva")
     private Long idReserva;
 
     @Column(name = "accion")
     private String accion;
 
-    @Column(name = "fecha_update")
+    @Column(name = "fechaUpdate")
     private Date fechaUpdate;
 
     // Getters and setters

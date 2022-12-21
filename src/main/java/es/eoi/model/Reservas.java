@@ -11,10 +11,10 @@ import java.util.Date;
 public class Reservas {
     @Id
     @GeneratedValue
-    @Column(name = "id_usuario")
+    @Column(name = "idUsuario")
     private long id_usuario;
 
-    @Column(name = "id_catalogo")
+    @Column(name = "idCatalogo")
     private long id_catalogo;
 
     private int reservas;
