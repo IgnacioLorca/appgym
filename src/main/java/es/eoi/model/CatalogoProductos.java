@@ -26,9 +26,9 @@ public class CatalogoProductos {
     @OneToMany(mappedBy = "catalogo")
     List<Alquiler> alquiler;
 
-    @ManyToOne
-    @JoinColumn(name = "id_reservas")
-    Reservas reservas;
+//    @ManyToOne
+//    @JoinColumn(name = "id_reservas")
+//    Reservas reservas;
 
     public long getIdCatalogo() {return idCatalogo;}
     public void setIdCatalogo(long idCatalogo) {this.idCatalogo = idCatalogo;}
@@ -48,20 +48,23 @@ public class CatalogoProductos {
     public List<Alquiler> getAlquiler() {return alquiler;}
     public void setAlquiler(List<Alquiler> alquiler) {this.alquiler = alquiler;}
 
-    public Reservas getReservas() {return reservas;}
-    public void setReservas(Reservas reservas) {this.reservas = reservas;}
+//    public Reservas getReservas() {return reservas;}
+//    public void setReservas(Reservas reservas) {this.reservas = reservas;}
 
     public CatalogoProductos() {}
 
+//    public CatalogoProductos(long idCatalogo, String nombre, String descripcion,
+//                             List<TipoProducto> tipoProductos, List<ClasesPrecio> clasesPrecio,
+//                             List<Alquiler> alquiler, Reservas reservas) {
     public CatalogoProductos(long idCatalogo, String nombre, String descripcion,
-                             List<TipoProducto> tipoProductos, List<ClasesPrecio> clasesPrecio,
-                             List<Alquiler> alquiler, Reservas reservas) {
+                List<TipoProducto> tipoProductos, List<ClasesPrecio> clasesPrecio,
+                List<Alquiler> alquiler) {
         this.idCatalogo = idCatalogo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipoProductos = tipoProductos;
         this.clasesPrecio = clasesPrecio;
         this.alquiler = alquiler;
-        this.reservas = reservas;
+        //this.reservas = reservas;
     }
 }
