@@ -13,7 +13,9 @@ public class Entrenadores {
     @Id
     @Column(name="entrenador")
     @GeneratedValue(strategy=GenerationType.AUTO)
-    public long id;
+    public long idEntrenador;
+    @Column(name="usuario")
+    public long idUsuario;
     @Column(name="nombre_entrenador")
     public String nombreEntrenador;
     @Column(name="fecha_insercion")
@@ -21,21 +23,31 @@ public class Entrenadores {
     @Column(name="fecha_modificacion")
     public Date fechaModificacion;
 
-    public Entrenadores(){}
+    public Entrenadores(){
+    }
 
-    public Entrenadores(long id, String nombreEntrenador, Date fechaInsercion, Date fechaModificacion) {
-        this.id = id;
+    public Entrenadores(long idEntrenador, long idUsuario, String nombreEntrenador, Date fechaInsercion, Date fechaModificacion) {
+        this.idEntrenador = idEntrenador;
+        this.idUsuario = idUsuario;
         this.nombreEntrenador = nombreEntrenador;
         this.fechaInsercion = fechaInsercion;
         this.fechaModificacion = fechaModificacion;
     }
 
-    public long getId() {
-        return id;
+    public long getIdEntrenador() {
+        return idEntrenador;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdEntrenador(long idEntrenador) {
+        this.idEntrenador = idEntrenador;
+    }
+
+    public long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombreEntrenador() {
@@ -65,10 +77,12 @@ public class Entrenadores {
     @Override
     public String toString() {
         return "Entrenadores{" +
-                "id=" + id +
+                "idEntrenador=" + idEntrenador +
+                ", idUsuario=" + idUsuario +
                 ", nombreEntrenador='" + nombreEntrenador + '\'' +
                 ", fechaInsercion=" + fechaInsercion +
                 ", fechaModificacion=" + fechaModificacion +
                 '}';
     }
 }
+

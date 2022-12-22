@@ -10,7 +10,11 @@ public class Recetas {
     @Id
     @Column(name="receta")
     @GeneratedValue(strategy=GenerationType.AUTO)
-    public long id;
+    public long idReceta;
+    @Column(name="usuario")
+    public long idUsuario;
+    @Column(name="dietista")
+    public long idDietista;
     @Column(name="nombre_receta")
     public String nombreReceta;
     @Column(name="descripcion")
@@ -22,20 +26,38 @@ public class Recetas {
 
     public Recetas(){}
 
-    public Recetas(long id, String nombreReceta, String descripcion, String ingredientes, String macro) {
-        this.id = id;
+    public Recetas(long idReceta, long idUsuario, long idDietista, String nombreReceta, String descripcion, String ingredientes, String macro) {
+        this.idReceta = idReceta;
+        this.idUsuario = idUsuario;
+        this.idDietista = idDietista;
         this.nombreReceta = nombreReceta;
         this.descripcion = descripcion;
         this.ingredientes = ingredientes;
         this.macro = macro;
     }
 
-    public long getId() {
-        return id;
+    public long getIdReceta() {
+        return idReceta;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setIdReceta(long idReceta) {
+        this.idReceta = idReceta;
+    }
+
+    public long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public long getIdDietista() {
+        return idDietista;
+    }
+
+    public void setIdDietista(long idDietista) {
+        this.idDietista = idDietista;
     }
 
     public String getNombreReceta() {
@@ -73,7 +95,9 @@ public class Recetas {
     @Override
     public String toString() {
         return "Recetas{" +
-                "id=" + id +
+                "idReceta=" + idReceta +
+                ", idUsuario=" + idUsuario +
+                ", idDietista=" + idDietista +
                 ", nombreReceta='" + nombreReceta + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", ingredientes='" + ingredientes + '\'' +
