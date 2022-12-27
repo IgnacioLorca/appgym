@@ -5,15 +5,15 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @Entity
 @EntityScan
-@Table(name="Recetas")
+@Table(name="tblRecetas")
 public class Recetas {
     @Id
-    @Column(name="receta")
+    @Column(name="id_receta")
     @GeneratedValue(strategy=GenerationType.AUTO)
     public long idReceta;
-    @Column(name="usuario")
+    @Column(name="id_usuario")
     public long idUsuario;
-    @Column(name="dietista")
+    @Column(name="id_dietista")
     public long idDietista;
     @Column(name="nombre_receta")
     public String nombreReceta;

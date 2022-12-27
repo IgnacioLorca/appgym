@@ -8,13 +8,13 @@ import java.util.Date;
 
 @Entity
 @EntityScan
-@Table(name="EntrenamientosContratados")
+@Table(name="tblEntrenamientosContratados")
 public class Entrenamientos {
     @Id
-    @Column(name="entrenamiento")
+    @Column(name="id_entrenamiento")
     @GeneratedValue(strategy=GenerationType.AUTO)
     public long idEntrenamiento;
-    @Column(name="usuario")
+    @Column(name="id_usuario")
     public long idUsuario;
     @Column(name="nombre_entrenamiento")
     public String nombreEntrenamiento;
