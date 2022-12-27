@@ -4,53 +4,44 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @EntityScan
 @Table(name = "tblCalendario")
 public class Calendario {
+
     @Id
-    @GeneratedValue
-    private long id;
+    @Column(name ="id_calendario")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long idCalendario;
+    @Column(name = "fecha_reserva")
+    private Date fechaReserva;
+    @Column(name = "fecha_update")
+    private Date fechaUpdate;
 
-    @Column(name = "idReservas")
-    private long id_reservas;
+    @OneToMany(mappedBy = "calendario")
+    List<Reservas> reservas;
 
-    @Column(name = "fechaReserva")
-    private Date fecha_reserva;
+    public long getIdCalendario() {return idCalendario;}
+    public void setIdCalendario(long idCalendario) {this.idCalendario = idCalendario;}
 
-    @Column(name = "fechaUpdate")
-    private Date fecha_update;
+    public Date getFechaReserva() {return fechaReserva;}
+    public void setFechaReserva(Date fechaReserva) {this.fechaReserva = fechaReserva;}
 
-    public long getId() {
-        return id;
+    public Date getFechaUpdate() {return fechaUpdate;}
+    public void setFechaUpdate(Date fechaUpdate) {this.fechaUpdate = fechaUpdate;}
+
+    public List<Reservas> getReservas() {return reservas;}
+    public void setReservas(List<Reservas> reservas) {this.reservas = reservas;}
+
+    public Calendario() {
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getId_reservas() {
-        return id_reservas;
-    }
-
-    public void setId_reservas(long id_reservas) {
-        this.id_reservas = id_reservas;
-    }
-
-    public Date getFecha_reserva() {
-        return fecha_reserva;
-    }
-
-    public void setFecha_reserva(Date fechaReserva) {
-        this.fecha_reserva = fechaReserva;
-    }
-
-    public Date getFecha_update() {
-        return fecha_update;
-    }
-
-    public void setFecha_update(Date fechaUpdate) {
-        this.fecha_update = fecha_update;
+    public Calendario(long idCalendario, Date fechaReserva, Date fechaUpdate, List<Reservas> reservas) {
+        this.idCalendario = idCalendario;
+        this.fechaReserva = fechaReserva;
+        this.fechaUpdate = fechaUpdate;
+        this.reservas = reservas;
     }
 }

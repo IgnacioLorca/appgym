@@ -23,8 +23,9 @@ public class ClasesPrecio {
     @Column(name = "cupo_maximo")
     private int cupoMaximo;
 
-//    @OneToMany(mappedBy = "id_hist_reservas")
-//    List<HistorialReservas> historialReservas;
+    @ManyToOne
+    @JoinColumn(name = "id_historial")
+    HistorialReservas historialReservas;
 
     @ManyToOne
     @JoinColumn(name = "id_catalogo")
@@ -45,25 +46,24 @@ public class ClasesPrecio {
     public int getCupoMaximo() {return cupoMaximo;}
     public void setCupoMaximo(int cupoMaximo) {this.cupoMaximo = cupoMaximo;}
 
-//    public List<HistorialReservas> getHistorialReservas() {return historialReservas;}
-//    public void setHistorialReservas(List<HistorialReservas> historialReservas) {
-//        this.historialReservas = historialReservas;}
+    public HistorialReservas getHistorialReservas() {return historialReservas;}
+    public void setHistorialReservas(HistorialReservas historialReservas) {
+        this.historialReservas = historialReservas;
+    }
 
     public CatalogoProductos getCatalogo() {return catalogo;}
     public void setCatalogo(CatalogoProductos catalogo) {this.catalogo = catalogo;}
 
     public ClasesPrecio() {}
 
-//    public ClasesPrecio(long idClases, Float precioClases, Date fechaUpdate, String diaSemana,
-//                        int cupoMaximo, List<HistorialReservas> historialReservas, CatalogoProductos catalogo) {
     public ClasesPrecio(long idClases, Float precioClases, Date fechaUpdate, String diaSemana,
-        int cupoMaximo, CatalogoProductos catalogo) {
+                        int cupoMaximo, HistorialReservas historialReservas, CatalogoProductos catalogo) {
         this.idClases = idClases;
         this.precioClases = precioClases;
         this.fechaUpdate = fechaUpdate;
         this.diaSemana = diaSemana;
         this.cupoMaximo = cupoMaximo;
-        //this.historialReservas = historialReservas;
+        this.historialReservas = historialReservas;
         this.catalogo = catalogo;
     }
 }
