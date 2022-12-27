@@ -1,8 +1,7 @@
 package es.eoi.controller;
 
-
-import es.eoi.model.ListaContactos;
-import es.eoi.repository.ContactosRepository;
+import es.eoi.model.Entrenadores;
+import es.eoi.repository.EntrenadoresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,25 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins="http://localhost:3306")
 @RestController
-@RequestMapping("/api/contactos")
-public class ContactosController {
+@RequestMapping("/api/entrenadores")
+public class EntrenadoresController {
     @Autowired
-    ContactosRepository contactosRepository;
-    @GetMapping("/listacontactos")
-    public ResponseEntity<List<ListaContactos>> getAllContactos(){
-        try {
-            List<ListaContactos> contactos = new ArrayList<>();
-            contactosRepository.findAll().forEach(contactos::add);
-            if (contactos.isEmpty()) {
+    EntrenadoresRepository entrenadoresRepository;
+    @GetMapping("/listaentrenadores")
+    public ResponseEntity<List<Entrenadores>> getAllEntrenadores(){
+        try{
+            List<Entrenadores> entrenadores = new ArrayList<>();
+            entrenadoresRepository.findAll().forEach(entrenadores::add);
+            if(entrenadores.isEmpty()){
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(contactos, HttpStatus.OK);
-        }
-        catch (Exception e){
+            return new ResponseEntity<>(entrenadores, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
+
 }

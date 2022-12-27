@@ -4,13 +4,12 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 @EntityScan
 @Table(name = "tblListaContactos")
-public class Contactos {
+public class ListaContactos {
 
     @Id
     @Column(name ="id_contacto")
@@ -30,10 +29,10 @@ public class Contactos {
     @ManyToMany(mappedBy = "contactos")
     Set<Usuario> usuarios;
 
-    public Contactos() {
+    public ListaContactos() {
     }
 
-    public Contactos(long idContacto, long idUsuario, long idUsuarioContacto, Date fechaInsert, Date fechaUpdate, boolean BL, Set<Usuario> usuarios) {
+    public ListaContactos(long idContacto, long idUsuario, long idUsuarioContacto, Date fechaInsert, Date fechaUpdate, boolean BL, Set<Usuario> usuarios) {
         this.idContacto = idContacto;
         this.idUsuario = idUsuario;
         this.idUsuarioContacto = idUsuarioContacto;

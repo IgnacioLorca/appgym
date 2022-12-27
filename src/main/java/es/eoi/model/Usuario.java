@@ -37,24 +37,38 @@ public class Usuario {
     private Date fechaInsert;
     @Column (name = "fecha_update")
     private Date fechaUpdate;
-    @Column (name ="BL")
+    @Column (name = "BL")
     private boolean BL;
+    @Column (name = "tipo_usuario")
+    private String tipoUsuario;
 
     @OneToOne
     @JoinColumn(name = "id_perfil")
-    private PerfilUsuario perfilUsuario;
+    PerfilUsuario perfilUsuario;
 
     @ManyToMany
     @JoinTable(
-            name = "contactos",
+            name = "tblListaContactos_tblDatosUsuario",
             joinColumns = @JoinColumn(name = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "id_contacto"))
-    Set<Contactos> contactos;
+    Set<ListaContactos> contactos;
+
+    @ManyToOne
+    @JoinColumn(name = "id_entrenador")
+    Entrenadores entrenadores;
+
+    @ManyToOne
+    @JoinColumn(name = "id_dietista")
+    Dietistas dietistas;
+
+    @ManyToOne
+    @JoinColumn(name = "id_receta")
+    Recetas recetas;
 
     public Usuario() {
     }
 
-    public Usuario(long idUsuario, long idPerfil, String nombre, String apellidos, String direccion, String ciudad, String email, String username, String password, float peso, float altura, Date fechaInsert, Date fechaUpdate, boolean BL, PerfilUsuario perfilUsuario, Set<Contactos> contactos) {
+    public Usuario(long idUsuario, long idPerfil, String nombre, String apellidos, String direccion, String ciudad, String email, String username, String password, float peso, float altura, Date fechaInsert, Date fechaUpdate, boolean BL, String tipoUsuario, PerfilUsuario perfilUsuario, Set<ListaContactos> contactos) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -68,6 +82,7 @@ public class Usuario {
         this.fechaInsert = fechaInsert;
         this.fechaUpdate = fechaUpdate;
         this.BL = BL;
+        this.tipoUsuario = tipoUsuario;
         this.perfilUsuario = perfilUsuario;
         this.contactos = contactos;
     }
@@ -184,12 +199,20 @@ public class Usuario {
         this.perfilUsuario = perfilUsuario;
     }
 
-    public Set<Contactos> getContactos() {
+    public Set<ListaContactos> getContactos() {
         return contactos;
     }
 
-    public void setContactos(Set<Contactos> contactos) {
+    public void setContactos(Set<ListaContactos> contactos) {
         this.contactos = contactos;
+    }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
     @Override
@@ -208,6 +231,7 @@ public class Usuario {
                 ", fechaInsert=" + fechaInsert +
                 ", fechaUpdate=" + fechaUpdate +
                 ", BL=" + BL +
+                ", tipoUsuario='" + tipoUsuario + '\'' +
                 ", perfilUsuario=" + perfilUsuario +
                 ", contactos=" + contactos +
                 '}';
