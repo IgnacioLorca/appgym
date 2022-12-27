@@ -1,7 +1,7 @@
 package es.eoi.controller;
 
 
-import es.eoi.model.Contactos;
+import es.eoi.model.ListaContactos;
 import es.eoi.repository.ContactosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,9 +21,9 @@ public class ContactosController {
     @Autowired
     ContactosRepository contactosRepository;
     @GetMapping("/listacontactos")
-    public ResponseEntity<List<Contactos>> getAllContactos(){
+    public ResponseEntity<List<ListaContactos>> getAllContactos(){
         try {
-            List<Contactos> contactos = new ArrayList<>();
+            List<ListaContactos> contactos = new ArrayList<>();
             contactosRepository.findAll().forEach(contactos::add);
             if (contactos.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
