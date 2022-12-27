@@ -3,6 +3,8 @@ package es.eoi.model;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import java.util.List;
+
 @Entity
 @EntityScan
 @Table(name="tblRecetas")
@@ -11,10 +13,6 @@ public class Recetas {
     @Column(name="id_receta")
     @GeneratedValue(strategy=GenerationType.AUTO)
     public long idReceta;
-    @Column(name="id_usuario")
-    public long idUsuario;
-    @Column(name="id_dietista")
-    public long idDietista;
     @Column(name="nombre_receta")
     public String nombreReceta;
     @Column(name="descripcion")
@@ -24,12 +22,17 @@ public class Recetas {
     @Column(name="macro")
     public String macro;
 
+    @ManyToOne
+    @JoinColumn(name = "id_dietista")
+    Dietistas dietistas;
+
+    @OneToMany (mappedBy = "recetas")
+    List<Usuario> listaUsuarios;
+
     public Recetas(){}
 
-    public Recetas(long idReceta, long idUsuario, long idDietista, String nombreReceta, String descripcion, String ingredientes, String macro) {
+    public Recetas(long idReceta, String nombreReceta, String descripcion, String ingredientes, String macro) {
         this.idReceta = idReceta;
-        this.idUsuario = idUsuario;
-        this.idDietista = idDietista;
         this.nombreReceta = nombreReceta;
         this.descripcion = descripcion;
         this.ingredientes = ingredientes;
@@ -42,22 +45,6 @@ public class Recetas {
 
     public void setIdReceta(long idReceta) {
         this.idReceta = idReceta;
-    }
-
-    public long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public long getIdDietista() {
-        return idDietista;
-    }
-
-    public void setIdDietista(long idDietista) {
-        this.idDietista = idDietista;
     }
 
     public String getNombreReceta() {
@@ -96,8 +83,6 @@ public class Recetas {
     public String toString() {
         return "Recetas{" +
                 "idReceta=" + idReceta +
-                ", idUsuario=" + idUsuario +
-                ", idDietista=" + idDietista +
                 ", nombreReceta='" + nombreReceta + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", ingredientes='" + ingredientes + '\'' +

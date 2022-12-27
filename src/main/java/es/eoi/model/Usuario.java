@@ -44,7 +44,7 @@ public class Usuario {
 
     @OneToOne
     @JoinColumn(name = "id_perfil")
-    private PerfilUsuario perfilUsuario;
+    PerfilUsuario perfilUsuario;
 
     @ManyToMany
     @JoinTable(
@@ -52,6 +52,18 @@ public class Usuario {
             joinColumns = @JoinColumn(name = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "id_contacto"))
     Set<ListaContactos> contactos;
+
+    @ManyToOne
+    @JoinColumn(name = "id_entrenador")
+    Entrenadores entrenadores;
+
+    @ManyToOne
+    @JoinColumn(name = "id_dietista")
+    Dietistas dietistas;
+
+    @ManyToOne
+    @JoinColumn(name = "id_receta")
+    Recetas recetas;
 
     public Usuario() {
     }

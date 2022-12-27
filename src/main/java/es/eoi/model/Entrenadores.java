@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -14,8 +15,6 @@ public class Entrenadores {
     @Column(name="id_entrenador")
     @GeneratedValue(strategy=GenerationType.AUTO)
     public long idEntrenador;
-    @Column(name="id_usuario")
-    public long idUsuario;
     @Column(name="nombre_entrenador")
     public String nombreEntrenador;
     @Column(name="fecha_insercion")
@@ -23,13 +22,14 @@ public class Entrenadores {
     @Column(name="fecha_modificacion")
     public Date fechaModificacion;
 
+    @OneToMany (mappedBy = "entrenadores")
+    List<Usuario> listaUsuarios;
 
     public Entrenadores(){
     }
 
-    public Entrenadores(long idEntrenador, long idUsuario, String nombreEntrenador, Date fechaInsercion, Date fechaModificacion) {
+    public Entrenadores(long idEntrenador, String nombreEntrenador, Date fechaInsercion, Date fechaModificacion) {
         this.idEntrenador = idEntrenador;
-        this.idUsuario = idUsuario;
         this.nombreEntrenador = nombreEntrenador;
         this.fechaInsercion = fechaInsercion;
         this.fechaModificacion = fechaModificacion;
@@ -41,14 +41,6 @@ public class Entrenadores {
 
     public void setIdEntrenador(long idEntrenador) {
         this.idEntrenador = idEntrenador;
-    }
-
-    public long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public String getNombreEntrenador() {
@@ -79,7 +71,6 @@ public class Entrenadores {
     public String toString() {
         return "Entrenadores{" +
                 "idEntrenador=" + idEntrenador +
-                ", idUsuario=" + idUsuario +
                 ", nombreEntrenador='" + nombreEntrenador + '\'' +
                 ", fechaInsercion=" + fechaInsercion +
                 ", fechaModificacion=" + fechaModificacion +
