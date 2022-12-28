@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -64,6 +65,9 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "id_receta")
     Recetas recetas;
+
+    @OneToMany(mappedBy = "usuario")
+    List<Reservas> reservas;
 
     public Usuario() {
     }
