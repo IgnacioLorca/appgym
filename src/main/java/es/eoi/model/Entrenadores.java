@@ -25,6 +25,10 @@ public class Entrenadores {
     @OneToMany (mappedBy = "entrenadores")
     List<Usuario> listaUsuarios;
 
+    @ManyToOne
+    @JoinColumn(name = "id_entrenamiento")
+    Entrenamientos entrenamientos;
+
     public Entrenadores(){
     }
 

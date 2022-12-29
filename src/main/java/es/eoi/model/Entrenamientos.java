@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -14,8 +15,6 @@ public class Entrenamientos {
     @Column(name="id_entrenamiento")
     @GeneratedValue(strategy=GenerationType.AUTO)
     public long idEntrenamiento;
-    @Column(name="id_usuario")
-    public long idUsuario;
     @Column(name="nombre_entrenamiento")
     public String nombreEntrenamiento;
     @Column(name="fecha_insercion")
@@ -23,11 +22,14 @@ public class Entrenamientos {
     @Column(name="fecha_modificacion")
     public Date fechaModificacion;
 
+    @OneToMany (mappedBy = "entrenamientos")
+    List<Entrenadores> listaEntrenadores;
+
+
     public Entrenamientos(){}
 
-    public Entrenamientos(long idEntrenamiento, long idUsuario, String nombreEntrenamiento, Date fechaInsercion, Date fechaModificacion) {
+    public Entrenamientos(long idEntrenamiento, String nombreEntrenamiento, Date fechaInsercion, Date fechaModificacion) {
         this.idEntrenamiento = idEntrenamiento;
-        this.idUsuario = idUsuario;
         this.nombreEntrenamiento = nombreEntrenamiento;
         this.fechaInsercion = fechaInsercion;
         this.fechaModificacion = fechaModificacion;
@@ -39,14 +41,6 @@ public class Entrenamientos {
 
     public void setIdEntrenamiento(long idEntrenamiento) {
         this.idEntrenamiento = idEntrenamiento;
-    }
-
-    public long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public String getNombreEntrenamiento() {
@@ -77,7 +71,6 @@ public class Entrenamientos {
     public String toString() {
         return "Entrenamientos{" +
                 "idEntrenamiento=" + idEntrenamiento +
-                ", idUsuario=" + idUsuario +
                 ", nombreEntrenamiento='" + nombreEntrenamiento + '\'' +
                 ", fechaInsercion=" + fechaInsercion +
                 ", fechaModificacion=" + fechaModificacion +
