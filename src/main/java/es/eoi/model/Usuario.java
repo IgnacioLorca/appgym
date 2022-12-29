@@ -39,8 +39,6 @@ public class Usuario {
     private Date fechaUpdate;
     @Column (name = "BL")
     private boolean BL;
-    @Column (name = "tipo_usuario")
-    private String tipoUsuario;
 
     @OneToOne
     @JoinColumn(name = "id_perfil")
@@ -68,7 +66,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(long idUsuario, long idPerfil, String nombre, String apellidos, String direccion, String ciudad, String email, String username, String password, float peso, float altura, Date fechaInsert, Date fechaUpdate, boolean BL, String tipoUsuario, PerfilUsuario perfilUsuario, Set<ListaContactos> contactos) {
+    public Usuario(long idUsuario, String nombre, String apellidos, String direccion, String ciudad, String email, String username, String password, float peso, float altura, Date fechaInsert, Date fechaUpdate, boolean BL,  PerfilUsuario perfilUsuario, Set<ListaContactos> contactos) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -82,7 +80,6 @@ public class Usuario {
         this.fechaInsert = fechaInsert;
         this.fechaUpdate = fechaUpdate;
         this.BL = BL;
-        this.tipoUsuario = tipoUsuario;
         this.perfilUsuario = perfilUsuario;
         this.contactos = contactos;
     }
@@ -207,13 +204,6 @@ public class Usuario {
         this.contactos = contactos;
     }
 
-    public String getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
 
     @Override
     public String toString() {
@@ -231,7 +221,6 @@ public class Usuario {
                 ", fechaInsert=" + fechaInsert +
                 ", fechaUpdate=" + fechaUpdate +
                 ", BL=" + BL +
-                ", tipoUsuario='" + tipoUsuario + '\'' +
                 ", perfilUsuario=" + perfilUsuario +
                 ", contactos=" + contactos +
                 '}';
