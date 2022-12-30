@@ -20,10 +20,15 @@ public class CatalogoProductos {
     private String descripcion;
 
     @OneToMany(mappedBy = "catalogo")
+    @JoinColumn(name = "id_tipo_producto")
     List<TipoProducto> tipoProductos;
+
     @OneToMany(mappedBy = "catalogo")
+    @JoinColumn(name = "id_clases")
     List<ClasesPrecio> clasesPrecio;
+
     @OneToMany(mappedBy = "catalogo")
+    @JoinColumn(name = "id_alquiler")
     List<Alquiler> alquiler;
 
     @ManyToMany(mappedBy = "catalogo")
@@ -47,8 +52,12 @@ public class CatalogoProductos {
     public List<Alquiler> getAlquiler() {return alquiler;}
     public void setAlquiler(List<Alquiler> alquiler) {this.alquiler = alquiler;}
 
-    public List<Reservas> getReservas() {return reservas;}
-    public void setReservas(List<Reservas> reservas) {this.reservas = reservas;}
+    public List<Reservas> getReservas() {
+        return reservas;
+    }
+    public void setReservas(List<Reservas> reservas) {
+        this.reservas = reservas;
+    }
 
     public CatalogoProductos() {
     }

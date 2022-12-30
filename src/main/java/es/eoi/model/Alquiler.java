@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @EntityScan
@@ -22,12 +23,11 @@ public class Alquiler {
     private Boolean bl;
 
     @ManyToOne
-    @JoinColumn(name = "id_historial")
-    HistorialReservas historialReservas;
-
-    @ManyToOne
     @JoinColumn(name = "id_catalogo")
     CatalogoProductos catalogo;
+
+    @OneToMany(mappedBy = "alquiler")
+    List<MaterialReservas> materialesReservados;
 
     public long getIdAlquiler() {return idAlquiler;}
     public void setIdAlquiler(long idAlquiler) {this.idAlquiler = idAlquiler;}
@@ -41,21 +41,25 @@ public class Alquiler {
     public Boolean getBl() {return bl;}
     public void setBl(Boolean bl) {this.bl = bl;}
 
-    public HistorialReservas getHistorialReservas() {return historialReservas;}
-    public void setHistorialReservas(HistorialReservas historialReservas) {this.historialReservas = historialReservas;}
-
     public CatalogoProductos getCatalogo() {return catalogo;}
     public void setCatalogo(CatalogoProductos catalogo) {this.catalogo = catalogo;}
 
+    public List<MaterialReservas> getMaterialesReservados() {
+        return materialesReservados;
+    }
+    public void setMaterialesReservados(List<MaterialReservas> materialesReservados) {
+        this.materialesReservados = materialesReservados;
+    }
+
     public Alquiler() {}
 
-    public Alquiler(long idAlquiler, int inventario, Date fechaUpdate, Boolean bl,
-                    HistorialReservas historialReservas, CatalogoProductos catalogo) {
+    public Alquiler(long idAlquiler, int inventario, Date fechaUpdate, Boolean bl, CatalogoProductos catalogo,
+                    List<MaterialReservas> materialesReservados) {
         this.idAlquiler = idAlquiler;
         this.inventario = inventario;
         this.fechaUpdate = fechaUpdate;
         this.bl = bl;
-        this.historialReservas = historialReservas;
         this.catalogo = catalogo;
+        this.materialesReservados = materialesReservados;
     }
 }

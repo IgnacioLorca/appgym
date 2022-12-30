@@ -28,14 +28,18 @@ public class Reservas {
     @JoinColumn(name = "id_calendario")
     Calendario calendario;
 
+    @OneToMany(mappedBy = "reservas")
+    List<MaterialReservas> reservaMateriales;
+
+    @OneToMany(mappedBy = "reservas")
+    List<ClasesReservas> reservaClases;
+
+    @ManyToMany
     @JoinTable(
-            name = "reserva_catalogo",
+            name = "tblReserva_tblCatalogo",
             joinColumns = @JoinColumn(name = "id_reservas"),
             inverseJoinColumns = @JoinColumn(name = "id_catalogo"))
-    @ManyToMany(cascade = CascadeType.ALL)
     List<CatalogoProductos> catalogo;
-
-    // ¿Relación entre Reservas e HdR? Se puede obviar esta tabla?
 
     public long getIdReservas() {return idReservas;}
     public void setIdReservas(long idReservas) {this.idReservas = idReservas;}
@@ -55,16 +59,33 @@ public class Reservas {
     public List<CatalogoProductos> getCatalogo() {return catalogo;}
     public void setCatalogo(List<CatalogoProductos> catalogo) {this.catalogo = catalogo;}
 
+    public List<MaterialReservas> getReservaMateriales() {
+        return reservaMateriales;
+    }
+    public void setReservaMateriales(List<MaterialReservas> reservaMateriales) {
+        this.reservaMateriales = reservaMateriales;
+    }
+
+    public List<ClasesReservas> getReservaClases() {
+        return reservaClases;
+    }
+    public void setReservaClases(List<ClasesReservas> reservaClases) {
+        this.reservaClases = reservaClases;
+    }
+
     public Reservas() {
     }
 
-    public Reservas(long idReservas, Float progresos, Date fechaUpdate, Usuario usuario,
-                    Calendario calendario, List<CatalogoProductos> catalogo) {
+    public Reservas(long idReservas, Float progresos, Date fechaUpdate, Usuario usuario, Calendario calendario,
+                    List<MaterialReservas> reservaMateriales, List<ClasesReservas> reservaClases,
+                    List<CatalogoProductos> catalogo) {
         this.idReservas = idReservas;
         this.progresos = progresos;
         this.fechaUpdate = fechaUpdate;
         this.usuario = usuario;
         this.calendario = calendario;
+        this.reservaMateriales = reservaMateriales;
+        this.reservaClases = reservaClases;
         this.catalogo = catalogo;
     }
 }

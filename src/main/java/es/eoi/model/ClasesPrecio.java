@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @EntityScan
@@ -24,12 +25,11 @@ public class ClasesPrecio {
     private int cupoMaximo;
 
     @ManyToOne
-    @JoinColumn(name = "id_historial")
-    HistorialReservas historialReservas;
-
-    @ManyToOne
     @JoinColumn(name = "id_catalogo")
     CatalogoProductos catalogo;
+
+    @OneToMany(mappedBy = "clases")
+    List<ClasesReservas> clasesReservadas;
 
     public long getIdClases() {return idClases;}
     public void setIdClases(long idClases) {this.idClases = idClases;}
@@ -46,24 +46,26 @@ public class ClasesPrecio {
     public int getCupoMaximo() {return cupoMaximo;}
     public void setCupoMaximo(int cupoMaximo) {this.cupoMaximo = cupoMaximo;}
 
-    public HistorialReservas getHistorialReservas() {return historialReservas;}
-    public void setHistorialReservas(HistorialReservas historialReservas) {
-        this.historialReservas = historialReservas;
-    }
-
     public CatalogoProductos getCatalogo() {return catalogo;}
     public void setCatalogo(CatalogoProductos catalogo) {this.catalogo = catalogo;}
 
+    public List<ClasesReservas> getClasesReservadas() {
+        return clasesReservadas;
+    }
+    public void setClasesReservadas(List<ClasesReservas> clasesReservadas) {
+        this.clasesReservadas = clasesReservadas;
+    }
+
     public ClasesPrecio() {}
 
-    public ClasesPrecio(long idClases, Float precioClases, Date fechaUpdate, String diaSemana,
-                        int cupoMaximo, HistorialReservas historialReservas, CatalogoProductos catalogo) {
+    public ClasesPrecio(long idClases, Float precioClases, Date fechaUpdate, String diaSemana, int cupoMaximo,
+                        CatalogoProductos catalogo, List<ClasesReservas> clasesReservadas) {
         this.idClases = idClases;
         this.precioClases = precioClases;
         this.fechaUpdate = fechaUpdate;
         this.diaSemana = diaSemana;
         this.cupoMaximo = cupoMaximo;
-        this.historialReservas = historialReservas;
         this.catalogo = catalogo;
+        this.clasesReservadas = clasesReservadas;
     }
 }

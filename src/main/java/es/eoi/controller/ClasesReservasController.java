@@ -1,7 +1,7 @@
 package es.eoi.controller;
 
-import es.eoi.model.HistorialReservas;
-import es.eoi.repository.HistorialReservasRepository;
+import es.eoi.model.ClasesReservas;
+import es.eoi.repository.ClasesReservasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,20 +15,20 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3306")
 @RestController
-@RequestMapping("/api/historialReservas")
-public class HistorialReservasController {
+@RequestMapping("/api/reservasclase")
+public class ClasesReservasController {
 
     @Autowired
-    HistorialReservasRepository historialReservasRepository;
-    @GetMapping("/listaHistoriaReservas")
-    public ResponseEntity<List<HistorialReservas>> getAllHistorial(){
+    ClasesReservasRepository clasesReservasRepository;
+    @GetMapping("/listaclasesreservadas")
+    public ResponseEntity<List<ClasesReservas>> getAllClasesRes(){
         try {
-            List<HistorialReservas> historial = new ArrayList<>();
-            historialReservasRepository.findAll().forEach(historial::add);
-            if (historial.isEmpty()) {
+            List<ClasesReservas> clasesReservas = new ArrayList<>();
+            clasesReservasRepository.findAll().forEach(clasesReservas::add);
+            if (clasesReservas.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(historial, HttpStatus.OK);
+            return new ResponseEntity<>(clasesReservas, HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

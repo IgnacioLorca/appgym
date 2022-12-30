@@ -18,11 +18,14 @@ public class TipoProducto {
     private String descripcion;
 
     @ManyToOne
-    @JoinColumn(name = "id_catalogo")
     CatalogoProductos catalogo;
 
-    public long getId() {return idTipoProducto;}
-    public void setId(long idTipoProducto) {this.idTipoProducto = idTipoProducto;}
+    public long getIdTipoProducto() {
+        return idTipoProducto;
+    }
+    public void setIdTipoProducto(long idTipoProducto) {
+        this.idTipoProducto = idTipoProducto;
+    }
 
     public String getNombre() {return nombre;}
     public void setNombre(String nombre) {this.nombre = nombre;}
