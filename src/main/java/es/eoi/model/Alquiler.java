@@ -26,7 +26,7 @@ public class Alquiler {
     @JoinColumn(name = "id_catalogo")
     CatalogoProductos catalogo;
 
-    @OneToMany(mappedBy = "alquiler")
+    @OneToMany(mappedBy = "alquileres")
     List<MaterialReservas> materialesReservados;
 
     public long getIdAlquiler() {return idAlquiler;}
