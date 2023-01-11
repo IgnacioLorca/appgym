@@ -10,6 +10,10 @@ import java.util.Date;
 @Table(name = "tblMaterialReservas")
 public class MaterialReservas {
 
+    @Id
+    @Column(name = "id_materiales_res")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long idMatRes;
     @Column(name = "fecha_update")
     private Date fechaUpdate;
 

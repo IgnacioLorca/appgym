@@ -20,15 +20,15 @@ public class CatalogoProductos {
     private String descripcion;
 
     @OneToMany(mappedBy = "catalogo")
-    @JoinColumn(name = "id_tipo_producto")
+//    @JoinColumn(name = "id_tipo_producto")
     List<TipoProducto> tipoProductos;
 
     @OneToMany(mappedBy = "catalogo")
-    @JoinColumn(name = "id_clases")
+//    @JoinColumn(name = "id_clases")
     List<ClasesPrecio> clasesPrecio;
 
     @OneToMany(mappedBy = "catalogo")
-    @JoinColumn(name = "id_alquiler")
+//    @JoinColumn(name = "id_alquiler")
     List<Alquiler> alquiler;
 
     @ManyToMany(mappedBy = "catalogo")
