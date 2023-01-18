@@ -12,7 +12,7 @@ public class ClasesReservas {
 
     @Id
     @Column(name = "id_clases_res")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idClasRes;
     @Column(name = "fecha_update")
     private Date fechaUpdate;

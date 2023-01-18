@@ -10,7 +10,7 @@ public class PerfilUsuario {
 
     @Id
     @Column(name = "id_perfil")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idPerfil;
     @Column (name = "nombre_perfil", length = 50)
     private String nombrePerfil;

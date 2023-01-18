@@ -12,7 +12,7 @@ public class CatalogoProductos {
 
     @Id
     @Column(name = "id_catalogo")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idCatalogo;
     @Column (name ="nombre",length = 50)
     private String nombre;

@@ -13,7 +13,7 @@ public class Alquiler {
 
     @Id
     @Column(name ="id_alquiler")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idAlquiler;
     @Column(name = "inventario")
     private int inventario;

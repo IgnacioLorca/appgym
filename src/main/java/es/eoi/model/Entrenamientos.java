@@ -12,7 +12,7 @@ import java.util.Date;
 public class Entrenamientos {
     @Id
     @Column(name="id_entrenamiento")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public long idEntrenamiento;
     @Column(name="id_usuario")
     public long idUsuario;

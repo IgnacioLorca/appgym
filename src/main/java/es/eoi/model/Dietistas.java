@@ -12,7 +12,7 @@ import java.util.List;
 public class Dietistas {
     @Id
     @Column(name="id_dietista")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public long idDietista;
     @Column(name="nombre_dietista")
     public String nombreDietista;

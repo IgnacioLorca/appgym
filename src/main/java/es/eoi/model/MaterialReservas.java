@@ -12,7 +12,7 @@ public class MaterialReservas {
 
     @Id
     @Column(name = "id_materiales_res")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idMatRes;
     @Column(name = "fecha_update")
     private Date fechaUpdate;
