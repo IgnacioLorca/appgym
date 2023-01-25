@@ -1,8 +1,7 @@
 package es.eoi.controller;
 
-
-import es.eoi.model.Entrenamientos;
-import es.eoi.repository.EntrenamientosRepository;
+import es.eoi.model.ClasesReservas;
+import es.eoi.repository.ClasesReservasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,21 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3036")
 @RestController
-@RequestMapping("/api/entrenamientos")
-public class EntrenamientosController{
+@RequestMapping("/api/reservasclase")
+public class APIClasesReservasController {
+
     @Autowired
-    EntrenamientosRepository entrenamientosRepository;
-    @GetMapping("/listaentrenamientos")
-    public ResponseEntity<List<Entrenamientos>> getAllEntrenamientos() {
+    ClasesReservasRepository clasesReservasRepository;
+    @GetMapping("/listaclasesreservadas")
+    public ResponseEntity<List<ClasesReservas>> getAllClasesRes(){
         try {
-            List<Entrenamientos> entrenamientos = new ArrayList<>();
-            entrenamientosRepository.findAll().forEach(entrenamientos::add);
-            if (entrenamientos.isEmpty()) {
+            List<ClasesReservas> clasesReservas = new ArrayList<>();
+            clasesReservasRepository.findAll().forEach(clasesReservas::add);
+            if (clasesReservas.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(entrenamientos, HttpStatus.OK);
+            return new ResponseEntity<>(clasesReservas, HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

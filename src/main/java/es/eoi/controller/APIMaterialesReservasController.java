@@ -1,7 +1,7 @@
 package es.eoi.controller;
 
-import es.eoi.model.CatalogoProductos;
-import es.eoi.repository.CatalogoProductosRepository;
+import es.eoi.model.MaterialReservas;
+import es.eoi.repository.MaterialReservasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,22 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3306")
+
 @RestController
-@RequestMapping("/api/catalogo")
-public class CatalogoProductosController {
+@RequestMapping("/api/reservasmaterial")
+public class APIMaterialesReservasController {
 
     @Autowired
-    CatalogoProductosRepository catalogoProductosRepository;
-    @GetMapping("/listacatalogo")
-    public ResponseEntity<List<CatalogoProductos>> getAllCatalogo(){
+    MaterialReservasRepository materialReservasRepository;
+    @GetMapping("/listamaterialesreservados")
+    public ResponseEntity<List<MaterialReservas>> getAllMatRes(){
         try {
-            List<CatalogoProductos> catalogo = new ArrayList<>();
-            catalogoProductosRepository.findAll().forEach(catalogo::add);
-            if (catalogo.isEmpty()) {
+            List<MaterialReservas> materialesReservas = new ArrayList<>();
+            materialReservasRepository.findAll().forEach(materialesReservas::add);
+            if (materialesReservas.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(catalogo, HttpStatus.OK);
+            return new ResponseEntity<>(materialesReservas, HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

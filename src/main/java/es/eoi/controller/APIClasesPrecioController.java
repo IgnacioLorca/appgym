@@ -1,8 +1,7 @@
 package es.eoi.controller;
 
-
-import es.eoi.model.ListaContactos;
-import es.eoi.repository.ContactosRepository;
+import es.eoi.model.ClasesPrecio;
+import es.eoi.repository.ClasesPrecioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,25 +13,25 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+
 @RestController
-@RequestMapping("/api/contactos")
-public class ContactosController {
+@RequestMapping("/api/clasesprecio")
+public class APIClasesPrecioController {
+
     @Autowired
-    ContactosRepository contactosRepository;
-    @GetMapping("/listacontactos")
-    public ResponseEntity<List<ListaContactos>> getAllContactos(){
+    ClasesPrecioRepository clasesPrecioRepository;
+    @GetMapping("/listaclases")
+    public ResponseEntity<List<ClasesPrecio>> getAllClases(){
         try {
-            List<ListaContactos> contactos = new ArrayList<>();
-            contactosRepository.findAll().forEach(contactos::add);
-            if (contactos.isEmpty()) {
+            List<ClasesPrecio> clases = new ArrayList<>();
+            clasesPrecioRepository.findAll().forEach(clases::add);
+            if (clases.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(contactos, HttpStatus.OK);
+            return new ResponseEntity<>(clases, HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 }

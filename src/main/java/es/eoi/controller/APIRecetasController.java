@@ -1,7 +1,7 @@
 package es.eoi.controller;
 
-import es.eoi.model.TipoProducto;
-import es.eoi.repository.TipoProductoRepository;
+import es.eoi.model.Recetas;
+import es.eoi.repository.RecetasRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,25 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3306")
-@RestController
-@RequestMapping("/api/tiposproducto")
-public class TipoProductoController {
 
+@RestController
+@RequestMapping("/api/recetas")
+public class APIRecetasController {
     @Autowired
-    TipoProductoRepository tipoProductoRepository;
-    @GetMapping("/listaproductos")
-    public ResponseEntity<List<TipoProducto>> getAllProductos(){
-        try {
-            List<TipoProducto> productos = new ArrayList<>();
-            tipoProductoRepository.findAll().forEach(productos::add);
-            if (productos.isEmpty()) {
+    RecetasRespository recetasRespository;
+    @GetMapping("/listarecetas")
+    public ResponseEntity<List<Recetas>> getAllRecetas(){
+        try{
+            List<Recetas> recetas = new ArrayList<>();
+            recetasRespository.findAll().forEach(recetas::add);
+            if(recetas.isEmpty()){
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(productos, HttpStatus.OK);
-        }
-        catch (Exception e){
+            return new ResponseEntity<>(recetas, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

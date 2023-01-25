@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3306")
+
 @RestController
 @RequestMapping("/api/calendario")
-public class CalendarioController {
+public class APICalendarioController {
 
     @Autowired
     CalendarioRepository calendarioRepository;

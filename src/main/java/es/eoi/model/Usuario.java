@@ -58,7 +58,7 @@ public class Usuario {
             name = "tblListaContactos_tblDatosUsuario",
             joinColumns = @JoinColumn(name = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "id_contacto"))
-    Set<ListaContactos> contactos;
+    Set<Contactos> contactos;
 
     @ManyToOne
     @JoinColumn(name = "id_entrenador")
@@ -78,7 +78,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(long idUsuario, long idPerfil, String nombre, String apellidos, String direccion, String ciudad, String provincia, String email, String username, String password, float peso, float altura, Date fechaInsert, Date fechaUpdate, boolean BL, String tipoUsuario, PerfilUsuario perfilUsuario, Set<ListaContactos> contactos) {
+    public Usuario(long idUsuario, long idPerfil, String nombre, String apellidos, String direccion, String ciudad, String provincia, String email, String username, String password, float peso, float altura, Date fechaInsert, Date fechaUpdate, boolean BL, String tipoUsuario, PerfilUsuario perfilUsuario, Set<Contactos> contactos) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -210,11 +210,11 @@ public class Usuario {
         this.perfilUsuario = perfilUsuario;
     }
 
-    public Set<ListaContactos> getContactos() {
+    public Set<Contactos> getContactos() {
         return contactos;
     }
 
-    public void setContactos(Set<ListaContactos> contactos) {
+    public void setContactos(Set<Contactos> contactos) {
         this.contactos = contactos;
     }
 

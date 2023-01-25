@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @EntityScan
 @Table(name = "tblListaContactos")
-public class ListaContactos {
+public class Contactos {
 
     @Id
     @Column(name ="id_contacto")
@@ -29,10 +29,10 @@ public class ListaContactos {
     @ManyToMany(mappedBy = "contactos")
     Set<Usuario> usuarios;
 
-    public ListaContactos() {
+    public Contactos() {
     }
 
-    public ListaContactos(long idContacto, long idUsuario, long idUsuarioContacto, Date fechaInsert, Date fechaUpdate, boolean BL, Set<Usuario> usuarios) {
+    public Contactos(long idContacto, long idUsuario, long idUsuarioContacto, Date fechaInsert, Date fechaUpdate, boolean BL, Set<Usuario> usuarios) {
         this.idContacto = idContacto;
         this.idUsuario = idUsuario;
         this.idUsuarioContacto = idUsuarioContacto;

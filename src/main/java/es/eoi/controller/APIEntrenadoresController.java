@@ -1,7 +1,7 @@
 package es.eoi.controller;
 
-import es.eoi.model.PerfilUsuario;
-import es.eoi.repository.PerfilUsuarioRepository;
+import es.eoi.model.Entrenadores;
+import es.eoi.repository.EntrenadoresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,24 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+
 @RestController
-@RequestMapping("/api/perfilusuario")
-public class PerfilUsuarioController {
+@RequestMapping("/api/entrenadores")
+public class APIEntrenadoresController {
     @Autowired
-    PerfilUsuarioRepository perfilUsuarioRepository;
-    @GetMapping("/listaperfilusuario")
-    public ResponseEntity<List<PerfilUsuario>> getAllPerfilUsuario(){
-        try {
-            List<PerfilUsuario> perfilUsuarios = new ArrayList<>();
-            perfilUsuarioRepository.findAll().forEach(perfilUsuarios::add);
-            if (perfilUsuarios.isEmpty()) {
+    EntrenadoresRepository entrenadoresRepository;
+    @GetMapping("/listaentrenadores")
+    public ResponseEntity<List<Entrenadores>> getAllEntrenadores(){
+        try{
+            List<Entrenadores> entrenadores = new ArrayList<>();
+            entrenadoresRepository.findAll().forEach(entrenadores::add);
+            if(entrenadores.isEmpty()){
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(perfilUsuarios, HttpStatus.OK);
-        }
-        catch (Exception e){
+            return new ResponseEntity<>(entrenadores, HttpStatus.OK);
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

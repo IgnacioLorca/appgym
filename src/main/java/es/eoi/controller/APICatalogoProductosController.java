@@ -1,7 +1,7 @@
 package es.eoi.controller;
 
-import es.eoi.model.Entrenadores;
-import es.eoi.repository.EntrenadoresRepository;
+import es.eoi.model.CatalogoProductos;
+import es.eoi.repository.CatalogoProductosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,24 +13,25 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins="http://localhost:3306")
+
 @RestController
-@RequestMapping("/api/entrenadores")
-public class EntrenadoresController {
+@RequestMapping("/api/catalogo")
+public class APICatalogoProductosController {
+
     @Autowired
-    EntrenadoresRepository entrenadoresRepository;
-    @GetMapping("/listaentrenadores")
-    public ResponseEntity<List<Entrenadores>> getAllEntrenadores(){
-        try{
-            List<Entrenadores> entrenadores = new ArrayList<>();
-            entrenadoresRepository.findAll().forEach(entrenadores::add);
-            if(entrenadores.isEmpty()){
+    CatalogoProductosRepository catalogoProductosRepository;
+    @GetMapping("/listacatalogo")
+    public ResponseEntity<List<CatalogoProductos>> getAllCatalogo(){
+        try {
+            List<CatalogoProductos> catalogo = new ArrayList<>();
+            catalogoProductosRepository.findAll().forEach(catalogo::add);
+            if (catalogo.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(entrenadores, HttpStatus.OK);
-        } catch (Exception e) {
+            return new ResponseEntity<>(catalogo, HttpStatus.OK);
+        }
+        catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }

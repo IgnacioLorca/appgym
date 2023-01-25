@@ -7,14 +7,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UsuarioSrvc {
-    private final UsuarioRepository usurep;
+public class UsuarioSrvc extends AbstractBusinessServiceE<Usuario, Integer, UsuarioRepository> {
 
-    public UsuarioSrvc(UsuarioRepository usuarioRepository) {
-        this.usurep = usuarioRepository;
+
+    private final UsuarioRepository usuarioRepository;
+
+    public UsuarioSrvc(UsuarioRepository usuarioRepository, UsuarioRepository usuarioRepository1) {
+        super(usuarioRepository);
+        this.usuarioRepository = usuarioRepository1;
     }
 
     public List<Usuario> getUsuarios() {
-        return usurep.findAll();
+        return usuarioRepository.findAll();
     }
 }

@@ -1,11 +1,11 @@
 package es.eoi.controller;
 
-import es.eoi.model.Alquiler;
-import es.eoi.repository.AlquilerRepository;
+
+import es.eoi.model.Contactos;
+import es.eoi.repository.ContactosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,25 +13,25 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3306")
-@RestController
-@RequestMapping("/api/alquiler")
-public class AlquilerController {
 
+@RestController
+@RequestMapping("/api/contactos")
+public class APIContactosController {
     @Autowired
-    AlquilerRepository alquilerRepository;
-    @GetMapping("/listaalquileres")
-    public ResponseEntity<List<Alquiler>> getAllAlquileres(){
+    ContactosRepository contactosRepository;
+    @GetMapping("/listacontactos")
+    public ResponseEntity<List<Contactos>> getAllContactos(){
         try {
-            List<Alquiler> alquileres = new ArrayList<>();
-            alquilerRepository.findAll().forEach(alquileres::add);
-            if (alquileres.isEmpty()) {
+            List<Contactos> contactos = new ArrayList<>();
+            contactosRepository.findAll().forEach(contactos::add);
+            if (contactos.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-            return new ResponseEntity<>(alquileres, HttpStatus.OK);
+            return new ResponseEntity<>(contactos, HttpStatus.OK);
         }
         catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
     }
 }
