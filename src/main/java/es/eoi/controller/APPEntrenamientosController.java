@@ -23,6 +23,10 @@ public class APPEntrenamientosController {
     @Autowired
     private EntrenamientosSrvc entrenamientosSrvc;
 
+    public APPEntrenamientosController(EntrenamientosSrvc entrenamientosSrvc) {
+        this.entrenamientosSrvc = entrenamientosSrvc;
+    }
+
     @GetMapping(value="/listaentrenamientos")
     public String listaEntrenamientos(Model mod) {
         List<Entrenamientos> listaEntrenamientos = entrenamientosSrvc.getEntrenamientos();

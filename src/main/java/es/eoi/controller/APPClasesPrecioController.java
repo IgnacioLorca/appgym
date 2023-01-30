@@ -23,6 +23,10 @@ public class APPClasesPrecioController {
     @Autowired
     private ClasesPrecioSrvc clasesPrecioSrvc;
 
+    public APPClasesPrecioController(ClasesPrecioSrvc clasesPrecioSrvc) {
+        this.clasesPrecioSrvc = clasesPrecioSrvc;
+    }
+
     @GetMapping(value="/listaclasesprecio")
     public String listaClasesPre(Model mod) {
         List<ClasesPrecio> listaClasesPre = clasesPrecioSrvc.getClasesPrecio();

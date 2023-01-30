@@ -21,6 +21,11 @@ public class APPTipoProductoController extends AbstractController<TipoProducto>{
 
     @Autowired
     private TipoProductoSrvc tipoProductoSrvc;
+
+    public APPTipoProductoController(TipoProductoSrvc tipoProductoSrvc) {
+        this.tipoProductoSrvc = tipoProductoSrvc;
+    }
+
     @GetMapping(value="/listaproductos")
     public String listaTipoProducto(Model mod) {
         List<TipoProducto> listTipoProd = tipoProductoSrvc.getTipoProducto();

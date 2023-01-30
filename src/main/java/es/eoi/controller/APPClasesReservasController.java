@@ -22,6 +22,10 @@ public class APPClasesReservasController {
     @Autowired
     private ClasesReservasSrvc clasesReservasSrvc;
 
+    public APPClasesReservasController(ClasesReservasSrvc clasesReservasSrvc) {
+        this.clasesReservasSrvc = clasesReservasSrvc;
+    }
+
     @GetMapping(value="/listaclasesreservadas")
     public String listaClasesRes(Model mod) {
         List<ClasesReservas> listaClasesRes = clasesReservasSrvc.getClasesReservas();

@@ -20,6 +20,10 @@ public class APPPerfilUsuarioController extends AbstractController<PerfilUsuario
     @Autowired
     private PerfilUsuarioSrvc perfilUsuarioSrvc;
 
+    public APPPerfilUsuarioController(PerfilUsuarioSrvc perfilUsuarioSrvc) {
+        this.perfilUsuarioSrvc = perfilUsuarioSrvc;
+    }
+
     @GetMapping(value="/listaperfilusuario")
     public String listaPerfilUs(Model mod) {
         List<PerfilUsuario> listaPerfilUs = perfilUsuarioSrvc.getPerfilUsuario();

@@ -78,6 +78,8 @@ public class Usuario {
     public Usuario() {
     }
 
+
+
     public Usuario(long idUsuario, long idPerfil, String nombre, String apellidos, String direccion, String ciudad, String provincia, String email, String username, String password, float peso, float altura, Date fechaInsert, Date fechaUpdate, boolean BL, String tipoUsuario, PerfilUsuario perfilUsuario, Set<Contactos> contactos) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;

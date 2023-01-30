@@ -20,6 +20,10 @@ public class APPContactosController {
     @Autowired
     private ContactosSrvc contactosSrvc;
 
+    public APPContactosController(ContactosSrvc contactosSrvc) {
+        this.contactosSrvc = contactosSrvc;
+    }
+
     @GetMapping(value="/listacontactos")
     public String listaContactos(Model mod) {
         List<Contactos> listaContactos = contactosSrvc.getListaContactos();

@@ -23,6 +23,10 @@ public class APPMaterialesReservasController {
     @Autowired
     private MaterialReservasSrvc materialReservasSrvc;
 
+    public APPMaterialesReservasController(MaterialReservasSrvc materialReservasSrvc) {
+        this.materialReservasSrvc = materialReservasSrvc;
+    }
+
     @GetMapping(value="/listamaterialesreservados")
     public String listaMaterial(Model mod) {
         List<MaterialReservas> listaMaterial = materialReservasSrvc.getMaterialReservas();

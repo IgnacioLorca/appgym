@@ -22,6 +22,10 @@ public class APPAlquilerController {
     @Autowired
     private AlquilerSrvc alquilerSrvc;
 
+    public APPAlquilerController(AlquilerSrvc alquilerSrvc) {
+        this.alquilerSrvc = alquilerSrvc;
+    }
+
     @GetMapping(value="/listaalquileres")
     public String listaAlquiler(Model mod) {
         List<Alquiler> listaAlquiler = alquilerSrvc.getAlquiler();
