@@ -4,20 +4,18 @@ import es.eoi.model.Calendario;
 import es.eoi.model.Entrenamientos;
 import es.eoi.model.Reservas;
 import es.eoi.model.Usuario;
-import es.eoi.repository.ReservasRepository;
+
 import es.eoi.services.CalendarioSrvc;
 import es.eoi.services.EntrenamientosSrvc;
 import es.eoi.services.ReservasSrvc;
 import es.eoi.services.UsuarioSrvc;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -51,19 +49,19 @@ public class APPReservasController extends AbstractController<Reservas>{
         Optional<Reservas> reservas = this.reservasSrvc.encuentraPorId(id);
         //¿Debería comprobar si hay datos?
         if (reservas.isPresent()){
-            //Obtenemos el listado de empleados
+            List<Reservas> listaReservas = this.reservasSrvc.buscarTodos();
             List<Usuario> listaUsuarios = this.usuarioSrvc.buscarTodos();
             List<Calendario> listaCalendario = this.calendarioSrvc.buscarTodos();
-            List<Reservas> listaReservas = this.reservasSrvc.buscarTodos();
             List<Entrenamientos> listaEntrenamientos = this.entrenamientosSrvc.buscarTodos();
             //Como encontré datos, obtengo el objerto de tipo "GaleriaDto"
             //addAttribute y thymeleaf no  entienden Optional
             Reservas attr = reservas.get();
             //Asigno atributos y muestro
-            interfazConPantalla.addAttribute("datos", attr);
+            interfazConPantalla.addAttribute("datos", reservas);
             interfazConPantalla.addAttribute("listaUsuarios", listaUsuarios);
             interfazConPantalla.addAttribute("listaReservas", listaReservas);
             interfazConPantalla.addAttribute("listaEntrenamientos", listaEntrenamientos);
+            interfazConPantalla.addAttribute("listacalendario", listaCalendario);
             return "reservas/edit";
         } else{
             //Mostrar página usuario no existe

@@ -40,7 +40,7 @@ public class APPRecetasController extends AbstractController<Recetas>{
         return "listarecetas";
     }
 
-    @GetMapping("/reservas/{id}")
+    @GetMapping("/recetas/{id}")
     public String vistaDatos(@PathVariable("id") Integer id, ModelMap interfazConPantalla){
         //Con el id tengo que buscar el registro a nivel de entidad
         Optional<Recetas> recetas = this.recetasSrvc.encuentraPorId(id);
