@@ -11,7 +11,7 @@ import java.util.List;
 public class Recetas {
     @Id
     @Column(name="id_receta")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public long idReceta;
     @Column(name="nombre_receta")
     public String nombreReceta;

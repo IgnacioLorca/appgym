@@ -13,7 +13,7 @@ public class ClasesPrecio {
 
     @Id
     @Column(name = "id_clases")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idClases;
     @Column(name = "precio_clases")
     private Float precioClases;

@@ -13,7 +13,7 @@ public class Calendario {
 
     @Id
     @Column(name ="id_calendario")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idCalendario;
     @Column(name = "fecha_reserva")
     private Date fechaReserva;

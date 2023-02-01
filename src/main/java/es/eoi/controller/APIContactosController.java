@@ -1,0 +1,37 @@
+package es.eoi.controller;
+
+
+import es.eoi.model.Contactos;
+import es.eoi.repository.ContactosRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+@RestController
+@RequestMapping("/api/contactos")
+public class APIContactosController {
+    @Autowired
+    ContactosRepository contactosRepository;
+    @GetMapping("/listacontactos")
+    public ResponseEntity<List<Contactos>> getAllContactos(){
+        try {
+            List<Contactos> contactos = new ArrayList<>();
+            contactosRepository.findAll().forEach(contactos::add);
+            if (contactos.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(contactos, HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+}

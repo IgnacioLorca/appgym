@@ -13,7 +13,7 @@ public class Reservas {
 
     @Id
     @Column(name = "id_reservas")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idReservas;
     @Column(name = "progresos")
     private Float progresos;

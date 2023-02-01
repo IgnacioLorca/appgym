@@ -14,7 +14,7 @@ public class Usuario {
 
     @Id
     @Column(name = "id_usuario")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idUsuario;
     @Column (name = "nombre", length = 50)
     private String nombre;
@@ -24,6 +24,8 @@ public class Usuario {
     private String direccion;
     @Column (name ="ciudad", length = 50)
     private String ciudad;
+    @Column(name="provincia", length = 50)
+    private String provincia;
     @Column (name = "email", length = 50)
     private String email;
     @Column (name ="username",length = 10)
@@ -47,12 +49,19 @@ public class Usuario {
     @JoinColumn(name = "id_perfil")
     PerfilUsuario perfilUsuario;
 
+    @OneToOne
+    @JoinColumn(name = "id_datosbio")
+    DatosBiometricos datosBiometricos;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
     @ManyToMany
     @JoinTable(
             name = "tblListaContactos_tblDatosUsuario",
             joinColumns = @JoinColumn(name = "id_usuario"),
             inverseJoinColumns = @JoinColumn(name = "id_contacto"))
-    Set<ListaContactos> contactos;
+    Set<Contactos> contactos;
 
     @ManyToOne
     @JoinColumn(name = "id_entrenador")
@@ -72,12 +81,15 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(long idUsuario, long idPerfil, String nombre, String apellidos, String direccion, String ciudad, String email, String username, String password, float peso, float altura, Date fechaInsert, Date fechaUpdate, boolean BL, String tipoUsuario, PerfilUsuario perfilUsuario, Set<ListaContactos> contactos) {
+
+
+    public Usuario(long idUsuario, long idPerfil, String nombre, String apellidos, String direccion, String ciudad, String provincia, String email, String username, String password, float peso, float altura, Date fechaInsert, Date fechaUpdate, boolean BL, String tipoUsuario, PerfilUsuario perfilUsuario, Set<Contactos> contactos) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.direccion = direccion;
         this.ciudad = ciudad;
+        this.provincia = provincia;
         this.email = email;
         this.username = username;
         this.password = password;
@@ -203,11 +215,11 @@ public class Usuario {
         this.perfilUsuario = perfilUsuario;
     }
 
-    public Set<ListaContactos> getContactos() {
+    public Set<Contactos> getContactos() {
         return contactos;
     }
 
-    public void setContactos(Set<ListaContactos> contactos) {
+    public void setContactos(Set<Contactos> contactos) {
         this.contactos = contactos;
     }
 
@@ -219,6 +231,14 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -227,6 +247,7 @@ public class Usuario {
                 ", apellidos='" + apellidos + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", ciudad='" + ciudad + '\'' +
+                ", provincia='" + provincia + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
