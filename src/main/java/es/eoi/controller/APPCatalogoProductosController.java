@@ -1,38 +1,30 @@
 package es.eoi.controller;
 
-import es.eoi.model.CatalogoProductos;
-import es.eoi.model.Usuario;
-import es.eoi.repository.CatalogoProductosRepository;
-import es.eoi.services.CatalogoProductosSrvc;
+import es.eoi.model.Catalogo;
+import es.eoi.service.CatalogoSrvc;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-
 @Controller
-public class APPCatalogoProductosController extends AbstractController<CatalogoProductos>{
+public class APPCatalogoProductosController extends AbstractController<Catalogo>{
 
     @Autowired
-    private CatalogoProductosSrvc catalogoProductosSrvc;
+    private CatalogoSrvc catalogoSrvc;
 
-    public APPCatalogoProductosController(CatalogoProductosSrvc catalogoProductosSrvc) {
-        this.catalogoProductosSrvc = catalogoProductosSrvc;
+    public APPCatalogoProductosController(CatalogoSrvc catalogoSrvc) {
+        this.catalogoSrvc = catalogoSrvc;
     }
 
     @GetMapping("/listacatalogo")
     public String vista(Model interfazConPantalla) {
-        Set<CatalogoProductos> catalogo = catalogoProductosSrvc.buscarTodosSet();
+        Set<Catalogo> catalogo = catalogoSrvc.buscarTodosSet();
         interfazConPantalla.addAttribute("listacatalogo", catalogo);
         return "/listacatalogo";
     }
@@ -40,12 +32,12 @@ public class APPCatalogoProductosController extends AbstractController<CatalogoP
     @GetMapping("/catalogo/{id}")
     public String vistaDatosCatalogo(@PathVariable("id") Integer id, ModelMap interfazConPantalla) {
         //Con el id tengo que buscar el registro a nivel de entidad
-        Optional<CatalogoProductos> catalogoProductos = this.catalogoProductosSrvc.encuentraPorId(id);
+        Optional<Catalogo> catalogo = this.catalogoSrvc.encuentraPorId(id);
         //¿Debería comprobar si hay datos?
-        if (catalogoProductos.isPresent()) {
+        if (catalogo.isPresent()) {
             //Obtenemos el listado de empleados
-            List<CatalogoProductos> catalogoList = this.catalogoProductosSrvc.buscarTodos();
-            CatalogoProductos attr = catalogoProductos.get();
+            List<Catalogo> catalogoList = this.catalogoSrvc.buscarTodos();
+            Catalogo attr = catalogo.get();
             //Asigno atributos y muestro
             interfazConPantalla.addAttribute("catalogo", attr);
             interfazConPantalla.addAttribute("listaCatalogo", catalogoList);
@@ -60,10 +52,10 @@ public class APPCatalogoProductosController extends AbstractController<CatalogoP
     @PostMapping("/catalogo/{id}")
     public String guardarEdicionDatos(@PathVariable("id") Integer id) throws Exception {
         //Con el id tengo que buscar el registro a nivel de entidad
-        Optional<CatalogoProductos> catalogoProductos = this.catalogoProductosSrvc.encuentraPorId(id);
+        Optional<Catalogo> catalogo = this.catalogoSrvc.encuentraPorId(id);
         //¿Debería comprobar si hay datos?
-        if (catalogoProductos.isPresent()) {
-            this.catalogoProductosSrvc.guardar(catalogoProductos.get());
+        if (catalogo.isPresent()) {
+            this.catalogoSrvc.guardar(catalogo.get());
             return String.format("redirect:/catalogo/%s", id);
         } else {
             //Mostrar página usuario no existe
@@ -74,10 +66,10 @@ public class APPCatalogoProductosController extends AbstractController<CatalogoP
     @PostMapping("/catalogo/{id}/delete")
     public String eliminarDatos(@PathVariable("id") Integer id) {
         //Con el id tengo que buscar el registro a nivel de entidad
-        Optional<CatalogoProductos> dto = this.catalogoProductosSrvc.encuentraPorId(id);
+        Optional<Catalogo> dto = this.catalogoSrvc.encuentraPorId(id);
         //¿Debería comprobar si hay datos?
         if (dto.isPresent()) {
-            this.catalogoProductosSrvc.eliminarPorId(id);
+            this.catalogoSrvc.eliminarPorId(id);
             //Mostrar listado de usuarios
             return "redirect:/catalogo";
         } else {
@@ -91,22 +83,22 @@ public class APPCatalogoProductosController extends AbstractController<CatalogoP
     @GetMapping("/catalogo/registro")
     public String vistaRegistro(Model interfazConPantalla) {
         //Instancia en memoria del dto a informar en la pantalla
-        final CatalogoProductos catalogoProductos = new CatalogoProductos();
+        final Catalogo catalogo = new Catalogo();
         //Obtenemos el listado de empleados
-        List<CatalogoProductos> catalogoProductosList = this.catalogoProductosSrvc.buscarTodos();
+        List<Catalogo> catalogoList = this.catalogoSrvc.buscarTodos();
         //obtengo la lista de etiquetas
         //Mediante "addAttribute" comparto con la pantalla
-        interfazConPantalla.addAttribute("datos", catalogoProductos);
-        interfazConPantalla.addAttribute("listacatalogo", catalogoProductosList);
+        interfazConPantalla.addAttribute("datos", catalogo);
+        interfazConPantalla.addAttribute("listacatalogo", catalogoList);
         return "catalogo/registro";
     }
 
     //El que con los datos de la pantalla guarda la informacion de tipo PostMapping
     @PostMapping("/galeria/registro")
-    public String guardarEtiqueta(CatalogoProductos catalogoProductos) throws Exception {
+    public String guardarEtiqueta(Catalogo catalogo) throws Exception {
         //LLamo al método del servicioi para guardar los datos
-        CatalogoProductos catalogoProductosGuarado = this.catalogoProductosSrvc.guardar(catalogoProductos);
-        Long id = catalogoProductosGuarado.getIdCatalogo();
+        Catalogo catalogoGuardado = this.catalogoSrvc.guardar(catalogo);
+        Long id = catalogoGuardado.getIdCatalogo();
         return String.format("redirect:/catalogo/%s", id);
     }
 }

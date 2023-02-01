@@ -16,7 +16,6 @@ import java.util.Set;
 @Getter
 @Table(name = "Catalogo")
 public class Catalogo {
-
     @Id
     @Column(name = "id_catalogo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

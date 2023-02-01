@@ -11,21 +11,17 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "role")
+@Setter
+@Getter
+@Table(name = "Role")
 public class Role implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    private Integer idRole;
     @Column(nullable = false)
-    private String roleName;
-
+    private String nombreRole;
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
-        private Set<Usuario>  usuarios;
-
+    private Set<Usuario> usuarios;
 }

@@ -16,12 +16,9 @@ import java.util.Set;
 @NoArgsConstructor
 public class UsuarioDto {
     private long id;
-
     private String email;
 
     private String nombreUsuario;
-
     private String nombreEmail;
-
     private Set<Role> roles = new HashSet<>();
 }
