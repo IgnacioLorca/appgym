@@ -53,6 +53,9 @@ public class Usuario {
     @JoinColumn(name = "id_datosbio")
     DatosBiometricos datosBiometricos;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
+
     @ManyToMany
     @JoinTable(
             name = "tblListaContactos_tblDatosUsuario",

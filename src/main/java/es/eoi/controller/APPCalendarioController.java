@@ -2,19 +2,16 @@ package es.eoi.controller;
 
 import es.eoi.model.*;
 import es.eoi.repository.CalendarioRepository;
-import es.eoi.services.CalendarioSrvc;
-import es.eoi.services.EntrenamientosSrvc;
-import es.eoi.services.ReservasSrvc;
-import es.eoi.services.UsuarioSrvc;
+import es.eoi.service.CalendarioSrvc;
+import es.eoi.service.EntrenamientosSrvc;
+import es.eoi.service.ReservasSrvc;
+import es.eoi.service.UsuarioSrvc;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;

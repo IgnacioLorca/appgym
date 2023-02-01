@@ -1,10 +1,7 @@
-package es.eoi.services;
+package es.eoi.service;
 
 import es.eoi.model.MaterialReservas;
-import es.eoi.model.Usuario;
 import es.eoi.repository.MaterialReservasRepository;
-import es.eoi.repository.UsuarioRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

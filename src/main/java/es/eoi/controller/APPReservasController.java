@@ -5,10 +5,10 @@ import es.eoi.model.Entrenamientos;
 import es.eoi.model.Reservas;
 import es.eoi.model.Usuario;
 
-import es.eoi.services.CalendarioSrvc;
-import es.eoi.services.EntrenamientosSrvc;
-import es.eoi.services.ReservasSrvc;
-import es.eoi.services.UsuarioSrvc;
+import es.eoi.service.CalendarioSrvc;
+import es.eoi.service.EntrenamientosSrvc;
+import es.eoi.service.ReservasSrvc;
+import es.eoi.service.UsuarioSrvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

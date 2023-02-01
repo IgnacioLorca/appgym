@@ -1,9 +1,7 @@
-package es.eoi.services;
+package es.eoi.service;
 
 import es.eoi.model.Calendario;
-import es.eoi.model.Usuario;
 import es.eoi.repository.CalendarioRepository;
-import es.eoi.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package es.eoi.services;
+package es.eoi.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -6,13 +6,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.*;
 
-public abstract class AbstractBusinessServiceE <E, ID, REPO extends JpaRepository<E,ID>> {
+public abstract class AbstractBusinessServiceE<E, ID,   REPO extends JpaRepository<E,ID> > {
     private final REPO repo;
 
-    public AbstractBusinessServiceE(REPO repo) {
+
+
+    protected AbstractBusinessServiceE(REPO repo) {
         this.repo = repo;
     }
-
+    //Lista de todos los DTOs buscarTodos devolvera lista y paginas
     public List<E> buscarTodos(){
         return  this.repo.findAll();
     }

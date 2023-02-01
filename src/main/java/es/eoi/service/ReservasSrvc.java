@@ -1,9 +1,7 @@
-package es.eoi.services;
+package es.eoi.service;
 
 import es.eoi.model.Reservas;
-import es.eoi.model.Usuario;
 import es.eoi.repository.ReservasRepository;
-import es.eoi.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

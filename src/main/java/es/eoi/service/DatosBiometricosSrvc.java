@@ -1,4 +1,4 @@
-package es.eoi.services;
+package es.eoi.service;
 
 import es.eoi.model.DatosBiometricos;
 import es.eoi.repository.DatosBiometricosRepostitory;
