@@ -13,12 +13,12 @@ import java.util.Optional;
 import java.util.Set;
 
 @Controller
-public class APPCatalogoProductosController extends AbstractController<Catalogo>{
+public class APPCatalogoController extends AbstractController<Catalogo>{
 
     @Autowired
     private CatalogoSrvc catalogoSrvc;
 
-    public APPCatalogoProductosController(CatalogoSrvc catalogoSrvc) {
+    public APPCatalogoController(CatalogoSrvc catalogoSrvc) {
         this.catalogoSrvc = catalogoSrvc;
     }
 
