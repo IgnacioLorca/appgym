@@ -1,4 +1,4 @@
-package es.eoi.controller;
+package es.eoi.web;
 
 
 import es.eoi.model.DatosBiometricos;

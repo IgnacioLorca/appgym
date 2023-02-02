@@ -1,4 +1,4 @@
-package es.eoi.controller;
+package es.eoi.web;
 
 import es.eoi.model.Catalogo;
 import es.eoi.service.CatalogoSrvc;
@@ -96,7 +96,7 @@ public class APPCatalogoController extends AbstractController<Catalogo>{
     //El que con los datos de la pantalla guarda la informacion de tipo PostMapping
     @PostMapping("/galeria/registro")
     public String guardarEtiqueta(Catalogo catalogo) throws Exception {
-        //LLamo al método del servicioi para guardar los datos
+        //LLamo al método del servicio para guardar los datos
         Catalogo catalogoGuardado = this.catalogoSrvc.guardar(catalogo);
         Long id = catalogoGuardado.getIdCatalogo();
         return String.format("redirect:/catalogo/%s", id);

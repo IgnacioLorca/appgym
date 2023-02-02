@@ -20,6 +20,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer, Usu
     public UsuarioService(UsuarioRepository repo, UsuarioMapper serviceMapper) {
         super(repo, serviceMapper);
     }
+
     public UsuarioDto guardar(UsuarioDto usuarioDto, String password){
         System.out.println("usuarioDto:" +usuarioDto.getNombreUsuario() );
         //Traduzco del dto con datos de entrada a la entidad
