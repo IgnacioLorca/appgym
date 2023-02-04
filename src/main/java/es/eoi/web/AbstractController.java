@@ -8,9 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public abstract class AbstractController <E> {
-    //Literal para los numeros de pagina
     protected final String pageNumbersAttributeKey = "pageNumbers";
-    //Metodo para obtener los numeros de pagina
     protected List<Integer> dameNumPaginas(Page<E> entidades){
         List<Integer> pageNumbers = new ArrayList<>();
         int totalPages = entidades.getTotalPages();

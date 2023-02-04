@@ -1,21 +1,17 @@
 package es.eoi.service;
 
-
-import es.eoi.dto.RoleDTO;
 import es.eoi.model.Role;
 import es.eoi.repository.RoleRepository;
 import es.eoi.repository.UsuarioRepository;
-import es.eoi.service.mapper.RoleServiceMapper;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RoleService extends AbstractBusinessService<Role, Integer, RoleDTO, RoleRepository, RoleServiceMapper> {
+public class RoleService extends AbstractBusinessService<Role, Integer, RoleRepository> {
 
     private final UsuarioRepository usuarioRepository;
 
-    protected RoleService(RoleRepository repository, RoleServiceMapper serviceMapper, UsuarioRepository usuarioRepository) {
-        super(repository, serviceMapper);
+    protected RoleService(RoleRepository repository, UsuarioRepository usuarioRepository) {
+        super(repository);
         this.usuarioRepository = usuarioRepository;
     }
-
 }
