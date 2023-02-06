@@ -9,6 +9,7 @@ import es.eoi.service.mapper.UsuarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService extends AbstractBusinessService<Usuario,Integer, UsuarioDto,
-        UsuarioRepository, UsuarioMapper>  {
+        UsuarioRepository, UsuarioMapper> implements UserDetailsService {
     //Acceso a los datos de la bbdd
 
     public UsuarioService(UsuarioRepository repo, UsuarioMapper serviceMapper) {
@@ -76,5 +77,22 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer, Usu
     }
 
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Usuario> optUsu = usuarioRepository.findUsuarioByEmail(username);
+        if(optUsu.isEmpty())
+            throw new UsernameNotFoundException("El usuario con el nombre: " + username +" no existe.");
+        else {
+            Usuario user = optUsu.get();
+            return new org.springframework.security.core.userdetails.User(
+                    user.getEmail(),
+                    user.getPassword(),
+                    user.getRoles()
+                            .stream()
+                            .map(r-> new SimpleGrantedAuthority(r.getNombreRole()))
+                            .collect(Collectors.toSet())
+            );
+        }
+    }
 }
 
