@@ -1,52 +1,67 @@
 package es.eoi.service;
 
-
+import es.eoi.service.mapper.AbstractServiceMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.*;
 
-public abstract class AbstractBusinessService<E, ID, REPO extends JpaRepository<E,ID>> {
+public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepository<E,ID>,
+        MAPPER extends AbstractServiceMapper<E,DTO>> {
+
     private final REPO repo;
+    private final MAPPER serviceMapper;
 
-    protected AbstractBusinessService(REPO repo) {
+
+    protected AbstractBusinessService(REPO repo, MAPPER mapper) {
         this.repo = repo;
+        this.serviceMapper = mapper;
     }
 
-    // Lista de todos los DTOs buscarTodos devolvera lista y paginas
-    public List<E> buscarTodos(){
-        return this.repo.findAll();
+    //Lista de todos los DTOs buscarTodos devolvera lista y paginas
+    public List<DTO> buscarTodos(){
+        return  this.serviceMapper.toDto(this.repo.findAll());
     }
-    public Set<E> buscarTodosSet(){
-        Set<E> dtos = new HashSet<E>(this.repo.findAll());
-        return dtos;
+    public List<E> buscarEntidades(){
+        return  this.repo.findAll();
     }
-    public Page<E> buscarTodos(Pageable pageable){
-        return  repo.findAll(pageable);
+    public Set<E> buscarEntidadesSet(){
+        Set<E> eSet = new HashSet<E>(this.repo.findAll());
+        return  eSet;
+    }
+    public Set<DTO> buscarTodosSet(){
+        Set<DTO> dtos = new HashSet<DTO>(this.serviceMapper.toDto(this.repo.findAll()));
+        return  dtos;
+    }
+    public Page<DTO> buscarTodos(Pageable pageable){
+        return  repo.findAll(pageable).map(this.serviceMapper::toDto);
     }
 
     //Buscar por id
+    public Optional<DTO> encuentraPorId(ID id){
+        return this.repo.findById(id).map(this.serviceMapper::toDto);
+    }
     public Optional<E> encuentraPorIdEntity(ID id){
         return this.repo.findById(id);
     }
 
     //Guardar
-    public E guardar(E e) throws Exception {
-
+    public DTO guardar(DTO dto) throws Exception {
+        //Traduzco del dto con datos de entrada a la entidad
+        final E entidad = serviceMapper.toEntity(dto);
         //Guardo el la base de datos
-        E entidadGuardada =  repo.save(e);
+        E entidadGuardada =  repo.save(entidad);
         //Traducir la entidad a DTO para devolver el DTO
-        return entidadGuardada;
+        return serviceMapper.toDto(entidadGuardada);
     }
-    public void guardar(List<E> es) throws Exception {
-        Iterator<E> it = es.iterator();
-
+    public void  guardar(List<DTO> dtos) throws Exception {
+        Iterator<DTO> it = dtos.iterator();
         // mientras al iterador queda proximo juego
         while(it.hasNext()){
             //Obtenemos la password de a entidad
             //Datos del usuario
-            E e = it.next();
+            E e = serviceMapper.toEntity(it.next());
             repo.save(e);
         }
     }
@@ -56,6 +71,10 @@ public abstract class AbstractBusinessService<E, ID, REPO extends JpaRepository<
         this.repo.deleteById(id);
     }
 
+    //Obtener el mapper
+    public MAPPER getMapper(){return  serviceMapper;}
+
     //Obtener el repo
     public REPO getRepo(){return  repo;}
+
 }

@@ -6,14 +6,11 @@
     <body>
         <div th:insert="layout.html::preloader"></div>
         <header th:insert="layout.html::header"></header>
-        <div class="container-xxl py-5" id="contenidoIndex">
-            <div layout:fragment="cabecera">
-                <h1>Bienvenido al Home</h1>
-            </div>
-            <div layout:fragment="contenido">
-                <h3>Este es nuestro contenido</h3>
-            </div>
+        <div id="mensajeError">
+            <strong>ERROR de ejecución.</strong></br>
+            Consulte con el administrador.
         </div>
+        <a th:href="@{/}" class="nav-item nav-link active" id="botonHome">Home</a>
         <footer th:insert="layout.html::footer"></footer>
         <section th:insert="layout.html::script"></section>
     </body>

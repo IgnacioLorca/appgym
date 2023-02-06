@@ -1247,3 +1247,24 @@ responsive
     margin-left: 130px;
   }
 }
+
+div#contenidoIndex{
+  margin-top: 75px;
+  margin-left: 50px;
+}
+
+div#mensajeError{
+  background-color: whitesmoke;
+  color: black;
+  width: 300px;
+  border: 2px solid #ed563b;
+  padding: 10px;
+  margin-top: 120px;
+  margin-left: 150px;
+}
+
+a#botonHome{
+  color: #ed563b;
+  font-weight: bold;
+  margin-left: 150px;
+}
