@@ -1,24 +1,18 @@
 package es.eoi.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.Serializable;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 public class RoleDTO implements Serializable {
     private Integer id;
     private String roleName;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
 }

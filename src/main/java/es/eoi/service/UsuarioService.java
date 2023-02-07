@@ -38,7 +38,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer, Usu
 
 
     public UsuarioDto guardar(UsuarioDto usuarioDto, String password){
-        System.out.println("usuarioDto:" +usuarioDto.getNombreUsuario() );
+        System.out.println("usuarioDto:" +usuarioDto.getUsername() );
         //Traduzco del dto con datos de entrada a la entidad
         final Usuario entidad = getMapper().toEntity(usuarioDto);
         System.out.println("Entidad:" +entidad.getNombre() );
@@ -50,7 +50,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer, Usu
         return getMapper().toDto(entidadGuardada);
     }
     public UsuarioDto guardar(UsuarioDtoPsw usuarioDtoPsw){
-        System.out.println("usuarioDto:" +usuarioDtoPsw.getNombreUsuario() );
+        System.out.println("usuarioDto:" +usuarioDtoPsw.getUsername() );
         //Traduzco del dto con datos de entrada a la entidad
         final Usuario entidad = getMapper().toEntityPsw(usuarioDtoPsw);
         System.out.println("Entidad:" +entidad.getNombre() );

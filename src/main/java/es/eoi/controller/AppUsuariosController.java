@@ -5,7 +5,6 @@ import es.eoi.dto.*;
 import es.eoi.model.Usuario;
 import es.eoi.service.RoleService;
 import es.eoi.service.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -69,8 +68,7 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             //addAttribute y thymeleaf no  entienden Optional
             UsuarioDto attr = usuarioDto.get();
             //Asigno atributos y muestro
-            interfazConPantalla.addAttribute("datosUsuario",attr);
-
+            interfazConPantalla.addAttribute("datosUsuario", attr);
             return "usuarios/edit";
         } else{
             //Mostrar página usuario no existe
@@ -181,7 +179,6 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             UsuarioDto usuarioDtoGuardar =  new UsuarioDto();
             usuarioDtoGuardar.setId(id);
             usuarioDtoGuardar.setEmail(usuarioDtoEntrada.getEmail());
-            usuarioDtoGuardar.setNombreUsuario(usuarioDtoEntrada.getNombreUsuario());
             //Obtenemos la password del sercio
             Optional<Usuario> usuario = usuarioService.encuentraPorIdEntity((int) usuarioDtoGuardar.getId());
             if(usuario.isPresent()){
@@ -216,7 +213,7 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
     }
     @PostMapping("/usuarios/login")
     public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
-        String usr = loginDto.getDd();
+        String usr = loginDto.getUsername();
         System.out.println("usr :" + usr);
         String password = loginDto.getPassword();
         System.out.println("pass :" + password);

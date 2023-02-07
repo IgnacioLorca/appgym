@@ -41,7 +41,7 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         if (datosBio.isPresent()){
             List<UsuarioDto> listaUsuarios = this.usuarioSrvc.buscarTodos();
             DatosBiometricos attr = datosBio.get();
-            interfazConPantalla.addAttribute("datos",attr);
+            interfazConPantalla.addAttribute("datos", attr);
             interfazConPantalla.addAttribute("listaUsuarios", listaUsuarios);
             return "datosbio/edit";
         } else{
@@ -73,7 +73,6 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
             return "datosbio/detallesnoencontrado";
         }
     }
-
 
     @GetMapping("/datosbio/registro")
     public String vistaRegistro(Model interfazConPantalla) {
