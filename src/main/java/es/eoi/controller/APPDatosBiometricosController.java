@@ -1,6 +1,7 @@
 package es.eoi.controller;
 
 
+import es.eoi.dto.DatosBiometricosDto;
 import es.eoi.dto.UsuarioDto;
 import es.eoi.model.DatosBiometricos;
 import es.eoi.service.DatosBiometricosSrvc;
@@ -16,7 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Controller
-public class APPDatosBiometricosController extends AbstractController<DatosBiometricos>{
+public class APPDatosBiometricosController extends AbstractController<DatosBiometricosDto>{
     @Autowired
     private DatosBiometricosSrvc datosBiometricosSrvc;
 
@@ -29,18 +30,18 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
 
 
     @GetMapping("/listadatosbio")
-    public String vista( Model interfazConPantalla){
-        Set<DatosBiometricos> galeriaDatos = this.datosBiometricosSrvc.buscarTodosSet();
-        interfazConPantalla.addAttribute("listadatosbiometricos", galeriaDatos);
+    public String vistaDBio( Model interfazConPantalla){
+        Set<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.buscarTodosSet();
+        interfazConPantalla.addAttribute("listadatosbiometricos", datosBioDto);
         return "listadatosbio";
     }
 
     @GetMapping("/datosbio/{id}")
-    public String vistaDatosGaleria(@PathVariable("id") Integer id, ModelMap interfazConPantalla){
-        Optional<DatosBiometricos> datosBio = this.datosBiometricosSrvc.encuentraPorId(id);
-        if (datosBio.isPresent()){
+    public String vistaDatosDBio(@PathVariable("id") Integer id, ModelMap interfazConPantalla){
+        Optional<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.encuentraPorId(id);
+        if (datosBioDto.isPresent()){
             List<UsuarioDto> listaUsuarios = this.usuarioSrvc.buscarTodos();
-            DatosBiometricos attr = datosBio.get();
+            DatosBiometricosDto attr = datosBioDto.get();
             interfazConPantalla.addAttribute("datos",attr);
             interfazConPantalla.addAttribute("listaUsuarios", listaUsuarios);
             return "datosbio/edit";
@@ -53,9 +54,9 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
 
     @PostMapping("/datosbio/{id}")
     public String guardarEdicionDatos(@PathVariable("id") Integer id) throws Exception {
-        Optional<DatosBiometricos> datosBio = this.datosBiometricosSrvc.encuentraPorId(id);
-        if (datosBio.isPresent()){
-            this.datosBiometricosSrvc.guardar(datosBio.get());
+        Optional<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.encuentraPorId(id);
+        if (datosBioDto.isPresent()){
+            this.datosBiometricosSrvc.guardar(datosBioDto.get());
             return String.format("redirect:/datosbio/%s", id);
         } else {
             //Mostrar página usuario no existe
@@ -65,8 +66,8 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
 
     @PostMapping("/datosbio/{id}/delete")
     public String eliminarDatos(@PathVariable("id") Integer id){
-        Optional<DatosBiometricos> datosBiometricos = this.datosBiometricosSrvc.encuentraPorId(id);
-        if (datosBiometricos.isPresent()){
+        Optional<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.encuentraPorId(id);
+        if (datosBioDto.isPresent()){
             this.datosBiometricosSrvc.eliminarPorId(id);
             return "redirect:/datosbio";
         } else{
@@ -77,10 +78,10 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
 
     @GetMapping("/datosbio/registro")
     public String vistaRegistro(Model interfazConPantalla) {
-        final DatosBiometricos datosBio = new DatosBiometricos();
-        List<DatosBiometricos> datosBioList = this.datosBiometricosSrvc.buscarTodos();
+        final DatosBiometricosDto datosBioDto = new DatosBiometricosDto();
+        List<DatosBiometricosDto> datosBioList = this.datosBiometricosSrvc.buscarTodos();
         List<UsuarioDto> usuariosList = this.usuarioSrvc.buscarTodos();
-        interfazConPantalla.addAttribute("datos", datosBio);
+        interfazConPantalla.addAttribute("datos", datosBioDto);
         interfazConPantalla.addAttribute("listadatos", datosBioList);
         interfazConPantalla.addAttribute("listausuarios", usuariosList);
         return "datosbio/registro";
@@ -88,8 +89,8 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
 
     //El que con los datos de la pantalla guarda la informacion de tipo PostMapping
     @PostMapping("/datosbio/registro")
-    public String guardarDatos(DatosBiometricos datosBiometricos) throws Exception {
-        DatosBiometricos datosBioGuardados =  this.datosBiometricosSrvc.guardar(datosBiometricos);
+    public String guardarDatos(DatosBiometricosDto datosBioDto) throws Exception {
+        DatosBiometricosDto datosBioGuardados =  this.datosBiometricosSrvc.guardar(datosBioDto);
         Long id = datosBioGuardados.getIdDatosBio();
         return String.format("redirect:/datosbio/%s", id);
     }

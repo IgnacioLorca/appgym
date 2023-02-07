@@ -38,12 +38,7 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
     public String vistaUsuarios(@RequestParam("page") Optional<Integer> page,
                                 @RequestParam("size") Optional<Integer> size,
                                     ModelMap interfazConPantalla){
-        //tenemos que leer la lista de usuarios
-        //Que elemento me la ofrece?
-        //listaUsrTodos
-        //List<UsuarioDto>  lusrdto = this.service.listaUsrTodos();
-        //interfazConPantalla.addAttribute("listausuarios", lusrdto);
-        //Obetenemos el objeto Page del servicio
+
         Integer pagina = 1;
         if (page.isPresent()) {
             pagina = page.get() -1;
@@ -103,57 +98,7 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
         return String.format("redirect:/usuarios/%s", id);
     }
 
-    //Otro modo de registro con modelandview
-    /*
-    @GetMapping("/usuarios/registromnv")
-    public ModelAndView vistaRegistroMnv(ModelAndView mnv){
-        //Instancia en memoria del dto a informar en la pantalla
-        final UsuarioDtoPsw usuarioDtoPsw = new UsuarioDtoPsw();
-        //Obtengo la lista de roles
-        final List<RoleDTO> roleDTOList = roleService.buscarTodos();
-        //Objeto para recibir los elementos seleccionados
-        List<RoleDTO> checkedRoles = new ArrayList<>();
-        //Mediante "addAttribute" comparto con la pantalla
-        mnv.addObject("checkedRoles",checkedRoles);
-        mnv.addObject("listaRoles",roleDTOList);
-        mnv.addObject("datosUsuario",usuarioDtoPsw);
-        mnv.setViewName("/usuarios/registro_1");
-        return mnv;
-    }
-    //El que con los datos de la pantalla guarda la informacion de tipo PostMapping
-    @PostMapping("/usuarios/registromnv")
-    public ModelAndView checked(ModelAndView mnv, @ModelAttribute CheckForm form,
-                                @ModelAttribute CheckUsuario usuario) throws Exception {
-        //LLamo al método del servicioi para guardar los datos
-        final  UsuarioDtoPsw usuarioDtoPswg = usuario.getDatosUsuario();
-        usuarioDtoPswg.setRoles(form.getCheckedRolesSet());
-        UsuarioDto usuarioGuardado =  this.service.guardar(usuarioDtoPswg);
-        Long id = usuarioGuardado.getId();
-        mnv.setViewName(String.format("/usuarios/%s", id));
-        return mnv;
-    }
-
-    @Setter
-    public static class CheckForm {
-
-        private List<RoleDTO> checkedRoles = new ArrayList<>();
-
-        public List<RoleDTO> getCheckedRoles() {
-            return checkedRoles;
-        }
-
-        public Set<RoleDTO> getCheckedRolesSet() {
-            Set<RoleDTO> roleDTOSet = new HashSet(this.checkedRoles);
-            return roleDTOSet;
-        }
-    }
-    @Getter
-    @Setter
-    public static class CheckUsuario {
-        //Instancia en memoria del dto a informar en la pantalla
-        private UsuarioDtoPsw datosUsuario = new UsuarioDtoPsw();
-    }
-    */
+    
     @PostMapping("/usuarios/{idusr}/delete")
     public String eliminarDatosUsuario(@PathVariable("idusr") Integer id){
         //Con el id tengo que buscar el registro a nivel de entidad
@@ -168,21 +113,17 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             return "usuarios/detallesusuarionoencontrado";
         }
     }
-    //Me falta un postmaping para guardar
+
+
     @PostMapping("/usuarios/{idusr}")
     public String guardarEdicionDatosUsuario(@PathVariable("idusr") Integer id, UsuarioDto usuarioDtoEntrada) throws Exception {
-        //Cuidado que la password no viene
-        //Necesitamos copiar la información que llega menos la password
-        //Con el id tengo que buscar el registro a nivel de entidad
         Optional<UsuarioDto> usuarioDtoControl = this.usuarioService.encuentraPorId(id);
-        //¿Debería comprobar si hay datos?
+
         if (usuarioDtoControl.isPresent()){
-            //LLamo al método del servicioi para guardar los datos
             UsuarioDto usuarioDtoGuardar =  new UsuarioDto();
             usuarioDtoGuardar.setId(id);
             usuarioDtoGuardar.setEmail(usuarioDtoEntrada.getEmail());
-            usuarioDtoGuardar.setNombreUsuario(usuarioDtoEntrada.getNombreUsuario());
-            //Obtenemos la password del sercio
+
             Optional<Usuario> usuario = usuarioService.encuentraPorIdEntity((int) usuarioDtoGuardar.getId());
             if(usuario.isPresent()){
                 this.usuarioService.guardar(usuarioDtoGuardar,usuario.get().getPassword());
@@ -209,14 +150,15 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
         usuarioService.guardar(usuariosListaDto.getUsuarioDtos());
         return "redirect:/usuarios";
     }
-    //Controlador de Login
+
+
     @GetMapping("/usuarios/login")
     public String vistaLogin(){
         return "usuarios/login";
     }
     @PostMapping("/usuarios/login")
-    public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
-        String usr = loginDto.getDd();
+    public String validarPasswordPst(@ModelAttribute(name = "loginForm") LoginDto loginDto) {
+        String usr = loginDto.getUsername();
         System.out.println("usr :" + usr);
         String password = loginDto.getPassword();
         System.out.println("pass :" + password);
