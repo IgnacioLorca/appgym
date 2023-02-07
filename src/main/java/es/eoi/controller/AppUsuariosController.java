@@ -5,6 +5,7 @@ import es.eoi.dto.*;
 import es.eoi.model.Usuario;
 import es.eoi.service.RoleService;
 import es.eoi.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
     private final UsuarioService usuarioService;
 
     private final RoleService roleService;
+
+
 
     public AppUsuariosController(UsuarioService usuarioService, RoleService roleService) {
         this.usuarioService = usuarioService;
@@ -225,6 +228,7 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             return "usuarios/login";
         }
     }
+
 
 }
 

@@ -1,10 +1,13 @@
 package es.eoi.service;
 
 
+import es.eoi.model.Usuario;
 import es.eoi.service.mapper.AbstractServiceMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.*;
 
@@ -77,4 +80,6 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
     public MAPPER getMapper(){return  serviceMapper;}
     //Obtener el repo
     public REPO getRepo(){return  repo;}
+
+
 }
