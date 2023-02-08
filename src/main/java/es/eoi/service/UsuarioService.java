@@ -1,5 +1,6 @@
 package es.eoi.service;
 
+
 import es.eoi.dto.UsuarioDto;
 import es.eoi.dto.UsuarioDtoPsw;
 import es.eoi.model.Usuario;
@@ -20,13 +21,14 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class UsuarioService extends AbstractBusinessService<Usuario,Integer,UsuarioDto,
+public class UsuarioService extends AbstractBusinessService<Usuario,Integer, UsuarioDto,
         UsuarioRepository, UsuarioMapper> implements UserDetailsService {
+    //Acceso a los datos de la bbdd
 
-    // Acceso a los datos de la bbdd
     public UsuarioService(UsuarioRepository repo, UsuarioMapper serviceMapper) {
         super(repo, serviceMapper);
     }
+
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -36,7 +38,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer,Usua
 
 
     public UsuarioDto guardar(UsuarioDto usuarioDto, String password){
-        System.out.println("usuarioDto:" +usuarioDto.getNombreUsuario() );
+        System.out.println("usuarioDto:" +usuarioDto.getUsername() );
         //Traduzco del dto con datos de entrada a la entidad
         final Usuario entidad = getMapper().toEntity(usuarioDto);
         System.out.println("Entidad:" +entidad.getNombre() );
@@ -48,28 +50,32 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer,Usua
         return getMapper().toDto(entidadGuardada);
     }
     public UsuarioDto guardar(UsuarioDtoPsw usuarioDtoPsw){
-        System.out.println("usuarioDto:" +usuarioDtoPsw.getNombreUsuario() );
+        System.out.println("usuarioDto:" +usuarioDtoPsw.getUsername() );
         //Traduzco del dto con datos de entrada a la entidad
         final Usuario entidad = getMapper().toEntityPsw(usuarioDtoPsw);
-        System.out.println("Entidad:" + entidad.getNombre() );
+        System.out.println("Entidad:" +entidad.getNombre() );
         //Guardo el la base de datos
         Usuario entidadGuardada =  getRepo().save(entidad);
         //Traducir la entidad a DTO para devolver el DTO
         return getMapper().toDto(entidadGuardada);
     }
-
     //Método para guardar una lista de usuarios
     //La entrada es una lista de DTO ( que viene de la pantalla)
     //La respuesta tipo void
     @Override
     public void  guardar(List<UsuarioDto> lUsuarioDto){
         Iterator<UsuarioDto> it = lUsuarioDto.iterator();
+
+        // mientras al iterador queda proximo juego
         while(it.hasNext()){
+            //Obtenemos la password de a entidad
+            //Datos del usuario
             Usuario usuario = getMapper().toEntity(it.next());
             usuario.setPassword(getRepo().getReferenceById((int) usuario.getIdUsuario()).getPassword());
             getRepo().save(usuario);
         }
     }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -89,3 +95,4 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer,Usua
         }
     }
 }
+

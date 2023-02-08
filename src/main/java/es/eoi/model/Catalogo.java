@@ -26,6 +26,8 @@ public class Catalogo {
     private String descripcion;
     @Column(name = "precio")
     private float precio;
+    @Column(name = "imagenCatalogo")
+    private String imagenCatalogo;
     @Column (name = "fecha_creacion")
     private Date fechaCreacion;
     @Column (name = "fecha_modif")

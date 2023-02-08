@@ -1,4 +1,5 @@
-package es.eoi.web;
+package es.eoi.controller;
+
 
 import es.eoi.dto.UsuarioDto;
 import es.eoi.model.DatosBiometricos;
@@ -8,17 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 @Controller
-public class APPDatosBiometricosController {
-
+public class APPDatosBiometricosController extends AbstractController<DatosBiometricos>{
     @Autowired
     private DatosBiometricosSrvc datosBiometricosSrvc;
 
@@ -28,6 +26,7 @@ public class APPDatosBiometricosController {
         this.datosBiometricosSrvc = datosBiometricosSrvc;
         this.usuarioSrvc = usuarioSrvc;
     }
+
 
     @GetMapping("/listadatosbio")
     public String vista( Model interfazConPantalla){
@@ -42,7 +41,7 @@ public class APPDatosBiometricosController {
         if (datosBio.isPresent()){
             List<UsuarioDto> listaUsuarios = this.usuarioSrvc.buscarTodos();
             DatosBiometricos attr = datosBio.get();
-            interfazConPantalla.addAttribute("datos",attr);
+            interfazConPantalla.addAttribute("datos", attr);
             interfazConPantalla.addAttribute("listaUsuarios", listaUsuarios);
             return "datosbio/edit";
         } else{
@@ -50,6 +49,7 @@ public class APPDatosBiometricosController {
             return "datosbio/detallesnoencontrado";
         }
     }
+
 
     @PostMapping("/datosbio/{id}")
     public String guardarEdicionDatos(@PathVariable("id") Integer id) throws Exception {
@@ -92,5 +92,4 @@ public class APPDatosBiometricosController {
         Long id = datosBioGuardados.getIdDatosBio();
         return String.format("redirect:/datosbio/%s", id);
     }
-
 }

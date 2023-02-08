@@ -15,7 +15,6 @@ public class UsuarioMapper extends AbstractServiceMapper<Usuario, UsuarioDto>  {
         final UsuarioDto dto = new UsuarioDto();
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.map(entidad,dto);
-        dto.setNombreEmail(entidad.getNombre() + entidad.getEmail());
         return dto;
     }
 

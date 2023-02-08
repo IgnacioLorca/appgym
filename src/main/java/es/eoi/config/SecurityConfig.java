@@ -24,16 +24,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.formLogin(form -> form
-                .loginPage("/login")
-                .defaultSuccessUrl("/welcome",true)
-                .permitAll()
-        );
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/welcome",true)
 
+                        .permitAll()
+                );
         http.logout(logout -> logout
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-        );
-
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        /*.logoutSuccessHandler(logoutSuccessHandler)
+                        .invalidateHttpSession(true)
+                        .addLogoutHandler(logoutHandler)
+                        .deleteCookies(cookieNamesToClear)*/
+                );
         http.authorizeHttpRequests()
                 .requestMatchers("/home","/registro","/guardar","/").permitAll()
                 .requestMatchers("/admin").hasAuthority("Admin")
@@ -50,6 +53,7 @@ public class SecurityConfig {
 
                 .and()
                 .authenticationProvider(authenticationProvider());
+
         return http.build();
 
     }
@@ -61,5 +65,4 @@ public class SecurityConfig {
         authenticationProvider.setPasswordEncoder(encoder);
         return authenticationProvider;
     }
-
 }

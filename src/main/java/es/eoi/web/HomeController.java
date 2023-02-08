@@ -1,4 +1,4 @@
-package es.eoi.web;
+package es.eoi.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,17 +10,14 @@ public class HomeController {
     public String getHomePage1() {
         return "homePage";
     }
-
     @GetMapping("/login")
     public String getLoginPage() {
         return "login";
     }
-
     @GetMapping("/logout")
     public String getLogoutPage() {
         return "logout";
     }
-
     @GetMapping("/home")
     public String getHomePage() {
         return "homePage";
@@ -65,5 +62,4 @@ public class HomeController {
     public String getAccessDeniedPage() {
         return "accessDeniedPage";
     }
-
 }

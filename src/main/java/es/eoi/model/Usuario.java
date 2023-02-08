@@ -32,6 +32,8 @@ public class Usuario {
     private String username;
     @Column(name = "password", length = 20)
     private String password;
+    @Column(name = "fotoPerfil")
+    private String fotoPerfil;
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
     @Column(name = "fecha_modif")
@@ -42,8 +44,6 @@ public class Usuario {
     @OneToOne
     @JoinColumn(name = "id_datosbio")
     DatosBiometricos datosBiometricos;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Contactos> contactos;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;

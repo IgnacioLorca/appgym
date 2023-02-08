@@ -1,4 +1,4 @@
-package es.eoi.web;
+package es.eoi.controller;
 
 import es.eoi.model.Catalogo;
 import es.eoi.service.CatalogoSrvc;
@@ -6,16 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 @Controller
-public class APPCatalogoController extends AbstractController<Catalogo> {
+public class APPCatalogoController extends AbstractController<Catalogo>{
 
     @Autowired
     private CatalogoSrvc catalogoSrvc;
@@ -45,6 +43,7 @@ public class APPCatalogoController extends AbstractController<Catalogo> {
         }
     }
 
+
     @PostMapping("/catalogo/{id}")
     public String guardarEdicionDatos(@PathVariable("id") Integer id) throws Exception {
         Optional<Catalogo> catalogo = this.catalogoSrvc.encuentraPorId(id);
@@ -68,6 +67,7 @@ public class APPCatalogoController extends AbstractController<Catalogo> {
         }
     }
 
+
     @GetMapping("/catalogo/registro")
     public String vistaRegistro(Model interfazConPantalla) {
         final Catalogo catalogo = new Catalogo();
@@ -84,5 +84,4 @@ public class APPCatalogoController extends AbstractController<Catalogo> {
         Long id = catalogoGuardado.getIdCatalogo();
         return String.format("redirect:/catalogo/%s", id);
     }
-
 }

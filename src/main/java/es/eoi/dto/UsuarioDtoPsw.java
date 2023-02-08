@@ -1,5 +1,6 @@
 package es.eoi.dto;
 
+
 import es.eoi.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,11 +15,16 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioDtoPsw {
-
     private long id;
+    private String nombre;
+    private String apellidos;
+    private String direccion;
+    private String ciudad;
+    private String provincia;
     private String email;
-    private String nombreUsuario;
-    private String nombreEmail;
+    private String username;
+    private String fotoPerfil;
     private String password;
     private Set<Role> roles = new HashSet<>();
+
 }
