@@ -5,12 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
-public class RoleDto {
-
+@Getter
+public class RoleDTO implements Serializable {
     private Integer id;
     private String roleName;
+
 }
