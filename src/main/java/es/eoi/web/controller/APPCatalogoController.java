@@ -1,4 +1,4 @@
-package es.eoi.controller;
+package es.eoi.web.controller;
 
 import es.eoi.model.Catalogo;
 import es.eoi.service.CatalogoSrvc;
@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Controller
-public class APPCatalogoController extends AbstractController<Catalogo>{
+public class APPCatalogoController extends AbstractController<Catalogo> {
 
     @Autowired
     private CatalogoSrvc catalogoSrvc;
@@ -43,7 +43,6 @@ public class APPCatalogoController extends AbstractController<Catalogo>{
         }
     }
 
-
     @PostMapping("/catalogo/{id}")
     public String guardarEdicionDatos(@PathVariable("id") Integer id) throws Exception {
         Optional<Catalogo> catalogo = this.catalogoSrvc.encuentraPorId(id);
@@ -67,7 +66,6 @@ public class APPCatalogoController extends AbstractController<Catalogo>{
         }
     }
 
-
     @GetMapping("/catalogo/registro")
     public String vistaRegistro(Model interfazConPantalla) {
         final Catalogo catalogo = new Catalogo();
@@ -77,7 +75,6 @@ public class APPCatalogoController extends AbstractController<Catalogo>{
         return "catalogo/registro";
     }
 
-    //El que con los datos de la pantalla guarda la informacion de tipo PostMapping
     @PostMapping("/galeria/registro")
     public String guardarEtiqueta(Catalogo catalogo) throws Exception {
         Catalogo catalogoGuardado = this.catalogoSrvc.guardar(catalogo);

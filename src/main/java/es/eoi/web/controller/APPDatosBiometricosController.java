@@ -1,4 +1,4 @@
-package es.eoi.controller;
+package es.eoi.web.controller;
 
 
 import es.eoi.dto.UsuarioDto;
@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Controller
-public class APPDatosBiometricosController extends AbstractController<DatosBiometricos>{
+public class APPDatosBiometricosController extends AbstractController<DatosBiometricos> {
     @Autowired
     private DatosBiometricosSrvc datosBiometricosSrvc;
 
