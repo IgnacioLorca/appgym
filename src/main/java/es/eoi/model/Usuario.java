@@ -2,6 +2,8 @@ package es.eoi.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -11,7 +13,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Table(name = "Usuario")
-public class Usuario {
+public class Usuario implements Serializable {
     @Id
     @Column(name = "id_usuario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,4 +50,7 @@ public class Usuario {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
+    @Basic(optional = false)
+    private boolean active;
 }

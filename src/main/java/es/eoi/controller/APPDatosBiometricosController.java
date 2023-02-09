@@ -36,6 +36,7 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         return "listadatosbio";
     }
 
+
     @GetMapping("/datosbio/{id}")
     public String vistaDatosDBio(@PathVariable("id") Integer id, ModelMap interfazConPantalla){
         Optional<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.encuentraPorId(id);
@@ -64,6 +65,7 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         }
     }
 
+
     @PostMapping("/datosbio/{id}/delete")
     public String eliminarDatos(@PathVariable("id") Integer id){
         Optional<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.encuentraPorId(id);
@@ -87,7 +89,8 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         return "datosbio/registro";
     }
 
-    //El que con los datos de la pantalla guarda la informacion de tipo PostMapping
+
+
     @PostMapping("/datosbio/registro")
     public String guardarDatos(DatosBiometricosDto datosBioDto) throws Exception {
         DatosBiometricosDto datosBioGuardados =  this.datosBiometricosSrvc.guardar(datosBioDto);

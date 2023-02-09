@@ -78,7 +78,8 @@ public class APPCatalogoController extends AbstractController<CatalogoDto>{
         return "catalogo/registro";
     }
 
-    //El que con los datos de la pantalla guarda la informacion de tipo PostMapping
+
+
     @PostMapping("/catalogo/registro")
     public String guardarEtiqueta(CatalogoDto catalogoDto) throws Exception {
         CatalogoDto catalogoGuardado = this.catalogoSrvc.guardar(catalogoDto);
