@@ -1,7 +1,6 @@
-package es.eoi.controller;
+package es.eoi.web.controller;
 
-
-import es.eoi.dto.RoleDTO;
+import es.eoi.dto.RoleDto;
 import es.eoi.dto.UsuarioDto;
 import es.eoi.dto.UsuarioDtoPsw;
 import es.eoi.model.Usuario;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 import static es.eoi.util.ValidarFormatoPassword.ValidarFormato;
-
 
 @Controller
 public class AppUsuariosSeguridadController {
@@ -41,7 +39,7 @@ public class AppUsuariosSeguridadController {
     @GetMapping("/usuarios/registro")
     public String vistaRegistro(Model interfazConPantalla) {
         final UsuarioDtoPsw usuarioDtoPsw = new UsuarioDtoPsw();
-        final List<RoleDTO> roleDTOList = roleService.buscarTodos();
+        final List<RoleDto> roleDTOList = roleService.buscarTodos();
         interfazConPantalla.addAttribute("datosUsuario", usuarioDtoPsw);
         interfazConPantalla.addAttribute("listaRoles", roleDTOList);
         System.out.println("Preparando pantalla de registro");
@@ -67,8 +65,5 @@ public class AppUsuariosSeguridadController {
             return "usuarios/registro";
         }
     }
-
-
-
 
 }

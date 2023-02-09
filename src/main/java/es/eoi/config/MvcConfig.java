@@ -12,7 +12,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import java.util.Locale;
 
 @Configuration
-@ComponentScan(basePackages = "com.example.jpa_formacion.config")
+@ComponentScan(basePackages = "es.eoi.config")
 public class MvcConfig implements WebMvcConfigurer {
 
     @Bean

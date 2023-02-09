@@ -1,4 +1,4 @@
-package es.eoi.controller;
+package es.eoi.web.controller;
 
 import es.eoi.dto.CatalogoDto;
 import es.eoi.model.Catalogo;

@@ -1,4 +1,4 @@
-package es.eoi.controller;
+package es.eoi.web.controller;
 
 
 import es.eoi.dto.LoginDto;
@@ -32,16 +32,11 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
     public String vistaHome(){
         return "index";
     }
+
     @GetMapping("/usuarios")
     public String vistaUsuarios(@RequestParam("page") Optional<Integer> page,
                                 @RequestParam("size") Optional<Integer> size,
                                     ModelMap interfazConPantalla){
-        //tenemos que leer la lista de usuarios
-        //Que elemento me la ofrece?
-        //listaUsrTodos
-        //List<UsuarioDto>  lusrdto = this.service.listaUsrTodos();
-        //interfazConPantalla.addAttribute("listausuarios", lusrdto);
-        //Obetenemos el objeto Page del servicio
         Integer pagina = 1;
         if (page.isPresent()) {
             pagina = page.get() -1;
@@ -89,7 +84,7 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             return "usuarios/detallesusuarionoencontrado";
         }
     }
-    //Me falta un postmaping para guardar
+
     @PostMapping("/usuarios/{idusr}")
     public String guardarEdicionDatosUsuario(@PathVariable("idusr") Integer id, UsuarioDto usuarioDtoEntrada) throws Exception {
         //Cuidado que la password no viene
@@ -117,7 +112,7 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             return "usuarios/detallesusuarionoencontrado";
         }
     }
-    // Lista múltiple de edición
+
     @GetMapping("/usuarios/editmultiple")
     public String mostrarEditMultipleForm(Model intefrazConPantalla) {
         UsuariosListaDto usuariosListaDto = new UsuariosListaDto(this.service.buscarTodos());
@@ -125,16 +120,18 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
         intefrazConPantalla.addAttribute("form", usuariosListaDto);
         return "usuarios/listaeditableusuarios";
     }
+
     @PostMapping("/usuarios/savemultiple")
     public String saveListaUsuariuos(@ModelAttribute UsuariosListaDto usuariosListaDto) {
         service.guardar(usuariosListaDto.getUsuarioDtos());
         return "redirect:/usuarios";
     }
-    //Controlador de Login
+
     @GetMapping("/usuarios/login")
     public String vistaLogin(){
         return "usuarios/login";
     }
+
     @PostMapping("/usuarios/login")
     public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
         String usr = loginDto.getUsername();

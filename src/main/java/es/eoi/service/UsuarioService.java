@@ -15,10 +15,7 @@ import java.util.List;
 @Service
 public class UsuarioService extends AbstractBusinessService<Usuario,Integer, UsuarioDto,
         UsuarioRepository, UsuarioMapper>   {
-    //
 
-
-    //Acceso a los datos de la bbdd
     public UsuarioService(UsuarioRepository repo, UsuarioMapper serviceMapper) {
 
         super(repo, serviceMapper);
@@ -45,9 +42,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer, Usu
         //Traducir la entidad a DTO para devolver el DTO
         return getMapper().toDto(entidadGuardada);
     }
-    //Método para guardar una lista de usuarios
-    //La entrada es una lista de DTO ( que viene de la pantalla)
-    //La respuesta tipo void
+
     @Override
     public void  guardar(List<UsuarioDto> lUsuarioDto){
         Iterator<UsuarioDto> it = lUsuarioDto.iterator();

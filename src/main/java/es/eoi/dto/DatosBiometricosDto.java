@@ -22,6 +22,5 @@ public class DatosBiometricosDto {
     private Date fechaCreacion;
     private Date fechaModif;
     private boolean BL;
-
     private Usuario usuario;
 }

@@ -1,9 +1,8 @@
-package es.eoi.controller;
+package es.eoi.web.controller;
 
 
 import es.eoi.dto.DatosBiometricosDto;
 import es.eoi.dto.UsuarioDto;
-import es.eoi.model.DatosBiometricos;
 import es.eoi.service.DatosBiometricosSrvc;
 import es.eoi.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +51,6 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         }
     }
 
-
     @PostMapping("/datosbio/{id}")
     public String guardarEdicionDatos(@PathVariable("id") Integer id) throws Exception {
         Optional<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.encuentraPorId(id);
@@ -65,7 +63,6 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         }
     }
 
-
     @PostMapping("/datosbio/{id}/delete")
     public String eliminarDatos(@PathVariable("id") Integer id){
         Optional<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.encuentraPorId(id);
@@ -77,7 +74,6 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         }
     }
 
-
     @GetMapping("/datosbio/registro")
     public String vistaRegistro(Model interfazConPantalla) {
         final DatosBiometricosDto datosBioDto = new DatosBiometricosDto();
@@ -88,8 +84,6 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         interfazConPantalla.addAttribute("listausuarios", usuariosList);
         return "datosbio/registro";
     }
-
-
 
     @PostMapping("/datosbio/registro")
     public String guardarDatos(DatosBiometricosDto datosBioDto) throws Exception {
