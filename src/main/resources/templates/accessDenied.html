@@ -2,18 +2,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sd="http://www.w3.org/1999/xhtml">
 
-    <head th:insert="layout.html::head">
-        <meta charset="UTF-8">
-        <title>Pagina no encontrada</title>
-    </head>
+    <head th:insert="layout.html::head"></head>
     <body>
         <div th:insert="layout.html::preloader"></div>
         <header th:insert="layout.html::header"></header>
         <div id="mensajeError">
-            <strong>ERROR de ejecución.</strong></br>
-            Consulte con el administrador.
+            <strong>El acceso a esta página está restringido.</strong></br>
+            Por favor, p<acute>o</acute>ngase en contacto con el administrador si <acute>e</acute>sto es un error.
         </div>
-        <a th:href="@{/}" class="nav-item nav-link active" id="botonHome">Volver al Home</a>
+        <a th:href="@{/}" class="nav-item nav-link active" id="botonHome">Home</a>
         <footer th:insert="layout.html::footer"></footer>
         <section th:insert="layout.html::script"></section>
     </body>

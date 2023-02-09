@@ -1,0 +1,124 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml">
+
+    <head th:insert="layout.html::head">
+        <meta charset="UTF-8">
+        <title>Registro</title>
+    </head>
+    <body>
+        <div th:insert="layout.html::preloader"></div>
+        <header th:insert="layout.html::header"></header>
+        <div class="container-xxl py-5" id="contenidoIndex">
+            <div layout:fragment="cabecera">
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Date de alta</p>
+            </div>
+            <div layout:fragment="contenido">
+                <div class="container h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-lg-12 col-xl-11">
+                            <div class="card text-black" style="border-radius: 25px;">
+                                <div class="card-body p-md-5">
+                                    <div class="row justify-content-center">
+                                        <div th:class="#{estilo.pantalladatosderecha}">
+                                            <form class="mx-1 mx-md-4"  role="form" th:action="@{/usuarios/registro}" th:object="${datosUsuario}" method="post">
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="image" id="img" class="form-control"  maxlength="30" th:field="${datosUsuario.fotoPerfil}"/>
+                                                        <label class="form-label" for="img">Foto de perfil</label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="text" id="usrnm" class="form-control"  maxlength="30" th:field="${datosUsuario.username}"/>
+                                                        <label class="form-label" for="usrnm">Nombre de usuario</label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="text" id="nom" class="form-control"  maxlength="30" th:field="${datosUsuario.nombre}"/>
+                                                        <label class="form-label" for="nom">Nombre</label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="text" id="apell" class="form-control"  maxlength="30" th:field="${datosUsuario.apellidos}"/>
+                                                        <label class="form-label" for="apell">Apellidos</label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="password" id="password" class="form-control" maxlength="30" th:field="${datosUsuario.password}" />
+                                                        <label class="form-label" for="password">Password</label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="text" id="dir" class="form-control"  maxlength="30" th:field="${datosUsuario.direccion}"/>
+                                                        <label class="form-label" for="dir">Direccion</label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="text" id="city" class="form-control"  maxlength="30" th:field="${datosUsuario.ciudad}"/>
+                                                        <label class="form-label" for="city">Ciudad</label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="text" id="prov" class="form-control"  maxlength="30" th:field="${datosUsuario.provincia}"/>
+                                                        <label class="form-label" for="prov">Provincia</label>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-row align-items-center mb-4">
+                                                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                    <div class="form-outline flex-fill mb-0">
+                                                        <input type="email" id="email" class="form-control"  maxlength="50" th:field="${datosUsuario.email}"/>
+                                                        <label class="form-label" for="email">Email</label>
+                                                    </div>
+                                                </div>
+<!--                                                <div class="d-flex flex-row align-items-center mb-4">-->
+<!--                                                    <label class="form-label">Seleccionar uno o varios roles:</label>-->
+<!--                                                </div>-->
+<!--                                                <div class="d-flex flex-row align-items-center mb-4">-->
+<!--                                                    <div iclass="form-check " th:each="role_item_1 : ${listaRoles}">-->
+<!--                                                        <input type="checkbox" name="checkedRole" class="custom-control-input"-->
+<!--                                                               th:id="'customCheck' + ${role_item_1.id}" th:value="${role_item_1.id}" th:checked="${checkedRoles.contains(role_item_1.id)}">-->
+<!--                                                        <label class="custom-control-label"-->
+<!--                                                               th:for="'customCheck' + ${role_item_1.id}" th:text="${role_item_1.roleName}">custom check</label>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+                                                <div class="form-check d-flex justify-content-center mb-5">
+                                                    <input class="form-check-input me-2" type="checkbox" value="" id="terms" />
+                                                    <label class="form-check-label" for="terms">
+                                                        Estoy de acuerdo con los <a href="#!">Terminos de uso y servicio</a>
+                                                    </label>
+                                                </div>
+                                                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                    <button type="submit"  class="btn btn-primary btn-lg">Registrar usuario</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div th:class="#{estilo.pantalladatosizquierda}">
+                                            <img th:src="@{/images/beloran.png}" alt="BeloranSportLogo" class="img-fluid">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer th:insert="layout.html::footer"></footer>
+        <section th:insert="layout.html::script"></section>
+    </body>
+</html>

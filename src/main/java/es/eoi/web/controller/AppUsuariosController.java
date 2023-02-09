@@ -3,8 +3,10 @@ package es.eoi.web.controller;
 
 import es.eoi.dto.*;
 import es.eoi.model.Usuario;
+import es.eoi.service.IUsuarioService;
 import es.eoi.service.RoleService;
 import es.eoi.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -15,8 +17,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static es.eoi.util.ValidarFormatoPassword.ValidarFormato;
+
 @Controller
 public class AppUsuariosController extends AbstractController<UsuarioDto> {
+
+    @Autowired
+    private IUsuarioService iUsuarioService;
 
     private final UsuarioService usuarioService;
 
@@ -68,23 +75,34 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
 
     @GetMapping("/usuarios/registro")
     public String vistaRegistro(Model interfazConPantalla){
-        //Instancia en memoria del dto a informar en la pantalla
         final UsuarioDtoPsw usuarioDtoPsw = new UsuarioDtoPsw();
-        //Obtengo la lista de roles
         final List<RoleDto> roleDtoList = roleService.buscarTodos();
-        //Mediante "addAttribute" comparto con la pantalla
         interfazConPantalla.addAttribute("datosUsuario",usuarioDtoPsw);
         interfazConPantalla.addAttribute("listaRoles",roleDtoList);
+        System.out.println("Preparando pantalla de registro");
         return "usuarios/registro";
     }
 
     @PostMapping("/usuarios/registro")
-    public String guardarUsuario( UsuarioDtoPsw usuarioDtoPsw) throws Exception {
-        //LLamo al método del servicioi para guardar los datos
-        UsuarioDto usuarioGuardado =  this.usuarioService.guardar(usuarioDtoPsw);
-        Long id = usuarioGuardado.getId();
-        //return "usuarios/detallesusuario";
-        return String.format("redirect:/usuarios/%s", id);
+    public String guardarUsuario( @ModelAttribute(name = "datosUsuario" ) UsuarioDtoPsw usuarioDtoPsw) throws Exception {
+        // Comprobamos el patron
+        System.out.println("Guardando usuario antes ");
+        System.out.println("Usuario: " + usuarioDtoPsw.getNombre() + " Password: " + usuarioDtoPsw.getPassword());
+        if (ValidarFormato(usuarioDtoPsw.getPassword())){
+            Usuario usuario = usuarioService.getMapper().toEntityPsw(usuarioDtoPsw);
+            System.out.println("Guardando usuario");
+            System.out.println("Usuario: " + usuario.getNombre() + " Password: " + usuario.getPassword());
+            // Codifico la password
+            String encodedPassword = iUsuarioService.getEncodedPassword(usuario);
+            usuarioDtoPsw.setPassword(encodedPassword);
+            // Guardo la password
+            UsuarioDto usuario1 = this.usuarioService.guardar(usuarioDtoPsw);
+            return String.format("redirect:/usuarios/%s", usuario1.getId());
+        }
+        else
+        {
+            return "usuarios/registro";
+        }
     }
 
     @PostMapping("/usuarios/{idusr}/delete")

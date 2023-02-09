@@ -46,7 +46,8 @@
                                 <li class="scroll-to-section"><a th:href="@{/entrenadores}" th:text="#{principal.menu.listaentrenadores}"></a></li>
                                 <li class="scroll-to-section"><a th:href="@{/nutricionistas}" th:text="#{principal.menu.listanutric}"></a></li>
                                 <li class="scroll-to-section"><a href="#contact-us">Calendario</a></li>
-                                <li class="main-button"><a href="#">Log In</a></li>
+                                <li class="main-button"><a th:href="@{/usuarios/login}" th:text="#{principal.menu.login}"></a></li>
+                                <li class="main-button"><a th:href="@{/usuarios/registro}" th:text="#{principal.menu.registrarusuario}"></a></li>
                             </ul>
                             <a class='menu-trigger'>
                               <span>Menu</span>
