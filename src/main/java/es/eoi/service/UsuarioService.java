@@ -6,42 +6,28 @@ import es.eoi.dto.UsuarioDtoPsw;
 import es.eoi.model.Usuario;
 import es.eoi.repository.UsuarioRepository;
 import es.eoi.service.mapper.UsuarioMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Service
 public class UsuarioService extends AbstractBusinessService<Usuario,Integer, UsuarioDto,
-        UsuarioRepository, UsuarioMapper> implements UserDetailsService {
-    //Acceso a los datos de la bbdd
+        UsuarioRepository, UsuarioMapper>   {
+    //
 
+
+    //Acceso a los datos de la bbdd
     public UsuarioService(UsuarioRepository repo, UsuarioMapper serviceMapper) {
+
         super(repo, serviceMapper);
     }
-
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
-
     public UsuarioDto guardar(UsuarioDto usuarioDto, String password){
         System.out.println("usuarioDto:" +usuarioDto.getUsername() );
         //Traduzco del dto con datos de entrada a la entidad
         final Usuario entidad = getMapper().toEntity(usuarioDto);
-        System.out.println("Entidad:" +entidad.getNombre() );
+        System.out.println("Entidad:" +entidad.getUsername() );
         entidad.setPassword(password);
         System.out.println("Entidad:" +entidad.getPassword() );
         //Guardo el la base de datos
@@ -53,7 +39,7 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer, Usu
         System.out.println("usuarioDto:" +usuarioDtoPsw.getUsername() );
         //Traduzco del dto con datos de entrada a la entidad
         final Usuario entidad = getMapper().toEntityPsw(usuarioDtoPsw);
-        System.out.println("Entidad:" +entidad.getNombre() );
+        System.out.println("Entidad:" +entidad.getUsername() );
         //Guardo el la base de datos
         Usuario entidadGuardada =  getRepo().save(entidad);
         //Traducir la entidad a DTO para devolver el DTO
@@ -76,23 +62,4 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer, Usu
         }
     }
 
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Usuario> optUsu = usuarioRepository.findUsuarioByEmail(username);
-        if(optUsu.isEmpty())
-            throw new UsernameNotFoundException("El usuario con el nombre: " + username +" no existe.");
-        else {
-            Usuario user = optUsu.get();
-            return new org.springframework.security.core.userdetails.User(
-                    user.getEmail(),
-                    user.getPassword(),
-                    user.getRoles()
-                            .stream()
-                            .map(r-> new SimpleGrantedAuthority(r.getNombreRole()))
-                            .collect(Collectors.toSet())
-            );
-        }
-    }
 }
-
