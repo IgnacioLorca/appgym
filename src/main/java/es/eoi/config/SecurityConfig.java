@@ -5,13 +5,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
+@EnableMethodSecurity(prePostEnabled = true,
+        securedEnabled = true,
+        jsr250Enabled = true)
 @Configuration
 public class SecurityConfig {
 
@@ -24,13 +29,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.formLogin(form -> form
-                        .loginPage("/login")
+                        .loginPage("/usuarios/login")
                         .defaultSuccessUrl("/welcome",true)
 
                         .permitAll()
                 );
         http.logout(logout -> logout
-                        .logoutUrl("/logout")
+                        .logoutUrl("/usuarios/logout")
                         .logoutSuccessUrl("/")
                         /*.logoutSuccessHandler(logoutSuccessHandler)
                         .invalidateHttpSession(true)
@@ -38,6 +43,10 @@ public class SecurityConfig {
                         .deleteCookies(cookieNamesToClear)*/
                 );
         http.authorizeHttpRequests()
+                .requestMatchers("/js/**").permitAll()
+                .requestMatchers("/css/**").permitAll()
+                .requestMatchers("/font/**").permitAll()
+                .requestMatchers("/images/**").permitAll()
                 .requestMatchers("/home","/registro","/guardar","/").permitAll()
                 .requestMatchers("/admin").hasAuthority("Admin")
                 .requestMatchers("/entr").hasAuthority("Entrenadores")
@@ -64,5 +73,10 @@ public class SecurityConfig {
         authenticationProvider.setUserDetailsService(uds);
         authenticationProvider.setPasswordEncoder(encoder);
         return authenticationProvider;
+    }
+
+    @Bean
+    static GrantedAuthorityDefaults grantedAuthorityDefaults() {
+        return new GrantedAuthorityDefaults("ROLE_");
     }
 }
