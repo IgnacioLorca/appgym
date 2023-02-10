@@ -34,8 +34,8 @@ public class Usuario implements Serializable {
     private String username;
     @Column(name = "password", length = 20)
     private String password;
-    @Column(name = "fotoperfil")
-    private String fotoperfil;
+    @Column(name = "foto_perfil")
+    private String fotoPerfil;
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
     @Column(name = "fecha_modif")
@@ -47,10 +47,13 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_datosbio")
     DatosBiometricos datosBiometricos;
 
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     @Basic(optional = false)
     private boolean active;
+
+    @ManyToOne
+    @JoinColumn(name = "id_gimnasio")
+    Gimnasio gimnasio;
 }

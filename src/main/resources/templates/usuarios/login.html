@@ -1,12 +1,42 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sd="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{layout}">
+      xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>Inicio sesión</title>
 </head>
 <body>
-<!-- AppUsuariosController // validarPasswordPst -->
+<div class="bg"></div>
+<div class="container">
+    <div class="screen">
+        <div class="screen__content">
+            <form role="form" class="login" th:action="@{/usuarios/login}"
+            th:object="${loginForm}" method="post">
+                <div class="login__field">
+                    <i class="login__icon fa fa-user"></i>
+                    <input type="email" name="username" class="login__input" placeholder="Email">
+                </div>
+                <div class="login__field">
+                    <i class="login__icon fa fa-lock"></i>
+                    <input name="password" type="password" class="login__input" placeholder="Contraseña">
+                </div>
+                <button type="submit" class="button login__submit">
+                    <span class="button__text">Inicia sesión</span>
+                    <i class="button__icon fa fa-chevron-right"></i>
+                </button>
+            </form>
+            <div class="registro">
+                <h6>¿No tienes cuenta? <span><a th:href="@{/usuarios/registro}">Registrate</a></span></h6>
+            </div>
+        </div>
+        <div class="screen__background">
+            <span class="screen__background__shape screen__background__shape4"></span>
+            <span class="screen__background__shape screen__background__shape3"></span>
+            <span class="screen__background__shape screen__background__shape2"></span>
+            <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
+    </div>
+</div>
 </body>
 </html>
