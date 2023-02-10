@@ -1,10 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="registro.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>Registro</title>
 </head>
-<body>
 
+<body>
+<div class="container">
+    <div class="screen">
+        <div class="screen__content">
+            <div class="logo"><img src="logo_negro_pequeño.png"></img></div>
+            <div class="titulo_pagina">
+                <h1>Formulario de registro</h1>
+            </div>
+            <form class="registro">
+                <div class="columnas">
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-user"></i>
+                        <input type="text" class="registro__input" placeholder="Nombre de usuario">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-user"></i>
+                        <input type="text" class="registro__input" placeholder="Nombre">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-user"></i>
+                        <input type="text" class="registro__input" placeholder="Apellidos">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-lock"></i>
+                        <input type="password" class="registro__input" placeholder="Contraseña">
+                    </div>
+                    <div class="registro__field">
+                        <p>Selecciona una foto de perfil</p>
+                        <input class="insert_image" type="file" id="seleccionArchivos" accept="image/*">
+                        <img class="fotoperfil" id="imagenPrevisualizacion">
+                        <script src="script.js"></script>
+                    </div>
+                </div>
+                <div class="columnas">
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-envelope"></i>
+                        <input type="Email" class="registro__input" placeholder="Email">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-map-marker"></i>
+                        <input type="text" class="registro__input" placeholder="Dirección">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-map-marker "></i>
+                        <input type="text" class="registro__input" placeholder="Ciudad">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-map-marker "></i>
+                        <input type="text" class="registro__input" placeholder="Provincia">
+                    </div>
+                    <button class="button registro__submit">
+                        <span class="button__text">Continuar</span>
+                        <i class="button__icon fa fa-chevron-right"></i>
+                    </button>
+                </div>
+            </form>
+            <div class="login">
+                <h6>¿Ya tienes cuenta? <span><a href="login.html">Inicia sesión</a></span></h6>
+            </div>
+        </div>
+        <div class="screen__background">
+            <span class="screen__background__shape screen__background__shape4"></span>
+            <span class="screen__background__shape screen__background__shape3"></span>
+            <span class="screen__background__shape screen__background__shape2"></span>
+            <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
+    </div>
+</div>
 </body>
+
 </html>
