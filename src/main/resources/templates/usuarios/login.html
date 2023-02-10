@@ -1,7 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sd="http://www.w3.org/1999/xhtml">
-
 <head>
     <link rel="stylesheet" th:href="@{/css/login.css}">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -13,7 +12,7 @@
     <div class="screen">
         <div class="screen__content">
             <form role="form" class="login" th:action="@{/usuarios/login}"
-                  th:object="${loginForm}" method="post">
+            th:object="${loginForm}" method="post">
                 <div class="login__field">
                     <i class="login__icon fa fa-user"></i>
                     <input type="email" name="username" class="login__input" placeholder="Email">
@@ -32,10 +31,10 @@
             </div>
         </div>
         <div class="screen__background">
-            <span class="screen_backgroundshape screenbackground_shape4"></span>
-            <span class="screen_backgroundshape screenbackground_shape3"></span>
-            <span class="screen_backgroundshape screenbackground_shape2"></span>
-            <span class="screen_backgroundshape screenbackground_shape1"></span>
+            <span class="screen__background__shape screen__background__shape4"></span>
+            <span class="screen__background__shape screen__background__shape3"></span>
+            <span class="screen__background__shape screen__background__shape2"></span>
+            <span class="screen__background__shape screen__background__shape1"></span>
         </div>
     </div>
 </div>

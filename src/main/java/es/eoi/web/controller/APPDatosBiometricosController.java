@@ -74,6 +74,7 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         }
     }
 
+
     @GetMapping("/datosbio/registro")
     public String vistaRegistro(Model interfazConPantalla) {
         final DatosBiometricosDto datosBioDto = new DatosBiometricosDto();
