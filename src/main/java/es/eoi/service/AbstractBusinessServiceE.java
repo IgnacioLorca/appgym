@@ -14,9 +14,9 @@ public class AbstractBusinessServiceE<E, ID, REPO extends JpaRepository<E,ID>> {
         this.repo = repo;
     }
 
-    // Lista de todos los DTOs buscarTodos devolvera lista y paginas
+    // Listar Entidades paginadas
     public List<E> buscarTodos(){
-        return  this.repo.findAll();
+        return this.repo.findAll();
     }
     public Set<E> buscarTodosSet(){
         Set<E> dtos = new HashSet<E>(this.repo.findAll());
@@ -36,6 +36,7 @@ public class AbstractBusinessServiceE<E, ID, REPO extends JpaRepository<E,ID>> {
         E entidadGuardada =  repo.save(e);
         return entidadGuardada;
     }
+
     public void guardar(List<E> es) throws Exception {
         Iterator<E> it = es.iterator();
         while(it.hasNext()){
@@ -44,7 +45,7 @@ public class AbstractBusinessServiceE<E, ID, REPO extends JpaRepository<E,ID>> {
         }
     }
 
-    // eliminar un registro
+    // Eliminar un registro
     public void eliminarPorId(ID id){
         this.repo.deleteById(id);
     }

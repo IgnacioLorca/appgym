@@ -1,6 +1,5 @@
 package es.eoi.repository;
 
-
 import es.eoi.model.Role;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DatosBiometricosSrvc extends AbstractBusinessService<DatosBiometricos, Integer, DatosBiometricosDto, DatosBiometricosRepostitory, DatosBiometricosMapper> {
+public class DatosBiometricosSrvc extends AbstractBusinessService<DatosBiometricos, Integer, DatosBiometricosDto,
+        DatosBiometricosRepostitory, DatosBiometricosMapper> {
 
     public DatosBiometricosSrvc(DatosBiometricosRepostitory repo, DatosBiometricosMapper serviceMapper) {
         super(repo, serviceMapper);

@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/font/**").permitAll()
                 .requestMatchers("/images/**").permitAll()
-                .requestMatchers("/home","/registro","/guardar","/").permitAll()
+                .requestMatchers("/home","/usuarios/registro","/guardar","/").permitAll()
                 .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
                 .requestMatchers("/entr").hasAuthority("ROLE_ENTRENADORES")
                 .requestMatchers("/nutr").hasAuthority("ROLE_NUTRICIONISTAS")

@@ -1,6 +1,5 @@
 package es.eoi.service;
 
-
 import es.eoi.model.Usuario;
 import es.eoi.service.mapper.AbstractServiceMapper;
 import org.springframework.data.domain.Page;
@@ -10,20 +9,26 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.*;
-
 public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepository<E,ID> ,
         MAPPER extends AbstractServiceMapper<E,DTO>> {
     private final REPO repo;
     private final MAPPER serviceMapper;
 
-
     protected AbstractBusinessService(REPO repo, MAPPER mapper) {
         this.repo = repo;
         this.serviceMapper = mapper;
     }
-    //Lista de todos los DTOs buscarTodos devolvera lista y paginas
+
+    // Obtener lista de DTOs paginados
     public List<DTO> buscarTodos(){
-        return  this.serviceMapper.toDto(this.repo.findAll());
+        return this.serviceMapper.toDto(this.repo.findAll());
+    }
+    public Set<DTO> buscarTodosSet(){
+        Set<DTO> dtos = new HashSet<DTO>(this.serviceMapper.toDto(this.repo.findAll()));
+        return  dtos;
+    }
+    public Page<DTO> buscarTodos(Pageable pageable){
+        return  repo.findAll(pageable).map(this.serviceMapper::toDto);
     }
 
     public List<E> buscarEntidades(){
@@ -34,16 +39,7 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
         return  eSet;
     }
 
-    public Set<DTO> buscarTodosSet(){
-        Set<DTO> dtos = new HashSet<DTO>(this.serviceMapper.toDto(this.repo.findAll()));
-        return  dtos;
-    }
-
-    public Page<DTO> buscarTodos(Pageable pageable){
-        return  repo.findAll(pageable).map(this.serviceMapper::toDto);
-    }
-
-    //Buscar por id
+    // Buscar por id
     public Optional<DTO> encuentraPorId(ID id){
 
         return this.repo.findById(id).map(this.serviceMapper::toDto);
@@ -52,32 +48,33 @@ public abstract class AbstractBusinessService<E, ID, DTO,  REPO extends JpaRepos
 
         return this.repo.findById(id);
     }
-    //Guardar
+
+    // Guardar
     public DTO guardar(DTO dto) throws Exception {
-        //Traduzco del dto con datos de entrada a la entidad
+        // Traduzco del dto con datos de entrada a la entidad
         final E entidad = serviceMapper.toEntity(dto);
-        //Guardo el la base de datos
+        // Guardo el la base de datos
         E entidadGuardada =  repo.save(entidad);
-        //Traducir la entidad a DTO para devolver el DTO
+        // Traducir la entidad a DTO para devolver el DTO
         return serviceMapper.toDto(entidadGuardada);
     }
     public void  guardar(List<DTO> dtos) throws Exception {
         Iterator<DTO> it = dtos.iterator();
-
-        // mientras al iterador queda proximo juego
         while(it.hasNext()){
-            //Obtenemos la password de a entidad
-            //Datos del usuario
+            // Obtenemos la password de la entidad
             E e = serviceMapper.toEntity(it.next());
             repo.save(e);
         }
     }
-    //eliminar un registro
+
+    // Eliminar un registro
     public void eliminarPorId(ID id){
         this.repo.deleteById(id);
     }
+
     //Obtener el mapper
     public MAPPER getMapper(){return  serviceMapper;}
+
     //Obtener el repo
     public REPO getRepo(){return  repo;}
 

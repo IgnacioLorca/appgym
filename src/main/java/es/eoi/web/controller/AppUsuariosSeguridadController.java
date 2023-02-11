@@ -48,7 +48,7 @@ public class AppUsuariosSeguridadController {
 
     @PostMapping("/usuarios/registro")
     public String guardarUsuario(@ModelAttribute(name = "datosUsuario") UsuarioDtoPsw usuarioDtoPsw) throws Exception {
-        //Comprobamos el patron
+        // Comprobamos el patron
         System.out.println("Guardando usuario antes ");
         System.out.println("Usuario: " + usuarioDtoPsw.getUsername() + " Password: " + usuarioDtoPsw.getPassword());
         if (ValidarFormato(usuarioDtoPsw.getPassword())) {
@@ -58,12 +58,13 @@ public class AppUsuariosSeguridadController {
             // Codifico la password
             String encodedPassword = userService.getEncodedPassword(usuario);
             usuarioDtoPsw.setPassword(encodedPassword);
+            // El usuario se guardo como no permitido - pendiente de ser validado
+            usuarioDtoPsw.setAprobado(false);
             // Guardo la password
             UsuarioDto usuario1 = this.service.guardar(usuarioDtoPsw);
             return String.format("redirect:/usuarios/%s", usuario1.getId());
-        } else {
-            return "usuarios/registro";
+        }else{
+            return "usuarios/pendienteadmision";
         }
     }
-
 }

@@ -42,6 +42,8 @@ public class Usuario implements Serializable {
     private Date fechaModif;
     @Column(name = "BL")
     private boolean BL;
+    @Column(name = "aprobado")
+    private boolean aprobado;
 
     @OneToOne
     @JoinColumn(name = "id_datosbio")
@@ -52,8 +54,5 @@ public class Usuario implements Serializable {
 
     @Basic(optional = false)
     private boolean active;
-
-    @ManyToOne
-    @JoinColumn(name = "id_gimnasio")
-    Gimnasio gimnasio;
 }
+
