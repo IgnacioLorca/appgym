@@ -13,10 +13,8 @@ import java.util.List;
 @Setter
 public class UsuariosListaDto {
 
-    //Necesito una lista de usuarioDTO a manejar para la edición multiple
     List<UsuarioDto> usuarioDtos;
 
-    //Metodo para añadir registros a la lista
     public void anadirUsuarios(UsuarioDto usuarioDto){
         this.usuarioDtos.add(usuarioDto);
     }

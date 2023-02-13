@@ -30,9 +30,9 @@ public class Usuario implements Serializable {
     private String provincia;
     @Column(name = "email", length = 50)
     private String email;
-    @Column(name = "username", length = 10)
+    @Column(name = "username", length = 60)
     private String username;
-    @Column(name = "password", length = 20)
+    @Column(name = "password", length = 60)
     private String password;
     @Column(name = "foto_perfil")
     private String fotoPerfil;
@@ -42,6 +42,8 @@ public class Usuario implements Serializable {
     private Date fechaModif;
     @Column(name = "BL")
     private boolean BL;
+    @Column(name = "aprobado")
+    private boolean aprobado;
 
     @OneToOne
     @JoinColumn(name = "id_datosbio")
@@ -52,8 +54,5 @@ public class Usuario implements Serializable {
 
     @Basic(optional = false)
     private boolean active;
-
-    @ManyToOne
-    @JoinColumn(name = "id_gimnasio")
-    Gimnasio gimnasio;
 }
+

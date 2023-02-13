@@ -1,12 +1,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sd="http://www.w3.org/1999/xhtml">
+
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" th:href="@{/css/login.css}">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <title>Inicio sesión</title>
     </head>
+
     <body>
     <div class="bg"></div>
         <div class="container">
@@ -16,19 +18,19 @@
                     th:object="${loginForm}" method="post">
                         <div class="login__field">
                             <i class="login__icon fa fa-user"></i>
-                            <input type="email" name="username" class="login__input" placeholder="Email">
+                            <input type="email" name="email" class="login__input" placeholder="Email" th:field="${loginForm.email}">
                         </div>
                         <div class="login__field">
                             <i class="login__icon fa fa-lock"></i>
-                            <input name="password" type="password" class="login__input" placeholder="Contraseña">
+                            <input name="password" type="password" class="login__input" placeholder="Contraseña" th:field="${loginForm.password}">
                         </div>
                         <button type="submit" class="button login__submit">
-                            <span class="button__text">Inicia sesión</span>
+                            <span class="button__text"><a th:href="@{/usuarios/datosUsuario}">Inicia sesión</a></span>
                             <i class="button__icon fa fa-chevron-right"></i>
                         </button>
                     </form>
                     <div class="registro">
-                        <h6>¿No tienes cuenta? <span><a th:href="@{/usuarios/registro}">Registrate</a></span></h6>
+                        <h6>¿No tienes cuenta? <span><a th:href="@{/usuarios/registro}">Regístrate</a></span></h6>
                     </div>
                 </div>
                 <div class="screen__background">

@@ -2,7 +2,6 @@ package es.eoi.dto;
 
 
 import es.eoi.model.Role;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +24,6 @@ public class UsuarioDto {
     private String email;
     private String username;
     private String fotoPerfil;
-
+    private boolean aprobado;
     private Set<Role> roles = new HashSet<>();
 }

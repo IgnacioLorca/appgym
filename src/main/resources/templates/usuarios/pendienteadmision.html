@@ -2,19 +2,25 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sd="http://www.w3.org/1999/xhtml">
 
-    <head th:insert="layout.html::head">
+    <head>
         <link rel="stylesheet" th:href="@{/css/login.css}">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-        <title>Pagina no encontrada</title>
+        <title>Inicio sesión</title>
     </head>
+
     <body>
+        <div class="bg"></div>
         <div class="container">
             <div class="screen">
                 <div class="screen__content">
                     <form class="login">
                         <div class="text__field">
-                            <p><strong>ERROR de ejecución.</strong></p><br>
-                            <p>Consulte con el administrador.</p>
+                            <p><strong>Gracias por registrarte en</strong><br>
+                                <strong>nuestro gimnasio.</strong>
+                            </p><br>
+                            <p>Tus datos serán validados<br>
+                                por nuestro equipo lo antes posible.
+                            </p>
                         </div>
 
                         <button class="button login__submit">

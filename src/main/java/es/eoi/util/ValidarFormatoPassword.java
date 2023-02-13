@@ -22,6 +22,7 @@ public class ValidarFormatoPassword {
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile(COMPLEX_PASSWORD_REGEX);
+
     @Bean
     public static boolean ValidarFormato(String password){
         // Validar una contraseña
