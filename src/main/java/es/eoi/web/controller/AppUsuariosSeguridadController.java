@@ -1,4 +1,4 @@
-package es.eoi.controller;
+package es.eoi.web.controller;
 
 import es.eoi.dto.RoleDTO;
 import es.eoi.dto.UsuarioDto;
