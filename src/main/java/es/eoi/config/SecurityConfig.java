@@ -40,6 +40,7 @@ public class SecurityConfig {
                 );
 
         http.authorizeHttpRequests()
+                .requestMatchers("/usuarios/registro").permitAll()
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/font/**").permitAll()
