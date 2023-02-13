@@ -1,0 +1,9 @@
+ $(document).ready(function(){
+    $("i").click(function(event){
+        if($("#capa").hasClass("show")){
+            $("#capa").removeClass("show")
+        }else{
+            $("#capa").addClass("show")
+        }
+    })
+});

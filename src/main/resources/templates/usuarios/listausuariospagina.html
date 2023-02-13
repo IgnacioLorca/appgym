@@ -3,66 +3,92 @@
       xmlns:sd="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/cabecera_fija.css}">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
         <title>Lista de usuarios</title>
     </head>
     <body>
-        <div layout:fragment="cabecera">
-            <h1>Lista de usuarios</h1>
-        </div>
-        <div layout:fragment="contenido">
-            <div class="box-body">
-                Show <span sd:page-size-selector="javascript"></span> entries
-
-                <form action="#" th:action="@{/}" method="post">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <tr>
-                                <th>email</th>
-                                <th>usuario</th>
-                                <th sec:authorize="hasRole('ADMIN')">Habilitar S/N</th>
-                                <th>&nbsp</th>
-                                <th>&nbsp</th>
-                            </tr>
-                            <tr th:each="elemento , posicion : ${listausuarios}">
-                                <td th:text="${elemento.email}"></td>
-                                <td th:text="${elemento.username}"></td>
-                                <td sec:authorize="hasRole('ADMIN')">
-                                    <button type="submit" value="Habilitar" th:formaction="'/usuarios/'+ ${elemento.id} +'/habilitar'">Habilitar</button>
-                                </td>
-                                <td>
-                                    <!-- meter un link para ver detalles de usuario-->
-                                    <a th:href="@{'/usuarios/'+ ${elemento.id}}">Detalles</a>
-                                </td>
-                                <td>
-                                    <!-- meter un boton para borrar-->
-                                    <button type="submit" value="Eliminar" th:formaction="'/usuarios/'+ ${elemento.id} +'/delete'">Eliminar</button>
-                                </td>
-                            </tr>
-                            <!-- Mostramos una ultima fila con información cuando no hay registros -->
-                            <tr th:if="${listausuarios ==null or  listausuarios.empty}">
-                                <td colspan="13" class="text-center">No hay usuarios</td>
-                            </tr>
-                        </table>
-                    </div>
-                </form>
+        <header class="header">
+            <div class="container logo-nav-container">
+                <a th:href="@{/index}" class="logo"> <img th:src="@{/images/logo_negro_pequeño.png}"> </a>
+                <span class="menu-icon"><i class="fa fa-bars"></i></span>
+                <nav class="navigation">
+                    <ul id="capa">
+                        <li><a th:href="@{/clientes}">Clientes</a></li>
+                        <li><a th:href="@{/entrenadores}">Entrenadores</a></li>
+                        <li><a th:href="@{/nutricionistas}">Dietistas</a></li>
+                        <li><a th:href="@{/usuarios/datosUsuario}">Mi perfil</a></li>
+                    </ul>
+                </nav>
             </div>
-            <!-- preparamos el div para poner los numeros de pagina-->
-            <div  th:if="${listausuarios!=null and !listausuarios.empty}" >
-                <div class="text-center">
-                    <nav>
-                        <ul class="pagination" sd:pagination="full">
-                            <!--  si hay menos del numero minimo de registos no muestro la barra-->
-                            <div  th:if="${listausuarios.totalPages > 0}" class="pagination"
-                                  th:each="pageNumber : ${pageNumbers}">
-                                <li th:class="${pageNumber==listausuarios.number + 1} ? active">
-                                    <a href="#" th:href="@{/usuarios(size=${listausuarios.size}, page=${pageNumber})}"
-                                       th:text=${pageNumber}></a>
-                                </li>
-                            </div>
-                        </ul>
-                    </nav>
+        </header>
+
+        <main class="main">
+            <div class="container">
+                <div class="box-body">
+                    Show <span sd:page-size-selector="javascript"></span> entries
+
+                    <form action="#" th:action="@{/}" method="post">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <tr>
+                                    <th>email</th>
+                                    <th>usuario</th>
+                                    <th sec:authorize="hasRole('ADMIN')">Habilitar S/N</th>
+                                    <th>&nbsp</th>
+                                    <th>&nbsp</th>
+                                </tr>
+                                <tr th:each="elemento , posicion : ${listausuarios}">
+                                    <td th:text="${elemento.email}"></td>
+                                    <td th:text="${elemento.username}"></td>
+                                    <td sec:authorize="hasRole('ADMIN')">
+                                        <button type="submit" value="Habilitar" th:formaction="'/usuarios/'+ ${elemento.id} +'/habilitar'">Habilitar</button>
+                                    </td>
+                                    <td>
+                                        <!-- meter un link para ver detalles de usuario-->
+                                        <a th:href="@{'/usuarios/'+ ${elemento.id}}">Detalles</a>
+                                    </td>
+                                    <td>
+                                        <!-- meter un boton para borrar-->
+                                        <button type="submit" value="Eliminar" th:formaction="'/usuarios/'+ ${elemento.id} +'/delete'">Eliminar</button>
+                                    </td>
+                                </tr>
+                                <!-- Mostramos una ultima fila con información cuando no hay registros -->
+                                <tr th:if="${listausuarios ==null or  listausuarios.empty}">
+                                    <td colspan="13" class="text-center">No hay usuarios</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <!-- preparamos el div para poner los numeros de pagina-->
+                <div  th:if="${listausuarios!=null and !listausuarios.empty}" >
+                    <div class="text-center">
+                        <nav>
+                            <ul class="pagination" sd:pagination="full">
+                                <!--  si hay menos del numero minimo de registos no muestro la barra-->
+                                <div  th:if="${listausuarios.totalPages > 0}" class="pagination"
+                                      th:each="pageNumber : ${pageNumbers}">
+                                    <li th:class="${pageNumber==listausuarios.number + 1} ? active">
+                                        <a href="#" th:href="@{/usuarios(size=${listausuarios.size}, page=${pageNumber})}"
+                                           th:text=${pageNumber}></a>
+                                    </li>
+                                </div>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>Todos los derechos reservados - BELORAN SPORT (B&S)</p>
+            </div>
+        </footer>
+
+        <script th:src="@{/js/script2.js}"></script>
     </body>
 </html>
