@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 import static es.eoi.util.ValidarFormatoPassword.ValidarFormato;
 
@@ -48,22 +49,28 @@ public class AppUsuariosSeguridadController {
 
     @PostMapping("/usuarios/registro")
     public String guardarUsuario(@ModelAttribute(name = "datosUsuario") UsuarioDtoPsw usuarioDtoPsw) throws Exception {
-        // Comprobamos el patron
-        System.out.println("Guardando usuario antes ");
-        System.out.println("Usuario: " + usuarioDtoPsw.getUsername() + " Password: " + usuarioDtoPsw.getPassword());
-        if (ValidarFormato(usuarioDtoPsw.getPassword())) {
-            Usuario usuario = service.getMapper().toEntityPsw(usuarioDtoPsw);
-            System.out.println("Guardando usuario");
-            System.out.println("Usuario: " + usuario.getUsername() + " Password: " + usuario.getPassword());
-            // Codifico la password
-            String encodedPassword = userService.getEncodedPassword(usuario);
+        // Comprobar que el usuario no está ya dado de alta; es decir que no se ha registrado previamente
+        // Hay que verificar que el correo no existe ya en la BBDD
+        Optional<Usuario> usu = this.service.getRepo().findUsuarioByUsername(usuarioDtoPsw.getUsername());
+        if(usu.isPresent()) {
+            // Si el correo SI existe, indica que el usuario ya se dio de alta previamente y le redirigimos al formulario
+            // de recordar contraseña.
+
+            return null;
+        } else {
+            // Si el correo NO existe, consideramos que es un usuario nuevo y se le puede dar de alta y se le redirige a la
+            // pantalla de espera ser validado.
+
+            // Codifico la password y la asigno al usuario
+            String encodedPassword = userService.getEncodedPassword(usuarioDtoPsw.getPassword());
             usuarioDtoPsw.setPassword(encodedPassword);
+            // Las dos anteriores lineas se pueden escribir como
+            // usuarioDtoPsw.setPassword(userService.getEncodedPassword(usuarioDtoPsw.getPassword()))
+
             // El usuario se guardo como no permitido - pendiente de ser validado
             usuarioDtoPsw.setAprobado(false);
             // Guardo la password
             UsuarioDto usuario1 = this.service.guardar(usuarioDtoPsw);
-            return String.format("redirect:/usuarios/%s", usuario1.getId());
-        }else{
             return "usuarios/pendienteadmision";
         }
     }
