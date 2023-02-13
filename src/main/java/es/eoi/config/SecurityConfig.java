@@ -29,11 +29,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.formLogin(form -> form
-                        .loginPage("/usuarios/login")
-                        .defaultSuccessUrl("/welcome",true)
+                .loginPage("/usuarios/login")
+                .defaultSuccessUrl("/welcome",true)
 
-                        .permitAll()
-                );
+                .permitAll()
+        );
         http.logout(logout -> logout
                         .logoutUrl("/usuarios/logout")
                         .logoutSuccessUrl("/")
@@ -41,19 +41,19 @@ public class SecurityConfig {
                         .invalidateHttpSession(true)
                         .addLogoutHandler(logoutHandler)
                         .deleteCookies(cookieNamesToClear)*/
-                );
+        );
         http.authorizeHttpRequests()
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/font/**").permitAll()
                 .requestMatchers("/images/**").permitAll()
-                .requestMatchers("/home","/registro","/guardar","/").permitAll()
-                .requestMatchers("/admin").hasAuthority("Admin")
-                .requestMatchers("/entr").hasAuthority("Entrenadores")
-                .requestMatchers("/nutr").hasAuthority("Nutricionistas")
-                .requestMatchers("/clie").hasAuthority("Clientes")
-                .requestMatchers("/hr").hasAuthority("HR")
-                .requestMatchers("/common").hasAnyAuthority("Entrenadores,Nutricionistas,Admin")
+                .requestMatchers("/home","/usuarios/registro","/guardar","/").permitAll()
+                .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
+                .requestMatchers("/entr").hasAuthority("ROLE_ENTRENADORES")
+                .requestMatchers("/nutr").hasAuthority("ROLE_NUTRICIONISTAS")
+                .requestMatchers("/clie").hasAuthority("ROLE_CLIENTES")
+                .requestMatchers("/hr").hasAuthority("ROLE_HR")
+                .requestMatchers("/common").hasAnyAuthority("ROLE_ENTRENADORES,ROLE_NUTRICIONISTAS,ROLE_ADMIN")
                 .anyRequest().authenticated()
 
                 .and()

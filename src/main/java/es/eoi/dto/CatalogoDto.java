@@ -1,7 +1,6 @@
 package es.eoi.dto;
 
 import es.eoi.model.TipoCatalogo;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,7 @@
 package es.eoi.service;
 
 
+
 import es.eoi.dto.UsuarioDto;
 import es.eoi.dto.UsuarioDtoPsw;
 import es.eoi.model.Usuario;
@@ -14,14 +15,17 @@ import java.util.List;
 
 @Service
 public class UsuarioService extends AbstractBusinessService<Usuario,Integer, UsuarioDto,
-        UsuarioRepository, UsuarioMapper>   {
+        UsuarioRepository, UsuarioMapper>  {
+    private final UsuarioRepository usuarioRepository;
     //
 
 
     //Acceso a los datos de la bbdd
-    public UsuarioService(UsuarioRepository repo, UsuarioMapper serviceMapper) {
+    public UsuarioService(UsuarioRepository repo, UsuarioMapper serviceMapper,
+                          UsuarioRepository usuarioRepository) {
 
         super(repo, serviceMapper);
+        this.usuarioRepository = usuarioRepository;
     }
     public UsuarioDto guardar(UsuarioDto usuarioDto, String password){
         System.out.println("usuarioDto:" +usuarioDto.getUsername() );

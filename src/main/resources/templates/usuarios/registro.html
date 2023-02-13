@@ -1,10 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 
+<head>
+    <link rel="stylesheet" th:href="@{/css/registro.css}">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>Registro</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="screen">
+        <div class="screen__content">
+            <div class="logo"><img th:src="@{/images/logo_negro_pequeño.png}"></div>
+            <div class="titulo_pagina">
+                <h1>Formulario de registro</h1>
+            </div>
+            <form class="registro" th:action="@{/usuarios/registro}"
+                  th:object="${datosUsuario}" method="post">
+                <div class="columnas">
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-user"></i>
+                        <input type="text" class="registro__input" placeholder="Nombre de usuario"
+                               th:field="${datosUsuario.username}">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-user"></i>
+                        <input type="text" class="registro__input" placeholder="Nombre"
+                               th:field="${datosUsuario.nombre}">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-user"></i>
+                        <input type="text" class="registro__input" placeholder="Apellidos"
+                               th:field="${datosUsuario.apellidos}">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-lock"></i>
+                        <input type="password" class="registro__input" placeholder="Contraseña"
+                               th:field="${datosUsuario.password}">
+                    </div>
+                    <div class="registro__field">
+                        <p>Selecciona una foto de perfil</p>
+                        <input class="insert_image" type="file" id="seleccionArchivos" accept="image/*"
+                               th:field="${datosUsuario.fotoPerfil}">
+                        <img class="fotoperfil" id="imagenPrevisualizacion">
+                        <script th:src="@{/js/script.js}"></script>
+                    </div>
+                </div>
+                <div class="columnas">
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-envelope"></i>
+                        <input type="Email" class="registro__input" placeholder="Email"
+                               th:field="${datosUsuario.email}">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-map-marker"></i>
+                        <input type="text" class="registro__input" placeholder="Dirección"
+                               th:field="${datosUsuario.direccion}">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-map-marker "></i>
+                        <input type="text" class="registro__input" placeholder="Ciudad"
+                               th:field="${datosUsuario.ciudad}">
+                    </div>
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-map-marker "></i>
+                        <input type="text" class="registro__input" placeholder="Provincia"
+                               th:field="${datosUsuario.provincia}">
+                    </div>
+                    <div class="term">
+                        <input type="checkbox" value="" id="terms"/>
+                        <label for="terms">
+                            Estoy de acuerdo con los <a href="#!">Términos de uso y servicio</a>
+                        </label>
+                    </div>
+                    <button class="button registro__submit" type="submit">
+                        <i class="button__icon fa fa-chevron-right">Registrarme</i>
+                    </button>
+                </div>
+            </form>
+            <div class="login">
+                <h6>¿Ya tienes cuenta? <span><a th:href="@{/usuarios/login}">Inicia sesión</a></span></h6>
+            </div>
+        </div>
+        <div class="screen__background">
+            <span class="screen_backgroundshape screenbackground_shape4"></span>
+            <span class="screen_backgroundshape screenbackground_shape3"></span>
+            <span class="screen_backgroundshape screenbackground_shape2"></span>
+            <span class="screen_backgroundshape screenbackground_shape1"></span>
+        </div>
+    </div>
+</div>
 </body>
+
 </html>

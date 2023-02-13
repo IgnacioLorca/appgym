@@ -1,6 +1,5 @@
 package es.eoi.service;
 
-
 import es.eoi.model.Role;
 import es.eoi.model.Usuario;
 import es.eoi.repository.UsuarioRepository;
@@ -25,9 +24,13 @@ public class UsuarioSecurityImpl implements IUsuarioServicio, UserDetailsService
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public String getEncodedPassword(Usuario usuario){
-        String passwd = usuario.getPassword();
-        String encodedPassword = passwordEncoder.encode(passwd);
+    public String getEncodedPassword(Usuario usuario) {
+        return null;
+    }
+
+    @Override
+    public String getEncodedPassword(String clave){
+        String encodedPassword = passwordEncoder.encode(clave);
         return encodedPassword;
     }
 

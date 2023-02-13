@@ -24,6 +24,6 @@ public class UsuarioDto {
     private String email;
     private String username;
     private String fotoPerfil;
-
+    private boolean aprobado;
     private Set<Role> roles = new HashSet<>();
 }

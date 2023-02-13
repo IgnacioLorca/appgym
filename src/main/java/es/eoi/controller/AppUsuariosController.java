@@ -9,6 +9,7 @@ import es.eoi.service.RoleService;
 import es.eoi.service.UsuarioService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -28,20 +29,17 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
         this.roleService = roleService;
     }
 
+
     @GetMapping("")
     public String vistaHome(){
         return "index";
     }
+
+
     @GetMapping("/usuarios")
     public String vistaUsuarios(@RequestParam("page") Optional<Integer> page,
                                 @RequestParam("size") Optional<Integer> size,
                                     ModelMap interfazConPantalla){
-        //tenemos que leer la lista de usuarios
-        //Que elemento me la ofrece?
-        //listaUsrTodos
-        //List<UsuarioDto>  lusrdto = this.service.listaUsrTodos();
-        //interfazConPantalla.addAttribute("listausuarios", lusrdto);
-        //Obetenemos el objeto Page del servicio
         Integer pagina = 1;
         if (page.isPresent()) {
             pagina = page.get() -1;
@@ -57,14 +55,13 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
         return "usuarios/listausuariospagina";
     }
 
+
     @GetMapping("/usuarios/{idusr}")
     public String vistaDatosUsuario(@PathVariable("idusr") Integer id, ModelMap interfazConPantalla){
-        //Con el id tengo que buscar el registro a nivel de entidad
+        // Con el id tengo que buscar el registro a nivel de entidad
         Optional<UsuarioDto> usuarioDto = this.service.encuentraPorId(id);
-        //¿Debería comprobar si hay datos?
         if (usuarioDto.isPresent()){
             // Como encontré datos, obtengo el objeto de tipo "UsuarioDto"
-            // addAttribute y thymeleaf no  entienden Optional
             UsuarioDto attr = usuarioDto.get();
             // Asigno atributos y muestro
             interfazConPantalla.addAttribute("datosUsuario",attr);
@@ -74,7 +71,30 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             return "usuarios/detallesusuarionoencontrado";
         }
     }
-
+    @PostMapping("/usuarios/{idusr}")
+    public String guardarEdicionDatosUsuario(@PathVariable("idusr") Integer id, UsuarioDto usuarioDtoEntrada) throws Exception {
+        // Necesitamos copiar la información que llega menos la password
+        // Con el id tengo que buscar la entidad
+        Optional<UsuarioDto> usuarioDtoControl = this.service.encuentraPorId(id);
+        if (usuarioDtoControl.isPresent()){
+            // LLamo al método del servicio para guardar los datos
+            UsuarioDto usuarioDtoGuardar =  new UsuarioDto();
+            usuarioDtoGuardar.setId(id);
+            usuarioDtoGuardar.setEmail(usuarioDtoEntrada.getEmail());
+            usuarioDtoGuardar.setUsername(usuarioDtoEntrada.getUsername());
+            // Obtenemos la password del servicio
+            Optional<Usuario> usuario = service.encuentraPorIdEntity((int) usuarioDtoGuardar.getId());
+            if(usuario.isPresent()){
+                this.service.guardar(usuarioDtoGuardar,usuario.get().getPassword());
+            }
+            else {
+                this.service.guardar(usuarioDtoGuardar);
+            }
+            return String.format("redirect:/usuarios/%s", id);
+        } else {
+            return "usuarios/detallesusuarionoencontrado";
+        }
+    }
     @PostMapping("/usuarios/{idusr}/delete")
     public String eliminarDatosUsuario(@PathVariable("idusr") Integer id){
         //Con el id tengo que buscar el registro a nivel de entidad
@@ -89,55 +109,50 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             return "usuarios/detallesusuarionoencontrado";
         }
     }
-    //Me falta un postmaping para guardar
-    @PostMapping("/usuarios/{idusr}")
-    public String guardarEdicionDatosUsuario(@PathVariable("idusr") Integer id, UsuarioDto usuarioDtoEntrada) throws Exception {
-        //Cuidado que la password no viene
-        //Necesitamos copiar la información que llega menos la password
-        //Con el id tengo que buscar el registro a nivel de entidad
-        Optional<UsuarioDto> usuarioDtoControl = this.service.encuentraPorId(id);
-        //¿Debería comprobar si hay datos?
-        if (usuarioDtoControl.isPresent()){
-            //LLamo al método del servicioi para guardar los datos
-            UsuarioDto usuarioDtoGuardar =  new UsuarioDto();
-            usuarioDtoGuardar.setId(id);
-            usuarioDtoGuardar.setEmail(usuarioDtoEntrada.getEmail());
-            usuarioDtoGuardar.setUsername(usuarioDtoEntrada.getUsername());
-            //Obtenemos la password del sercio
-            Optional<Usuario> usuario = service.encuentraPorIdEntity((int) usuarioDtoGuardar.getId());
-            if(usuario.isPresent()){
-                this.service.guardar(usuarioDtoGuardar,usuario.get().getPassword());
+    @PostMapping("/usuarios/{idusr}/habilitar")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String habilitarDatosUsuario(@PathVariable("idusr") Integer id){
+        // Con el id tengo que buscar el registro a nivel de entidad
+        Optional<Usuario> usuario = this.service.encuentraPorIdEntity(id);
+        // Compruebo si hay datos
+        if (usuario.isPresent()){
+            Usuario attr = usuario.get();
+            if (attr.isActive()){
+                attr.setActive(false);
+            }else{
+                attr.setActive(true);
             }
-            else {
-                this.service.guardar(usuarioDtoGuardar);
-            }
-            return String.format("redirect:/usuarios/%s", id);
-        } else {
+            this.service.getRepo().save(attr);
+            // Redirijo a la lista de usuarios
+            return "redirect:/usuarios";
+        } else{
             //Mostrar página usuario no existe
             return "usuarios/detallesusuarionoencontrado";
         }
     }
-    // Lista múltiple de edición
-    @GetMapping("/usuarios/editmultiple")
-    public String mostrarEditMultipleForm(Model intefrazConPantalla) {
-        UsuariosListaDto usuariosListaDto = new UsuariosListaDto(this.service.buscarTodos());
 
-        intefrazConPantalla.addAttribute("form", usuariosListaDto);
+
+    @GetMapping("/usuarios/editmultiple")
+    public String mostrarEditMultipleForm(Model interfazConPantalla) {
+        UsuariosListaDto usuariosListaDto = new UsuariosListaDto(this.service.buscarTodos());
+        interfazConPantalla.addAttribute("form", usuariosListaDto);
         return "usuarios/listaeditableusuarios";
     }
     @PostMapping("/usuarios/savemultiple")
-    public String saveListaUsuariuos(@ModelAttribute UsuariosListaDto usuariosListaDto) {
+    public String saveListaUsuarios(@ModelAttribute UsuariosListaDto usuariosListaDto) {
         service.guardar(usuariosListaDto.getUsuarioDtos());
         return "redirect:/usuarios";
     }
-    //Controlador de Login
+
+
     @GetMapping("/usuarios/login")
-    public String vistaLogin(){
+    public String vistaLogin(Model model){
+        model.addAttribute("loginForm",new LoginDto());
         return "usuarios/login";
     }
     @PostMapping("/usuarios/login")
     public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
-        String usr = loginDto.getUsername();
+        String usr = loginDto.getEmail();
         System.out.println("usr :" + usr);
         String password = loginDto.getPassword();
         System.out.println("pass :" + password);
@@ -149,5 +164,4 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             return "usuarios/login";
         }
     }
-
 }

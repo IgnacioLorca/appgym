@@ -1,7 +1,10 @@
 package es.eoi.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -30,23 +33,24 @@ public class Usuario implements Serializable {
     private String provincia;
     @Column(name = "email", length = 50)
     private String email;
-    @Column(name = "username", length = 10)
+    @Column(name = "username", length = 60)
     private String username;
-    @Column(name = "password", length = 20)
+    @Column(name = "password", length = 60)
     private String password;
-    @Column(name = "fotoperfil")
-    private String fotoperfil;
+    @Column(name = "foto_perfil")
+    private String fotoPerfil;
     @Column(name = "fecha_creacion")
     private Date fechaCreacion;
     @Column(name = "fecha_modif")
     private Date fechaModif;
     @Column(name = "BL")
     private boolean BL;
+    @Column(name = "aprobado")
+    private boolean aprobado;
 
     @OneToOne
     @JoinColumn(name = "id_datosbio")
     DatosBiometricos datosBiometricos;
-
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
@@ -54,3 +58,4 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     private boolean active;
 }
+

@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml">
 
-</body>
+    <head th:insert="layout.html::head">
+        <meta charset="UTF-8">
+        <title>Usuario no encontrado</title>
+    </head>
+    <body>
+        <div th:insert="layout.html::preloader"></div>
+        <header th:insert="layout.html::header"></header>
+        <div id="mensajeError">
+            <strong>ERROR de ejecución.</strong></br>
+            Consulte con el administrador.
+        </div>
+        <a th:href="@{/}" class="nav-item nav-link active" id="botonHome">Volver al Home</a>
+        <footer th:insert="layout.html::footer"></footer>
+        <section th:insert="layout.html::script"></section>
+    </body>
 </html>

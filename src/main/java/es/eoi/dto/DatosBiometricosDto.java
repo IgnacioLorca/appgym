@@ -1,8 +1,6 @@
 package es.eoi.dto;
 
 import es.eoi.model.Usuario;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +20,5 @@ public class DatosBiometricosDto {
     private Date fechaCreacion;
     private Date fechaModif;
     private boolean BL;
-
     private Usuario usuario;
 }

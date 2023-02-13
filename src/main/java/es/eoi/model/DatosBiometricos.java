@@ -15,7 +15,6 @@ import java.util.Date;
 @Getter
 @Table(name = "DatosBiometricos")
 public class DatosBiometricos {
-
     @Id
     @Column(name = "id_datosbio")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

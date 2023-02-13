@@ -1,16 +1,18 @@
 package es.eoi.controller;
 
 
+
 import es.eoi.dto.DatosBiometricosDto;
 import es.eoi.dto.UsuarioDto;
-import es.eoi.model.DatosBiometricos;
 import es.eoi.service.DatosBiometricosSrvc;
 import es.eoi.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +46,7 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
             List<UsuarioDto> listaUsuarios = this.usuarioSrvc.buscarTodos();
             DatosBiometricosDto attr = datosBioDto.get();
             interfazConPantalla.addAttribute("datos",attr);
-            interfazConPantalla.addAttribute("listaUsuarios", listaUsuarios);
+            interfazConPantalla.addAttribute("listausuariospagina", listaUsuarios);
             return "datosbio/edit";
         } else{
             //Mostrar página usuario no existe
@@ -85,7 +87,7 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         List<UsuarioDto> usuariosList = this.usuarioSrvc.buscarTodos();
         interfazConPantalla.addAttribute("datos", datosBioDto);
         interfazConPantalla.addAttribute("listadatos", datosBioList);
-        interfazConPantalla.addAttribute("listausuarios", usuariosList);
+        interfazConPantalla.addAttribute("listausuariospagina", usuariosList);
         return "datosbio/registro";
     }
 
