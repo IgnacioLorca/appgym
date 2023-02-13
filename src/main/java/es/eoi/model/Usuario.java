@@ -30,9 +30,9 @@ public class Usuario implements Serializable {
     private String provincia;
     @Column(name = "email", length = 50)
     private String email;
-    @Column(name = "username", length = 10)
+    @Column(name = "username", length = 60)
     private String username;
-    @Column(name = "password", length = 20)
+    @Column(name = "password", length = 60)
     private String password;
     @Column(name = "foto_perfil")
     private String fotoPerfil;

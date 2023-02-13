@@ -1,7 +1,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sd="http://www.w3.org/1999/xhtml">
-    <head>
+
+<head>
         <link rel="stylesheet" th:href="@{/css/registro.css}">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
         <title>Registro</title>
@@ -64,9 +65,8 @@
                                 Estoy de acuerdo con los <a href="#!">Términos de uso y servicio</a>
                             </label>
                         </div>
-                        <button class="button registro__submit">
-                            <span class="button__text"><a th:href="@{/usuarios/pendienteadmision}">Continuar</a></span>
-                            <i class="button__icon fa fa-chevron-right"></i>
+                        <button class="button registro__submit" type="submit">
+                            <i class="button__icon fa fa-chevron-right">Registrarme</i>
                         </button>
                     </div>
                 </form>

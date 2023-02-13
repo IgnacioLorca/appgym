@@ -15,7 +15,6 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer, Usu
         UsuarioRepository, UsuarioMapper>   {
 
     public UsuarioService(UsuarioRepository repo, UsuarioMapper serviceMapper) {
-
         super(repo, serviceMapper);
     }
 
