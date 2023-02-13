@@ -1,8 +1,6 @@
 package es.eoi.dto;
 
 import es.eoi.model.Usuario;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
