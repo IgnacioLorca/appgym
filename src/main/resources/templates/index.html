@@ -2,22 +2,53 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sd="http://www.w3.org/1999/xhtml">
 
-    <head th:insert="layout.html::head">
-        <meta charset="UTF-8">
-        <title>Inicio</title>
-    </head>
-    <body>
-        <div th:insert="layout.html::preloader"></div>
-        <header th:insert="layout.html::header"></header>
-        <div class="container-xxl py-5" id="contenidoIndex">
-            <div layout:fragment="cabecera">
-                <h1>Bienvenido al Home</h1>
-            </div>
-            <div layout:fragment="contenido">
-                <h3>Este es nuestro contenido</h3>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/cabecera_fija.css}">
+    <link rel="stylesheet" th:href="@{/css/video_index.css}">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <title>Home</title>
+</head>
+<body>
+<header class="header">
+    <div class="container logo-nav-container">
+        <a th:href="@{/index}" class="logo"> <img th:src="@{/images/logo_negro_pequeño.png}"> </a>
+        <span class="menu-icon"><i class="fa fa-bars"></i></span>
+        <nav class="navigation">
+            <ul id="capa">
+                <li><a th:href="@{/usuarios/login}">Iniciar sesión</a></li>
+                <li><a th:href="@{/usuarios/registro}">Registrarse</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="main">
+    <div class="container">
+        <div class="main-banner" id="top">
+            <video autoplay muted loop id="bg-video">
+                <source th:src="@{/images/gym-video.mp4}" type="video/mp4" />
+            </video>
+            <div class="video-overlay header-text">
+                <div class="caption">
+                    <h6>Gestiona a tus clientes y tu equipo en un solo lugar</h6>
+                    <h2>Trabaja con <em>nosotros</em></h2>
+                    <div class="main-button scroll-to-section">
+                        <a class="haztemiembro" th:href="@{/usuarios/registro}"</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <footer th:insert="layout.html::footer"></footer>
-        <section th:insert="layout.html::script"></section>
-    </body>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>Todos los derechos reservados - BELORAN SPORT (B&S)</p>
+    </div>
+</footer>
+
+<script src="script2.js"></script>
+</body>
 </html>
