@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<!-- AppUsuariosController // vistaDatosUsuario -->
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <div layout:fragment="cabecera">
+        <h1>Editar datos</h1>
+    </div>
+    <div layout:fragment="contenido">
+        <div>
+            <h2>Editar  usuarios</h2>
+            <div>
+                <form role="form" th:object="${datosBio}" method="post">
+                    <input th:type="hidden" th:field="${datosBio.id}">
+                    <label for="peso">DatosBiometricos</label>
+                    <input type="number" id="peso" maxlength="50" th:field="${datosBio.peso}" >
+                    <label for="altura">DatosBiometricos</label>
+                    <input type="number" id="altura" maxlength="50" th:field="${datosBio.altura}" >
+                    <label for="IMC">DatosBiometricos</label>
+                    <input type="number" id="IMC" maxlength="50" th:field="${datosBio.IMC}" >
+
+                    <div>
+                        <button type="submit" title="Guardar">Guardar datos </button>
+                        <a th:href="@{/}" role="button" title="Volver a principal" th:text="Cancelar">
+
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </body>
 </html>
