@@ -7,9 +7,10 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
-public class RoleDto {
-    private Integer id;
-    private String roleName;
+@Getter
+public class RoleDTO {
+
+    private Integer idRole;
+    private String nombreRole;
 }

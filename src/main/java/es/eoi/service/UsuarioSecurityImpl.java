@@ -24,6 +24,11 @@ public class UsuarioSecurityImpl implements IUsuarioServicio, UserDetailsService
     private BCryptPasswordEncoder passwordEncoder;
 
     @Override
+    public String getEncodedPassword(Usuario usuario) {
+        return null;
+    }
+
+    @Override
     public String getEncodedPassword(String clave){
         String encodedPassword = passwordEncoder.encode(clave);
         return encodedPassword;
