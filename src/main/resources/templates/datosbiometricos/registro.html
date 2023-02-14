@@ -1,10 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml">
 
+<head>
+    <link rel="stylesheet" th:href="@{/css/registro.css}">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title>Registro de datos biométricos</title>
+</head>
+
+<body>
+<div class="container">
+    <div class="screen">
+        <div class="screen__content">
+            <div class="logo"><img th:src="@{/images/logo_negro_pequeño.png}"></img></div>
+            <div class="titulo_pagina">
+                <h1>Añadir nuevos datos biométricos</h1>
+            </div>
+            <form class="registro">
+                <div class="columnas">
+                    <div class="registro__field">
+                        <i class="registro__icon fa  fa-arrows-v"></i>
+                        <input type="number" step="any" class="registro__input" placeholder="Altura (en cm)">
+                    </div>
+                </div>
+                <div class="columnas">
+                    <div class="registro__field">
+                        <i class="registro__icon fa fa-balance-scale"></i>
+                        <input type="number" step="any" class="registro__input" placeholder="Peso (en kg)">
+                    </div>
+
+                </div>
+                <button class="button registro__submit">
+                    <span class="button__text">Guardar</span>
+                    <i class="button__icon fa fa-chevron-right"></i>
+                </button>
+        </div>
+        </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+        </form>
+    </div>
+    <div class="screen__background">
+        <span class="screen__background__shape screen__background__shape4"></span>
+        <span class="screen__background__shape screen__background__shape3"></span>
+        <span class="screen__background__shape screen__background__shape2"></span>
+        <span class="screen__background__shape screen__background__shape1"></span>
+    </div>
+</div>
 </body>
+
 </html>
