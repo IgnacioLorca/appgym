@@ -26,11 +26,11 @@ public class APPCatalogoController extends AbstractController<CatalogoDto>{
         this.catalogoSrvc = catalogoSrvc;
     }
 
-    @GetMapping("/listacatalogo")
+    @GetMapping("/catalogo")
     public String vistaCatalogo(Model interfazConPantalla) {
         Set<CatalogoDto> catalogoDto = catalogoSrvc.buscarTodosSet();
         interfazConPantalla.addAttribute("listacatalogo", catalogoDto);
-        return "/listacatalogo";
+        return "/catalogo/listacatalogo";
     }
 
 
