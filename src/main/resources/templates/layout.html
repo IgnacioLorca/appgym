@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html th:lang="#{principal.lang}" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
     <head th:fragment="head">
         <meta th:charset="#{principal.charset}">
@@ -42,7 +42,6 @@
                             <!-- ***** Menu Start ***** -->
                             <ul class="nav">
                                 <li class="scroll-to-section"><a th:href="@{/}" class="active" th:text="#{principal.menu.home}"></a></li>
-                                <li class="scroll-to-section" sec:authorize="hasRole('ADMIN')"><a th:href="@{/usuarios}" th:text="#{principal.menu.listausuarios}"></a></li>
                                 <li class="scroll-to-section"><a th:href="@{/clientes}" th:text="#{principal.menu.listaclientes}"></a></li>
                                 <li class="scroll-to-section"><a th:href="@{/entrenadores}" th:text="#{principal.menu.listaentrenadores}"></a></li>
                                 <li class="scroll-to-section"><a th:href="@{/nutricionistas}" th:text="#{principal.menu.listanutric}"></a></li>
@@ -51,7 +50,7 @@
                                 <li class="main-button"><a th:href="@{/usuarios/registro}" th:text="#{principal.menu.registrarusuario}"></a></li>
                             </ul>
                             <a class='menu-trigger'>
-                              <span>Menú</span>
+                              <span>Menu</span>
                             </a>
                         </nav>
                           <!-- ***** Menu End ***** -->

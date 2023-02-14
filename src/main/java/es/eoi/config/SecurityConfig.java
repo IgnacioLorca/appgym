@@ -28,21 +28,22 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http.formLogin(form -> form
                 .loginPage("/usuarios/login")
-                .defaultSuccessUrl("/welcome",true)
-                .permitAll()
-                );
+                .failureUrl("/login-error")
+                .defaultSuccessUrl("/",true)
 
+                .permitAll()
+        );
         http.logout(logout -> logout
                         .logoutUrl("/usuarios/logout")
                         .logoutSuccessUrl("/")
-                );
-
-
+                        /*.logoutSuccessHandler(logoutSuccessHandler)
+                        .invalidateHttpSession(true)
+                        .addLogoutHandler(logoutHandler)
+                        .deleteCookies(cookieNamesToClear)*/
+        );
         http.authorizeHttpRequests()
-                .requestMatchers("/usuarios/registro").permitAll()
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/css/**").permitAll()
                 .requestMatchers("/font/**").permitAll()
@@ -62,9 +63,11 @@ public class SecurityConfig {
 
                 .and()
                 .authenticationProvider(authenticationProvider());
+
         return http.build();
 
     }
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();

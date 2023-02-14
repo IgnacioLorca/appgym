@@ -2,34 +2,19 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sd="http://www.w3.org/1999/xhtml">
 
-    <head>
-        <link rel="stylesheet" th:href="@{/css/login.css}">
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <head th:insert="layout.html::head">
+        <meta charset="UTF-8">
         <title>Pagina no encontrada</title>
     </head>
     <body>
-        <div class="container">
-            <div class="screen">
-                <div class="screen__content">
-                    <form class="login">
-                        <div class="text__field">
-                            <p><strong>ERROR de ejecución.</strong></p><br>
-                            <p>Consulte con el administrador.</p>
-                        </div>
-
-                        <button class="button login__submit">
-                            <span class="button__text"><a th:href="@{/}">Volver a inicio</a></span>
-                            <i class="button__icon fas fa-chevron-right"></i>
-                        </button>
-                    </form>
-                </div>
-                <div class="screen__background">
-                    <span class="screen__background__shape screen__background__shape4"></span>
-                    <span class="screen__background__shape screen__background__shape3"></span>
-                    <span class="screen__background__shape screen__background__shape2"></span>
-                    <span class="screen__background__shape screen__background__shape1"></span>
-                </div>
-            </div>
+        <div th:insert="layout.html::preloader"></div>
+        <header th:insert="layout.html::header"></header>
+        <div id="mensajeError">
+            <strong>ERROR de ejecución.</strong></br>
+            Consulte con el administrador.
         </div>
+        <a th:href="@{/}" class="nav-item nav-link active" id="botonHome">Volver al Home</a>
+        <footer th:insert="layout.html::footer"></footer>
+        <section th:insert="layout.html::script"></section>
     </body>
 </html>
