@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-  <!-- AppUsuariosController // vistaRegistro -->
 </head>
 <body>
 <div layout:fragment="cabecera">
@@ -18,28 +17,16 @@
                 <tr>
                     <th>nombre</th>
                     <th>apellidos</th>
-                    <th>direccion</th>
-                    <th>ciudad</th>
-                    <th>provincia</th>
                     <th>email</th>
-                    <th>username</th>
                     <th>fotoPerfil</th>
-                    <th>fechaCreacion</th>
-                    <th>fechaModificacion</th>
                     <th>&nbsp</th>
                     <th>&nbsp</th>
                 </tr>
                 <tr th:each="elemento , posicion : ${listausuarios}">
                     <td th:text="${elemento.nombre}"></td>
                     <td th:text="${elemento.apellidos}"></td>
-                    <td th:text="${elemento.direccion}"></td>
-                    <td th:text="${elemento.ciudad}"></td>
-                    <td th:text="${elemento.provincia}"></td>
                     <td th:text="${elemento.email}"></td>
-                    <td th:text="${elemento.password}"></td>
                     <td th:text="${elemento.fotoPerfil}"></td>
-                    <td th:text="${elemento.fechaCreacion}"></td>
-                    <td th:text="${elemento.fechaModificacion}"></td>
                     <td>
                         <!-- meter un link para ver  con texto "ver"-->
                         <a th:href="@{'/usuarios/'+ ${elemento.id}}">Detalles</a>
@@ -53,5 +40,7 @@
         </div>
     </form>
 </div>
+
+<!-- AppUsuariosController // vistaUsuarios -->
 </body>
 </html>
