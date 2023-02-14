@@ -12,5 +12,5 @@ public interface IUsuarioServicio {
 
     String getEncodedPassword(String password);
 
-    UserDetails loadUserByUsernameError(String email) throws UsernameNotFoundException;
+    UserDetails loadUserByUsername(String email) throws UsernameNotFoundException;
 }
