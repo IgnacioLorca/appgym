@@ -67,6 +67,7 @@ public class AppUsuariosSeguridadController {
 
             // El usuario se guardo como no permitido - pendiente de ser validado
             usuarioDtoPsw.setAprobado(false);
+            System.out.println("El email es: " + usuarioDtoPsw.getEmail());
             // Guardo la password
             UsuarioDto usuario1 = this.service.guardar(usuarioDtoPsw);
             return "usuarios/pendienteadmision";

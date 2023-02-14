@@ -30,7 +30,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.formLogin(form -> form
                 .loginPage("/usuarios/login")
-                .defaultSuccessUrl("/welcome",true)
+                .failureUrl("/login-error")
+                .defaultSuccessUrl("/",true)
 
                 .permitAll()
         );

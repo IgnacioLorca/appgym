@@ -16,6 +16,7 @@
             <div layout:fragment="contenido">
                 <h3>Este es nuestro contenido</h3>
             </div>
+            <div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
         </div>
         <footer th:insert="layout.html::footer"></footer>
         <section th:insert="layout.html::script"></section>
