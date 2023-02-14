@@ -21,23 +21,32 @@
                         <div class="columnas">
                             <div class="registro__field">
                                 <i class="registro__icon fa fa-user"></i>
-                                <input type="text" class="registro__input" placeholder="Nombre de usuario" th:field="${datosUsuario.username}">
+                                <input type="text" class="registro__input"
+                                       placeholder="Nombre de usuario" th:field="${datosUsuario.username}"
+                                >
                             </div>
                             <div class="registro__field">
                                 <i class="registro__icon fa fa-user"></i>
-                                <input type="text" class="registro__input" placeholder="Nombre" th:field="${datosUsuario.nombre}">
+                                <input type="text" class="registro__input"
+                                       placeholder="Nombre" th:field="${datosUsuario.nombre}"
+                                >
                             </div>
                             <div class="registro__field">
                                 <i class="registro__icon fa fa-user"></i>
-                                <input type="text" class="registro__input" placeholder="Apellidos" th:field="${datosUsuario.apellidos}">
+                                <input type="text" class="registro__input"
+                                       placeholder="Apellidos" th:field="${datosUsuario.apellidos}"
+                                >
                             </div>
                             <div class="registro__field">
                                 <i class="registro__icon fa fa-lock"></i>
-                                <input type="password" class="registro__input" placeholder="Contraseña" th:field="${datosUsuario.password}">
+                                <input type="password" class="registro__input"
+                                       placeholder="Contraseña" th:field="${datosUsuario.password}"
+                                >
                             </div>
                             <div class="registro__field">
                                 <p>Selecciona una foto de perfil</p>
-                                <input class="insert_image" type="file" id="seleccionArchivos" accept="image/*" th:field="${datosUsuario.fotoPerfil}">
+                                <input class="insert_image" type="file" id="seleccionArchivos" accept="image/*"
+                                       th:field="${datosUsuario.fotoPerfil}">
                                 <img class="fotoperfil" id="imagenPrevisualizacion">
                                 <script th:src="@{/js/script.js}"></script>
                             </div>
@@ -45,19 +54,27 @@
                         <div class="columnas">
                             <div class="registro__field">
                                 <i class="registro__icon fa fa-envelope"></i>
-                                <input type="email" class="registro__input" placeholder="Email" th:field="${datosUsuario.email}">
+                                <input type="email" class="registro__input"
+                                       placeholder="Email" th:field="${datosUsuario.email}"
+                                >
                             </div>
                             <div class="registro__field">
                                 <i class="registro__icon fa fa-map-marker"></i>
-                                <input type="text" class="registro__input" placeholder="Dirección" th:field="${datosUsuario.direccion}">
+                                <input type="text" class="registro__input"
+                                       placeholder="Dirección" th:field="${datosUsuario.direccion}"
+                                >
                             </div>
                             <div class="registro__field">
                                 <i class="registro__icon fa fa-map-marker "></i>
-                                <input type="text" class="registro__input" placeholder="Ciudad" th:field="${datosUsuario.ciudad}">
+                                <input type="text" class="registro__input"
+                                       placeholder="Ciudad" th:field="${datosUsuario.ciudad}"
+                                >
                             </div>
                             <div class="registro__field">
                                 <i class="registro__icon fa fa-map-marker "></i>
-                                <input type="text" class="registro__input" placeholder="Provincia" th:field="${datosUsuario.provincia}">
+                                <input type="text" class="registro__input"
+                                       placeholder="Provincia" th:field="${datosUsuario.provincia}"
+                                >
                             </div>
                             <div class="term">
                                 <input type="checkbox" value="" id="terms"/>
