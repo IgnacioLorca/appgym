@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .loginPage("/usuarios/login")
                 .failureUrl("/login-error")
                 .defaultSuccessUrl("/",true)
+                
                 .permitAll()
         );
 
