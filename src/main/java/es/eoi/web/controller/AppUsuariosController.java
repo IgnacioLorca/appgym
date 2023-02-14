@@ -30,7 +30,7 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
     }
 
 
-    @GetMapping("")
+    @GetMapping("/")
     public String vistaHome(){
         return "index";
     }
@@ -153,7 +153,7 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
 
     @PostMapping("/usuarios/login")
     public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
-        String usr = loginDto.getEmail();
+        String usr = loginDto.getUsername();
         System.out.println("usr :" + usr);
         String password = loginDto.getPassword();
         System.out.println("pass :" + password);

@@ -17,11 +17,11 @@
                     th:object="${loginForm}" method="post">
                         <div class="login__field">
                             <i class="login__icon fa fa-user"></i>
-                            <input type="email" name="email" class="login__input" placeholder="Email" th:field="${loginForm.email}">
+                            <input type="email" name="username" class="login__input" placeholder="Email" >
                         </div>
                         <div class="login__field">
                             <i class="login__icon fa fa-lock"></i>
-                            <input name="password" type="password" class="login__input" placeholder="Contraseña" th:field="${loginForm.password}">
+                            <input name="password" type="password" class="login__input" placeholder="Contraseña" >
                         </div>
                         <button type="submit" class="button login__submit">
                             <span class="button__text"><a th:href="@{/usuarios/datosUsuario}">Inicia sesión</a></span>
