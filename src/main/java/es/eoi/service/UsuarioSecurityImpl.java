@@ -35,17 +35,16 @@ public class UsuarioSecurityImpl implements IUsuarioServicio, UserDetailsService
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email)
-            throws UsernameNotFoundException{
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         System.out.println("loadUserByUsername email: " + email);
         Usuario usuario = usuarioRepository.findUsuarioByEmailAndActiveTrue(email);
         System.out.println("loadUserByUsername usuario: " + usuario.getUsername());
 
-        org.springframework.security.core.userdetails.User springUser=null;
+        org.springframework.security.core.userdetails.User springUser = null;
 
         Set<GrantedAuthority> ga = new HashSet<>();
-        for (Role item : usuario.getRoles()){
+        for (Role item : usuario.getRoles()) {
             ga.add(new SimpleGrantedAuthority(item.getNombreRole()));
         }
 

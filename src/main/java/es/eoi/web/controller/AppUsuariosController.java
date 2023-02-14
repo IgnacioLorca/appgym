@@ -150,6 +150,7 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
         model.addAttribute("loginForm",new LoginDto());
         return "usuarios/login";
     }
+
     @PostMapping("/usuarios/login")
     public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
         String usr = loginDto.getUsername();

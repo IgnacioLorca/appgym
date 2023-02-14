@@ -18,16 +18,18 @@
                     th:object="${loginForm}" method="post">
                         <div class="login__field">
                             <i class="login__icon fa fa-user"></i>
-                            <input type="email" name="username" class="login__input" placeholder="Email" >
+                            <input type="email" name="username" class="login__input" placeholder="Email">
                         </div>
                         <div class="login__field">
                             <i class="login__icon fa fa-lock"></i>
-                            <input name="password" type="password" class="login__input" placeholder="Contraseña" >
+                            <input name="password" type="password" class="login__input" placeholder="Contraseña">
                         </div>
                         <button type="submit" class="button login__submit">
-                            <span class="button__text"><a th:href="@{/usuarios/datosUsuario}">Inicia sesión</a></span>
+                            <span class="button__text"><a th:href="@{/index}">Inicia sesión</a></span>
                             <i class="button__icon fa fa-chevron-right"></i>
                         </button>
+                        <!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
+                        <div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
                     </form>
                     <div class="registro">
                         <h6>¿No tienes cuenta? <span><a th:href="@{/usuarios/registro}">Regístrate</a></span></h6>
