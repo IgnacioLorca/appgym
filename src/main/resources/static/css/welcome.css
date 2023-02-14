@@ -1,0 +1,60 @@
+*{
+    background-color: #a1cce3;
+    box-sizing: border-box;
+	margin: 0;
+	padding: 0;	
+	font-family: Raleway, sans-serif;
+}
+
+.logo{
+	text-align: center;
+	padding: 20px;
+}
+
+.titulo_pagina{
+	text-align: center;
+	color:#A13149;
+}
+
+.enlaces {
+    display: center;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.enlaces ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.enlaces ul li {
+    display: inline-block;
+    
+}
+
+.enlaces ul li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    transition: all 0.4s linear;
+    border-radius: 5px;
+}
+
+.enlaces ul li a:hover {
+    background-color: #bbe8ff;
+}
+
+a img{
+    border-radius: 100%;
+}
+
+a{
+    color: #A13149;
+    text-decoration: none;
+    align-items: center;
+    text-align: center;
+    font-variant: small-caps;
+}
