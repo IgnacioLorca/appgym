@@ -1,0 +1,69 @@
+.nombre-seccion{
+    text-align: center;
+    color: #A13149;
+    font-size: 20;
+
+    padding: 20px 20px;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+    
+    color: #EBEBEB;
+    background-color: #A13149;
+    letter-spacing: .1em;
+    text-shadow: 
+      0 -1px 0 #EBEBEB, 
+      0 1px 0 #2e2e2e, 
+      0 2px 0 #2c2c2c, 
+      0 3px 0 #2a2a2a, 
+      0 4px 0 #282828, 
+      0 5px 0 #262626, 
+      0 6px 30px rgba(0, 0, 0, 0.9);
+}
+
+table.lista {
+    border: 1px solid #3D3838;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table.lista td,
+table.lista th {
+    border: 1px solid #3D3838;
+    padding: 5px 5px;
+}
+
+table.lista tbody td {
+    font-size: 13px;
+    color: #3D3838;
+}
+
+table.lista thead {
+    background: #87C3E3;
+    background: -moz-linear-gradient(top, #a5d2ea 0%, #93c9e5 66%, #87C3E3 100%);
+    background: -webkit-linear-gradient(top, #a5d2ea 0%, #93c9e5 66%, #87C3E3 100%);
+    background: linear-gradient(to bottom, #a5d2ea 0%, #93c9e5 66%, #87C3E3 100%);
+}
+
+table.lista thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #A13149;
+    text-align: center;
+    width: 110px;
+    height: 33px;
+    /* ¿Cómo que 33? */
+}
+
+.tabla-lista{
+    display: grid;
+    place-content: center;
+    margin-top: 1rem;
+}
+
+.boton-detalles{
+    font-weight: bold;
+}
+
+.boton-eliminar{
+    font-weight: bold;
+}
