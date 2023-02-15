@@ -52,6 +52,10 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_datosbio")
     DatosBiometricos datosBiometricos;
 
+    @OneToOne
+    @JoinColumn(name = "id_cliente")
+    Cliente cliente;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
