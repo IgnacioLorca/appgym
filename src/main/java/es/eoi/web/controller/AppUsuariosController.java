@@ -59,13 +59,12 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
         return "usuarios/datosUsuario";
     }
 
-    @GetMapping("/datosUsuarios")
+    @GetMapping("/datosUsuario")
     public String vistaUsuario( Model interfazConPantalla){
         Set<UsuarioDto> usuarioDto= this.service.buscarTodosSet();
         interfazConPantalla.addAttribute("listausuarios", usuarioDto);
         return "usuarios/datosUsuario";
     }
-
 
     @GetMapping("/usuarios/{idusr}")
     public String vistaDatosUsuario(@PathVariable("idusr") Integer id, ModelMap interfazConPantalla){

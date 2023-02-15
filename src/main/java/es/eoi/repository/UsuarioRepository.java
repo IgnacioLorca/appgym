@@ -12,4 +12,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
     Integer repValidarPassword(String email, String password);
     Usuario findUsuarioByEmailAndActiveTrue(String email);
     Optional<Usuario> findUsuarioByUsername(String username);
+
 }

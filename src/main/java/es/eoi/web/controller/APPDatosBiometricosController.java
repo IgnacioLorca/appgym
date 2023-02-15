@@ -6,6 +6,7 @@ import es.eoi.dto.DatosBiometricosDto;
 import es.eoi.dto.UsuarioDto;
 import es.eoi.service.DatosBiometricosSrvc;
 import es.eoi.service.UsuarioService;
+import es.eoi.web.controller.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Controller
-public class APPDatosBiometricosController extends AbstractController<DatosBiometricosDto>{
+public class APPDatosBiometricosController extends AbstractController<DatosBiometricosDto> {
     @Autowired
     private DatosBiometricosSrvc datosBiometricosSrvc;
 
