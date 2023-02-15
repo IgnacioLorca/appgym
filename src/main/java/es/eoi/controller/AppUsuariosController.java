@@ -1,9 +1,7 @@
 package es.eoi.controller;
 
 
-import es.eoi.dto.LoginDto;
-import es.eoi.dto.UsuarioDto;
-import es.eoi.dto.UsuariosListaDto;
+import es.eoi.dto.*;
 import es.eoi.model.Usuario;
 import es.eoi.service.RoleService;
 import es.eoi.service.UsuarioService;
@@ -15,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class AppUsuariosController extends AbstractController<UsuarioDto> {
@@ -30,9 +30,13 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
     }
 
 
+    @GetMapping("/")
+    public String vista(){
+        return "index";
+    }
     @GetMapping("/welcome")
     public String vistaHome(){
-        return "/welcome";
+        return "welcome";
     }
 
 
@@ -52,7 +56,14 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
                 this.service.buscarTodos(PageRequest.of(pagina,maxelementos));
         interfazConPantalla.addAttribute(pageNumbersAttributeKey,dameNumPaginas(usuarioDtoPage));
         interfazConPantalla.addAttribute("listausuarios", usuarioDtoPage);
-        return "usuarios/listausuariospagina";
+        return "usuarios/datosUsuario";
+    }
+
+    @GetMapping("/datosUsuarios")
+    public String vistaUsuario( Model interfazConPantalla){
+        Set<UsuarioDto> usuarioDto= this.service.buscarTodosSet();
+        interfazConPantalla.addAttribute("listausuarios", usuarioDto);
+        return "usuarios/datosUsuario";
     }
 
 
@@ -64,7 +75,7 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             // Como encontré datos, obtengo el objeto de tipo "UsuarioDto"
             UsuarioDto attr = usuarioDto.get();
             // Asigno atributos y muestro
-            interfazConPantalla.addAttribute("datosUsuario",attr);
+            interfazConPantalla.addAttribute("usuarios/datosUsuario",attr);
             return "usuarios/edit";
         } else{
             // Mostrar página usuario no existe

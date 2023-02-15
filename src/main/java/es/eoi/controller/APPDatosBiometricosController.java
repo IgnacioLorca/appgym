@@ -35,7 +35,7 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
     public String vistaDBio( Model interfazConPantalla){
         Set<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.buscarTodosSet();
         interfazConPantalla.addAttribute("listadatosbiometricos", datosBioDto);
-        return "listadatosbio";
+        return "datosbiometricos/listadatosbio";
     }
 
 
@@ -47,10 +47,10 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
             DatosBiometricosDto attr = datosBioDto.get();
             interfazConPantalla.addAttribute("datos",attr);
             interfazConPantalla.addAttribute("listausuariospagina", listaUsuarios);
-            return "datosbio/edit";
+            return "datosbiometricos/edit";
         } else{
             //Mostrar página usuario no existe
-            return "datosbio/detallesnoencontrado";
+            return "datosbiometricos/detallesnoencontrado";
         }
     }
 
@@ -63,7 +63,7 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
             return String.format("redirect:/datosbio/%s", id);
         } else {
             //Mostrar página usuario no existe
-            return "galeria/detallesnoencontrado";
+            return "datosbiometricos/detallesnoencontrado";
         }
     }
 
@@ -75,7 +75,7 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
             this.datosBiometricosSrvc.eliminarPorId(id);
             return "redirect:/datosbio";
         } else{
-            return "datosbio/detallesnoencontrado";
+            return "datosbiometricos/detallesnoencontrado";
         }
     }
 
@@ -88,7 +88,7 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         interfazConPantalla.addAttribute("datos", datosBioDto);
         interfazConPantalla.addAttribute("listadatos", datosBioList);
         interfazConPantalla.addAttribute("listausuariospagina", usuariosList);
-        return "datosbio/registro";
+        return "datosbiometricos/registro";
     }
 
 
@@ -97,6 +97,6 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
     public String guardarDatos(DatosBiometricosDto datosBioDto) throws Exception {
         DatosBiometricosDto datosBioGuardados =  this.datosBiometricosSrvc.guardar(datosBioDto);
         Long id = datosBioGuardados.getIdDatosBio();
-        return String.format("redirect:/datosbio/%s", id);
+        return String.format("redirect:/datosbiometricos/%s", id);
     }
 }
