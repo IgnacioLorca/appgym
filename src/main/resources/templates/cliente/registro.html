@@ -16,13 +16,13 @@
             <div class="titulo_pagina">
                 <h1>Añadir nuevos datos biométricos</h1>
             </div>
-            <form class="registro" th:action="@{/datosbiometricos/registro}"
+            <form class="registro" th:action="@{/cliente/registro}"
                   th:object="${datos}" method="post">
                 <div class="columnas">
                     <div class="registro__field">
                         <i class="registro__icon fa  fa-arrows-v"></i>
                         <input type="text" step="any" class="registro__input"
-                               placeholder="Nombre" th:field="${datos.nombre}"
+                               placeholder="Nombre" th:field="${cliente.nombre}"
                         >
                     </div>
                 </div>
@@ -30,26 +30,56 @@
                     <div class="registro__field">
                         <i class="registro__icon fa fa-balance-scale"></i>
                         <input type="text" step="any" class="registro__input"
-                               placeholder="Descripcion" th:field="${datos.descripcion}"
+                               placeholder="Descripcion" th:field="${cliente.descripcion}"
                         >
                     </div>
 
                     <div class="columnas">
                         <div class="registro__field">
                             <i class="registro__icon fa fa-balance-scale"></i>
-                            <input type="number" step="any" class="registro__input"
-                                   placeholder="Precio" th:field="${datos.precio}"
+                            <input type="text" step="any" class="registro__input"
+                                   placeholder="Apellidos" th:field="${cliente.apellidos}"
                             >
                         </div>
                     </div>
 
-                    <div class="registro__field">
-                        <p>Selecciona una foto del producto</p>
-                        <input class="insert_image" type="file" id="seleccionArchivos" accept="image/*"
-                               th:field="${catalogo.imagen}">
-                        <img class="imagen" id="imagenPrevisualizacion">
-                        <script th:src="@{/js/script.js}"></script>
+                    <div class="columnas">
+                        <div class="registro__field">
+                            <i class="registro__icon fa fa-balance-scale"></i>
+                            <input type="text" step="any" class="registro__input"
+                                   placeholder="Username" th:field="${cliente.username}"
+                            >
+                        </div>
                     </div>
+
+                    <div class="columnas">
+                        <div class="registro__field">
+                            <i class="registro__icon fa fa-balance-scale"></i>
+                            <input type="text" step="any" class="registro__input"
+                                   placeholder="Direccion" th:field="${cliente.direccion}"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="columnas">
+                        <div class="registro__field">
+                            <i class="registro__icon fa fa-balance-scale"></i>
+                            <input type="text" step="any" class="registro__input"
+                                   placeholder="Ciudad" th:field="${cliente.ciudad}"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="columnas">
+                        <div class="registro__field">
+                            <i class="registro__icon fa fa-balance-scale"></i>
+                            <input type="number" step="any" class="registro__input"
+                                   placeholder="fechaCreacion" th:field="${cliente.fechaCreacion}"
+                            >
+                        </div>
+                    </div>
+
+
 
                 </div>
                 <button class="button registro__submit" type="submit">

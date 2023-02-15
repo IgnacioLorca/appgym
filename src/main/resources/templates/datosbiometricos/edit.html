@@ -11,15 +11,15 @@
     </div>
     <div layout:fragment="contenido">
         <div>
-            <h2>Editar  usuarios</h2>
+            <h2>Editar datos</h2>
             <div>
                 <form role="form" th:object="${datosBio}" method="post">
                     <input th:type="hidden" th:field="${datosBio.id}">
-                    <label for="peso">DatosBiometricos</label>
+                    <label for="peso">Peso</label>
                     <input type="number" id="peso" maxlength="50" th:field="${datosBio.peso}" >
-                    <label for="altura">DatosBiometricos</label>
+                    <label for="altura">Altura</label>
                     <input type="number" id="altura" maxlength="50" th:field="${datosBio.altura}" >
-                    <label for="IMC">DatosBiometricos</label>
+                    <label for="IMC">IMC</label>
                     <input type="number" id="IMC" maxlength="50" th:field="${datosBio.IMC}" >
 
                     <div>
