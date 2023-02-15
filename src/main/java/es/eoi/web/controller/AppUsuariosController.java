@@ -2,6 +2,7 @@ package es.eoi.web.controller;
 
 
 import es.eoi.dto.*;
+import es.eoi.model.Role;
 import es.eoi.model.Usuario;
 import es.eoi.service.RoleService;
 import es.eoi.service.UsuarioService;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -59,10 +61,10 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
         return "usuarios/datosUsuario";
     }
 
-    @GetMapping("/datosUsuarios")
+    @GetMapping("/datosUsuario")
     public String vistaUsuario( Model interfazConPantalla){
-        Set<UsuarioDto> usuarioDto= this.service.buscarTodosSet();
-        interfazConPantalla.addAttribute("listausuarios", usuarioDto);
+        Set<UsuarioDtoPsw> usuarioDtoPsw = new HashSet<>();
+        interfazConPantalla.addAttribute("listausuarios", usuarioDtoPsw);
         return "usuarios/datosUsuario";
     }
 
