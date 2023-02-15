@@ -69,4 +69,5 @@ public class UsuarioService extends AbstractBusinessService<Usuario,Integer, Usu
         }
     }
 
+
 }

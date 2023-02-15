@@ -1,4 +1,4 @@
-package es.eoi.web.controller;
+package es.eoi.controller;
 
 
 import es.eoi.dto.*;
@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -61,10 +62,24 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
 
     @GetMapping("/datosUsuario")
     public String vistaUsuario( Model interfazConPantalla){
-        Set<UsuarioDto> usuarioDto= this.service.buscarTodosSet();
-        interfazConPantalla.addAttribute("listausuarios", usuarioDto);
+        Set<UsuarioDtoPsw> usuarioDtoPsw = new HashSet<>();
+        interfazConPantalla.addAttribute("listausuarios", usuarioDtoPsw);
         return "usuarios/datosUsuario";
     }
+
+   /* @GetMapping("/usuarios")
+    public String vistaNutricionistas(Model interfazConPantalla){
+        Set<UsuarioDto> usuDto = this.service.buscarTodosSet();
+        interfazConPantalla.addAttribute("listausuarios", usuDto);
+        return "usuarios/nutricionistas";
+    }
+
+    @GetMapping("/usuarios")
+    public String vistaEntrenadores(Model interfazConPantalla){
+        Set<UsuarioDto> usuDto = this.service.buscarTodosSet();
+        interfazConPantalla.addAttribute("listausuarios", usuDto);
+        return "usuarios/entrenadores";
+    } */
 
     @GetMapping("/usuarios/{idusr}")
     public String vistaDatosUsuario(@PathVariable("idusr") Integer id, ModelMap interfazConPantalla){
@@ -160,7 +175,6 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
         model.addAttribute("loginForm",new LoginDto());
         return "usuarios/login";
     }
-
     @PostMapping("/usuarios/login")
     public String validarPasswordPst(@ModelAttribute(name = "loginForm" ) LoginDto loginDto) {
         String usr = loginDto.getUsername();
