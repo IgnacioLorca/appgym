@@ -1,11 +1,12 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     xmlns:sd="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="cabecera_fija.css">
-    <link rel="stylesheet" href="video_index.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" th:href="@{/css/cabecera_fija.css}">
+    <link rel="stylesheet" th:href="@{/css/video_index.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <title>Home</title>
@@ -14,12 +15,12 @@
 <body>
     <header class="header">
         <div class="container logo-nav-container">
-            <a href="@{/index}" class="logo"> <img src="logo_negro_pequeño.png"> </a>
+            <a th:href="@{/index}" class="logo"> <img th:src="@{/images/logo_negro_pequeño.png}"> </a>
             <span class="menu-icon"><i class="fa fa-bars"></i></span>
             <nav class="navigation">
                 <ul id="capa">
-                    <li><a href="@{/usuarios/login}">Iniciar sesión</a></li>
-                    <li><a href="@{/usuarios/registro}">Registrarse</a></li>
+                    <li><a th:href="@{/usuarios/login}">Iniciar sesión</a></li>
+                    <li><a th:href="@{/usuarios/registro}">Registrarse</a></li>
                 </ul>
             </nav>
         </div>
@@ -29,7 +30,7 @@
         <div class="container">
             <div class="main-banner" id="top">
                 <video autoplay muted loop id="bg-video">
-                    <source src="gym-video.mp4" type="video/mp4" />
+                    <source th:src="@{/images/gym-video.mp4}" type="video/mp4" />
                 </video>
                 <div class="video-overlay header-text">
                     <div class="caption">
@@ -153,7 +154,7 @@
                 <ul class="capa">
                     <li>
                         <div id="sergio_lopez" class="imagen">
-                            <img src="sergio_lopez.jpg">
+                            <img th:src="@{/images/sergio_lopez.jpg}">
                         </div>
                         <div class="texto-imagen">
                             <p class="nombre_entrenador"><b>Sergio Lopez</b> <a href="#calendario"><i
@@ -165,7 +166,7 @@
                     </li>
                     <li>
                         <div id="jaime_sotos" class="imagen">
-                            <img src="jaime_sotos.jpg">
+                            <img th:src="@{/images/jaime_sotos.jpg}">
                         </div>
                         <div class="texto-imagen">
                             <p class="nombre_entrenador"><b>Jaime Sotos</b> <a href="#calendario"><i
@@ -178,19 +179,19 @@
                     </li>
                     <li>
                         <div id="fernando_alonso" class="imagen">
-                            <img src="fernando_alonso.jpg">
+                            <img th:src="@{/images/fernando_alonso.jpg}">
                         </div>
                         <div class="texto-imagen">
                             <p class="nombre_entrenador"><b>Fernando Alonso</b> <a href="#calendario"><i
                                         class="icono fa fa-arrow-up"></i></a></p>
-                            <p class="descripcion-entrenador">Desde muy jovencito es un apasionado del deporte y el
+                            <p class="descripcion-entrenador">Desde joven es un apasionado del deporte y el
                                 fitness, así que si quieres un entrenador pasional este es el ideal.
                             </p>
                         </div>
                     </li>
                     <li>
                         <div id="maria_gomez" class="imagen1">
-                            <img src="maria_gomez.jpg">
+                            <img th:src="@{/images/maria_gomez.jpg}">
                         </div>
                         <div class="texto-imagen">
                             <p class="nombre_entrenador"><b>María Gómez</b> <a href="#calendario"><i
@@ -202,7 +203,7 @@
                     </li>
                     <li>
                         <div id="andrea_salinas" class="imagen">
-                            <img src="andrea_salinas.jpeg">
+                            <img th:src="@{/images/andrea_salinas.jpeg}">
                         </div>
                         <div class="texto-imagen">
                             <p class="nombre_entrenador"><b>Andrea Salinas</b> <a href="#calendario"><i
@@ -228,7 +229,7 @@
                 <ul class="capa">
                     <li>
                         <div class="imagen">
-                            <img src="carlos_rios.jpg">
+                            <img th:src="@{/images/carlos_rios.jpg}">
                         </div>
                         <div class="texto-imagen">
                             <p class="nombre_entrenador"><b>Carlos Ríos</b></p>
@@ -247,7 +248,7 @@
         </div>
     </footer>
 
-    <script src="script2.js"></script>
+    <script th:src="@{/js/script2.js}"></script>
 </body>
 
 </html>

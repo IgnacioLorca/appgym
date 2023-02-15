@@ -32,7 +32,6 @@ public class SecurityConfig {
                 .loginPage("/usuarios/login")
                 .failureUrl("/login-error")
                 .defaultSuccessUrl("/welcome",true)
-
                 .permitAll()
         );
         http.logout(logout -> logout
