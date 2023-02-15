@@ -2,6 +2,7 @@ package es.eoi.controller;
 
 
 import es.eoi.dto.*;
+import es.eoi.model.Role;
 import es.eoi.model.Usuario;
 import es.eoi.service.RoleService;
 import es.eoi.service.UsuarioService;
@@ -67,19 +68,6 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
         return "usuarios/datosUsuario";
     }
 
-   /* @GetMapping("/usuarios")
-    public String vistaNutricionistas(Model interfazConPantalla){
-        Set<UsuarioDto> usuDto = this.service.buscarTodosSet();
-        interfazConPantalla.addAttribute("listausuarios", usuDto);
-        return "usuarios/nutricionistas";
-    }
-
-    @GetMapping("/usuarios")
-    public String vistaEntrenadores(Model interfazConPantalla){
-        Set<UsuarioDto> usuDto = this.service.buscarTodosSet();
-        interfazConPantalla.addAttribute("listausuarios", usuDto);
-        return "usuarios/entrenadores";
-    } */
 
     @GetMapping("/usuarios/{idusr}")
     public String vistaDatosUsuario(@PathVariable("idusr") Integer id, ModelMap interfazConPantalla){
