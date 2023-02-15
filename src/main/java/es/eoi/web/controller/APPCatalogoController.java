@@ -1,4 +1,4 @@
-package es.eoi.web.controller;
+package es.eoi.controller;
 
 
 import es.eoi.dto.CatalogoDto;
@@ -26,13 +26,12 @@ public class APPCatalogoController extends AbstractController<CatalogoDto>{
         this.catalogoSrvc = catalogoSrvc;
     }
 
-    @GetMapping("/catalogo")
+    @GetMapping("/listacatalogo")
     public String vistaCatalogo(Model interfazConPantalla) {
         Set<CatalogoDto> catalogoDto = catalogoSrvc.buscarTodosSet();
         interfazConPantalla.addAttribute("listacatalogo", catalogoDto);
-        return "/catalogo/listacatalogo";
+        return "catalogo/listacatalogo";
     }
-
 
     @GetMapping("/catalogo/{id}")
     public String vistaDatosCatalogo(@PathVariable("id") Integer id, ModelMap interfazConPantalla) {
@@ -47,6 +46,8 @@ public class APPCatalogoController extends AbstractController<CatalogoDto>{
             return "catalogo/detallesnoencontrado";
         }
     }
+
+
     @PostMapping("/catalogo/{id}")
     public String guardarEdicionDatos(@PathVariable("id") Integer id) throws Exception {
         Optional<CatalogoDto> catalogoDto = this.catalogoSrvc.encuentraPorId(id);
@@ -57,6 +58,7 @@ public class APPCatalogoController extends AbstractController<CatalogoDto>{
             return "catalogo/detallesnoencontrado";
         }
     }
+
     @PostMapping("/catalogo/{id}/delete")
     public String eliminarDatos(@PathVariable("id") Integer id) {
         Optional<CatalogoDto> dto = this.catalogoSrvc.encuentraPorId(id);
@@ -69,6 +71,7 @@ public class APPCatalogoController extends AbstractController<CatalogoDto>{
         }
     }
 
+
     @GetMapping("/catalogo/registro")
     public String vistaRegistro(Model interfazConPantalla) {
         final Catalogo catalogo = new Catalogo();
@@ -77,6 +80,8 @@ public class APPCatalogoController extends AbstractController<CatalogoDto>{
         interfazConPantalla.addAttribute("listacatalogo", catalogoList);
         return "catalogo/registro";
     }
+
+
 
     @PostMapping("/catalogo/registro")
     public String guardarEtiqueta(CatalogoDto catalogoDto) throws Exception {
