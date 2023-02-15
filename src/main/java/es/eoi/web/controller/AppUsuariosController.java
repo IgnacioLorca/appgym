@@ -30,9 +30,9 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/welcome")
     public String vistaHome(){
-        return "index";
+        return "/welcome";
     }
 
     @GetMapping("/welcome")
