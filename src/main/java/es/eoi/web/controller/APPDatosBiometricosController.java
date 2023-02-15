@@ -1,4 +1,5 @@
-package es.eoi.web.controller;
+package es.eoi.controller;
+
 
 
 import es.eoi.dto.DatosBiometricosDto;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -35,10 +35,11 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
     public String vistaDBio( Model interfazConPantalla){
         Set<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.buscarTodosSet();
         interfazConPantalla.addAttribute("listadatosbiometricos", datosBioDto);
-        return "listadatosbio";
+        return "datosbiometricos/listadatosbio";
     }
 
-    @GetMapping("/datosbiometricos/{id}")
+
+    @GetMapping("/datosbio/{id}")
     public String vistaDatosDBio(@PathVariable("id") Integer id, ModelMap interfazConPantalla){
         Optional<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.encuentraPorId(id);
         if (datosBioDto.isPresent()){
@@ -52,30 +53,34 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
             return "datosbiometricos/detallesnoencontrado";
         }
     }
-    @PostMapping("/datosbiometricos/{id}")
+
+
+    @PostMapping("/datosbio/{id}")
     public String guardarEdicionDatos(@PathVariable("id") Integer id) throws Exception {
         Optional<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.encuentraPorId(id);
         if (datosBioDto.isPresent()){
             this.datosBiometricosSrvc.guardar(datosBioDto.get());
-            return String.format("redirect:/datosbiometricos/%s", id);
+            return String.format("redirect:/datosbio/%s", id);
         } else {
             //Mostrar página usuario no existe
-            return "catalogo/detallesnoencontrado";
+            return "datosbiometricos/detallesnoencontrado";
         }
     }
-    @PostMapping("/datosbiometricos/{id}/delete")
+
+
+    @PostMapping("/datosbio/{id}/delete")
     public String eliminarDatos(@PathVariable("id") Integer id){
         Optional<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.encuentraPorId(id);
         if (datosBioDto.isPresent()){
             this.datosBiometricosSrvc.eliminarPorId(id);
-            return "redirect:/datosbiometricos";
+            return "redirect:/datosbio";
         } else{
             return "datosbiometricos/detallesnoencontrado";
         }
     }
 
 
-    @GetMapping("/datosbiometricos/registro")
+    @GetMapping("/datosbio/registro")
     public String vistaRegistro(Model interfazConPantalla) {
         final DatosBiometricosDto datosBioDto = new DatosBiometricosDto();
         List<DatosBiometricosDto> datosBioList = this.datosBiometricosSrvc.buscarTodos();
@@ -85,7 +90,10 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
         interfazConPantalla.addAttribute("listausuariospagina", usuariosList);
         return "datosbiometricos/registro";
     }
-    @PostMapping("/datosbiometricos/registro")
+
+
+
+    @PostMapping("/datosbio/registro")
     public String guardarDatos(DatosBiometricosDto datosBioDto) throws Exception {
         DatosBiometricosDto datosBioGuardados =  this.datosBiometricosSrvc.guardar(datosBioDto);
         Long id = datosBioGuardados.getIdDatosBio();
