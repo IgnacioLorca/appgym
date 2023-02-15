@@ -52,7 +52,6 @@ public class SecurityConfig {
                 .requestMatchers("/admin").hasAuthority("ROLE_ADMIN")
                 .requestMatchers("/entr").hasAuthority("ROLE_ENTRENADORES")
                 .requestMatchers("/nutr").hasAuthority("ROLE_NUTRICIONISTAS")
-                .requestMatchers("/clie").hasAuthority("ROLE_CLIENTES")
                 .requestMatchers("/hr").hasAuthority("ROLE_HR")
                 .requestMatchers("/common").hasAnyAuthority("ROLE_ENTRENADORES,ROLE_NUTRICIONISTAS,ROLE_ADMIN")
                 .anyRequest().authenticated()
