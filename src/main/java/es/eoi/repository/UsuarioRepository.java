@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
+import java.util.Set;
 
 public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
 
@@ -12,4 +13,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer> {
     Integer repValidarPassword(String email, String password);
     Usuario findUsuarioByEmailAndActiveTrue(String email);
     Optional<Usuario> findUsuarioByUsername(String username);
+
 }
