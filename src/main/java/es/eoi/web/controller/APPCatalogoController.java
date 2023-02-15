@@ -4,6 +4,7 @@ package es.eoi.controller;
 import es.eoi.dto.CatalogoDto;
 import es.eoi.model.Catalogo;
 import es.eoi.service.CatalogoSrvc;
+import es.eoi.web.controller.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Controller
-public class APPCatalogoController extends AbstractController<CatalogoDto>{
+public class APPCatalogoController extends AbstractController<CatalogoDto> {
 
     @Autowired
     private CatalogoSrvc catalogoSrvc;
