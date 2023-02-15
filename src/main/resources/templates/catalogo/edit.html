@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<!-- AppUsuariosController // vistaDatosUsuario -->
+<div layout:fragment="cabecera">
+    <h1>Editar datos</h1>
+</div>
+<div layout:fragment="contenido">
+    <div>
+        <h2>Editar catalogo</h2>
+        <div>
+            <form role="form" th:object="${catalogo}" method="post">
+                <input th:type="hidden" th:field="${catalogo.id}">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" maxlength="50" th:field="${catalogo.nombre}" >
+                <input type="text" id="descripcion" maxlength="50" th:field="${catalogo.descripcion}" >
+                <label for="direccion">Direccion</label>
+                <input type="text" id="direccion" maxlength="50" th:field="${cliente.direccion}" >
+                <label for="precio">Precio</label>
+                <input type="number" id="precio" maxlength="50" th:field="${catalogo.precio}" >
+                <div>
+                    <button type="submit" title="Guardar">Guardar datos </button>
+                    <a th:href="@{/}" role="button" title="Volver a principal" th:text="Cancelar">
+
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
