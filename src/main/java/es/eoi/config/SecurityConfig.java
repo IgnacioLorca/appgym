@@ -31,16 +31,18 @@ public class SecurityConfig {
         http.formLogin(form -> form
                 .loginPage("/usuarios/login")
                 .failureUrl("/login-error")
-                .defaultSuccessUrl("/",true)
-                
+                .defaultSuccessUrl("/welcome",true)
+
                 .permitAll()
         );
-
         http.logout(logout -> logout
                         .logoutUrl("/usuarios/logout")
                         .logoutSuccessUrl("/")
+                        /*.logoutSuccessHandler(logoutSuccessHandler)
+                        .invalidateHttpSession(true)
+                        .addLogoutHandler(logoutHandler)
+                        .deleteCookies(cookieNamesToClear)*/
         );
-
         http.authorizeHttpRequests()
                 .requestMatchers("/js/**").permitAll()
                 .requestMatchers("/css/**").permitAll()
@@ -61,6 +63,7 @@ public class SecurityConfig {
 
                 .and()
                 .authenticationProvider(authenticationProvider());
+
         return http.build();
 
     }
