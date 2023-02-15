@@ -35,6 +35,10 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
         return "index";
     }
 
+    @GetMapping("/welcome")
+    public String vistaHomeW(){
+        return "welcome";
+    }
 
     @GetMapping("/usuarios")
     public String vistaUsuarios(@RequestParam("page") Optional<Integer> page,

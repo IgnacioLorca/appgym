@@ -35,7 +35,7 @@ public class APPDatosBiometricosController extends AbstractController<DatosBiome
     public String vistaDBio( Model interfazConPantalla){
         Set<DatosBiometricosDto> datosBioDto = this.datosBiometricosSrvc.buscarTodosSet();
         interfazConPantalla.addAttribute("listadatosbiometricos", datosBioDto);
-        return "listadatosbio";
+        return "datosbiometricos/listadatosbio";
     }
 
     @GetMapping("/datosbiometricos/{id}")
