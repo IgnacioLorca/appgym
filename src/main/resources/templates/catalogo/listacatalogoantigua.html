@@ -1,0 +1,75 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sd="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/welcome.css}">
+    <title>Catalogo</title>
+</head>
+<body>
+<div layout:fragment="cabecera">
+    <h1>Catalogo </h1>
+</div>
+<div layout:fragment="contenido">
+    <div class="box-body">
+        Show <span sd:page-size-selector="javascript"></span> entries
+        <form action="#" th:action="@{/}" method="post">
+            <div class="table-responsive">
+                <!-- Opcion 1 : tabla con contenido ( recomandable en caso de listas-->
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>nombre</th>
+                        <th>descripcion</th>
+                        <th>precio</th>
+                        <th>imagen</th>
+                        <th>&nbsp</th>
+                        <th>&nbsp</th>
+                    </tr>
+                    <tr th:each="elemento , posicion : ${lista}">
+                        <td th:text="${elemento.nombre}"></td>
+                        <td th:text="${elemento.descripcion}"></td>
+                        <td th:text="${elemento.precio}"></td>
+                        <td th:text="${elemento.imagen}"></td>
+                        <td>
+                            <!-- meter un link para ver  con texto "ver"-->
+                            <a th:href="@{'/catalogo/'+ ${elemento.id}}">Detalles</a>
+                        </td>
+                        <td>
+                            <!-- meter un boton para borrar  con un boton-->
+                            <button type="submit" value="Eliminar" th:formaction="'/catalogo/'+ ${elemento.id} +'/delete'">Eliminar</button>
+                        </td>
+                    </tr>
+                    <!--Mostramos una ultima fila con inormación cuando no hay registros -->
+                    <tr th:if="${lista ==null or  lista.empty}">
+                        <td colspan="13" class="text-center">No hay datos</td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <!-- preparamos el div para poner los numeros de pagina-->
+    <div  th:if="${lista!=null and !lista.empty}" >
+        <div class="text-center">
+            <nav>
+                <ul class="pagination" sd:pagination="full">
+                    <!--  si hay menos del numero minimo de registos no muestro la barra-->
+                    <div  th:if="${lista.totalPages > 0}" class="pagination"
+                          th:each="pageNumber : ${pageNumbers}">
+                        <li th:class="${pageNumber==lista.number + 1} ? active">
+                            <a href="#" th:href="@{/catalogo(size=${lista.size}, page=${pageNumber})}"
+                               th:text=${pageNumber}></a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+

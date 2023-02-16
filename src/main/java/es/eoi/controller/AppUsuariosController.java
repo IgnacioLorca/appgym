@@ -2,8 +2,8 @@ package es.eoi.controller;
 
 
 import es.eoi.dto.*;
-import es.eoi.model.Role;
 import es.eoi.model.Usuario;
+import es.eoi.repository.UsuarioRepository;
 import es.eoi.service.RoleService;
 import es.eoi.service.UsuarioService;
 import org.springframework.data.domain.Page;
@@ -25,10 +25,13 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
     private final UsuarioService service;
 
     private final RoleService roleService;
+    private final UsuarioRepository usuarioRepository;
 
-    public AppUsuariosController(UsuarioService service, RoleService roleService) {
+    public AppUsuariosController(UsuarioService service, RoleService roleService,
+                                 UsuarioRepository usuarioRepository) {
         this.service = service;
         this.roleService = roleService;
+        this.usuarioRepository = usuarioRepository;
     }
 
 
@@ -177,4 +180,23 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             return "usuarios/login";
         }
     }
+    @GetMapping("/usuario/registro")
+    public String vistaRegistro(Model interfazConPantalla) {
+        final UsuarioDto usuarioDto = new UsuarioDto();
+        List<UsuarioDto> usuarioList = this.service.buscarTodos();
+        interfazConPantalla.addAttribute("datos", usuarioDto);
+        interfazConPantalla.addAttribute("listadatos", usuarioList);
+        interfazConPantalla.addAttribute("listausuariospagina", usuarioList);
+        return "usuario/registro";
+    }
+
+
+
+    @PostMapping("/usuario/registro")
+    public String guardarDatos(UsuarioDto usuarioDto) throws Exception {
+        UsuarioDto usuarioGuardado =  this.service.guardar(usuarioDto);
+        Long id = usuarioGuardado.getId();
+        return String.format("redirect:/usuario/%s", id);
+    }
 }
+

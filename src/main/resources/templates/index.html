@@ -1,163 +1,254 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sd="http://www.w3.org/1999/xhtml">
+    xmlns:sd="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/cabecera_fija.css}">
     <link rel="stylesheet" th:href="@{/css/video_index.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <title>Home</title>
 </head>
+
 <body>
-<header class="header">
-    <div class="container logo-nav-container">
-        <a th:href="@{/index}" class="logo"> <img th:src="@{/images/logo_negro_pequeño.png}"> </a>
-        <span class="menu-icon"><i class="fa fa-bars"></i></span>
-        <nav class="navigation">
-            <ul id="capa">
-                <li><a th:href="@{/usuarios/login}">Iniciar sesión</a></li>
-                <li><a th:href="@{/usuarios/registro}">Registrarse</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    <header class="header">
+        <div class="container logo-nav-container">
+            <a th:href="@{/index}" class="logo"> <img th:src="@{/images/logo_negro_pequeño.png}"> </a>
+            <span class="menu-icon"><i class="fa fa-bars"></i></span>
+            <nav class="navigation">
+                <ul id="capa">
+                    <li><a th:href="@{/usuarios/login}">Iniciar sesión</a></li>
+                    <li><a th:href="@{/usuarios/registro}">Registrarse</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<main class="main">
-    <div class="container">
-        <div class="main-banner" id="top">
-            <video autoplay muted loop id="bg-video">
-                <source th:src="@{/images/gym-video.mp4}" type="video/mp4" />
-            </video>
-            <div class="video-overlay header-text">
-                <div class="caption">
-                    <h6>Gestiona a tus clientes y tu equipo en un solo lugar</h6>
-                    <h2>Trabaja con <em>nosotros</em></h2>
-                    <div class="main-button scroll-to-section">
-                        <a class="haztemiembro" th:href="@{/usuarios/registro}"</a>
+    <main class="main">
+        <div class="container">
+            <div class="main-banner" id="top">
+                <video autoplay muted loop id="bg-video">
+                    <source th:src="@{/images/gym-video.mp4}" type="video/mp4" />
+                </video>
+                <div class="video-overlay header-text">
+                    <div class="caption">
+                        <h6>Gestiona a tus clientes y tu equipo en un solo lugar</h6>
+                        <h2>Trabaja con <em>nosotros</em></h2>
+                        <div class="main-button scroll-to-section">
+                            <a class="haztemiembro" href="#">Hazte miembro</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
+    <section id="calendario" class="calendario">
+        <div class="container">
 
-<section class="section" id="schedule">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 offset-lg-3">
-                <div class="section-heading dark-bg">
-                    <h2>Calendario de <em>Sesiones</em></h2>
-                    <img th:src="@{/images/line-dec.png}" alt="">
-                </div>
+            <div class="nombre-seccion">
+                <h2>Calendario de Sesiones</h2>
+            </div>
+            <div class="tabla-horario">
+                <table class="horario">
+                    <thead>
+                        <tr>
+                            <th>HORARIO</th>
+                            <th>Lunes</th>
+                            <th>Martes</th>
+                            <th>Miércoles</th>
+                            <th>Jueves</th>
+                            <th>Viernes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10:00 - 11:30</td>
+                            <td>
+                                <span>Crossfit</span><br>
+                                <a href="#sergio_lopez">(Sergio Lopez)</a>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <span>Crossfit</span><br>
+                                <a href="#sergio_lopez">(Sergio Lopez)</a>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>12:00 - 13:30</td>
+                            <td></td>
+                            <td>
+                                <span>Cardiobox</span><br>
+                                <a href="#jaime_sotos">(Jaime Sotos)</a>
+                            </td>
+                            <td>
+                                <span>Zumba</span><br>
+                                <a href="#maria_gomez">(María Gómez)</a>
+                            </td>
+                            <td></td>
+                            <td>
+                                <span>Zumba</span>
+                                <a href="#maria_gomez">(María Gómez)</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>15:00 - 16:30</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <span>Spinning</span><br>
+                                <a href="#andrea_salinas">(Andrea Salinas)</a>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>17:00 - 18:30</td>
+                            <td>
+                                <span>Body Building</span><br>
+                                <a href="#fernando_alonso">(Fernando Alonso)</a>
+                            </td>
+                            <td></td>
+                            <td>
+                                <span>Body Building</span><br>
+                                <a href="#fernando_alonso">(Fernando Alonso)</a>
+                            </td>
+                            <td></td>
+                            <td>
+                                <span>Cardiobox</span><br>
+                                <a href="#jaime_sotos">(Jaime Sotos)</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>19:00 - 20:30</td>
+                            <td></td>
+                            <td>
+                                <span>Spinning</span><br>
+                                <a href="#andrea_salinas">(Andrea Salinas)</a>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <div class="schedule-table filtering">
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td class="day-time">Crossfit</td>
-                            <td class="monday ts-item show" data-tsmeta="monday">10:00AM - 11:30AM Lunes</td>
-                            <td class="tuesday ts-item" data-tsmeta="tuesday">2:00PM - 3:30PM Martes</td>
-                            <td>Sergio López</td>
-                        </tr>
-                        <tr>
-                            <td class="day-time">Cardiobox</td>
-                            <td class="friday ts-item" data-tsmeta="friday">10:00AM - 11:30AM Viernes</td>
-                            <td class="thursday friday ts-item" data-tsmeta="thursday">2:00PM - 3:30PM Jueves</td>
-                            <td>Jaime Sotos</td>
-                        </tr>
-                        <tr>
-                            <td class="day-time">Body Building</td>
-                            <td class="tuesday ts-item" data-tsmeta="tuesday">10:00AM - 11:30AM Martes</td>
-                            <td class="monday ts-item show" data-tsmeta="monday">2:00PM - 3:30PM Lunes</td>
-                            <td>Sergio López</td>
-                        </tr>
-                        <tr>
-                            <td class="day-time">Bodybump</td>
-                            <td class="wednesday ts-item" data-tsmeta="wednesday">10:00AM - 11:30AM Miércoles</td>
-                            <td class="friday ts-item" data-tsmeta="friday">2:00PM - 3:30PM Lunes</td>
-                            <td>Jaime Sotos</td>
-                        </tr>
-                        <tr>
-                            <td class="day-time">Spinning</td>
-                            <td class="thursday ts-item" data-tsmeta="thursday">10:00AM - 11:30AM Jueves</td>
-                            <td class="wednesday ts-item" data-tsmeta="wednesday">2:00PM - 3:30PM Miércoles</td>
-                            <td>Sergio López</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <section class="entrenadores">
+        <div class="container">
+
+            <div class="nombre-seccion">
+                <h2>Entrenadores</h2>
+            </div>
+
+            <div class="entrenadores">
+                <ul class="capa">
+                    <li>
+                        <div id="sergio_lopez" class="imagen">
+                            <img th:src="@{/images/sergio_lopez.jpg}">
+                        </div>
+                        <div class="texto-imagen">
+                            <p class="nombre_entrenador"><b>Sergio Lopez</b> <a href="#calendario"><i
+                                        class="icono fa fa-arrow-up"></i></a></p>
+                            <p class="descripcion-entrenador">Graduado en CAFyD, profesional con más de 15 años de
+                                experiencia en el sector y apasionado por la enseñanza.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="jaime_sotos" class="imagen">
+                            <img th:src="@{/images/jaime_sotos.jpg}">
+                        </div>
+                        <div class="texto-imagen">
+                            <p class="nombre_entrenador"><b>Jaime Sotos</b> <a href="#calendario"><i
+                                        class="icono fa fa-arrow-up"></i></a></p>
+                            <p class="descripcion-entrenador">Técnico Superior Administrativo, pero su pasión por el
+                                deporte lo convirtió en un gran entrenador, destacado por sus nuevas metodologías y por
+                                proporcionar diversión a sus clases.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="fernando_alonso" class="imagen">
+                            <img th:src="@{/images/fernando_alonso.jpg}">
+                        </div>
+                        <div class="texto-imagen">
+                            <p class="nombre_entrenador"><b>Fernando Alonso</b> <a href="#calendario"><i
+                                        class="icono fa fa-arrow-up"></i></a></p>
+                            <p class="descripcion-entrenador">Desde joven es un apasionado del deporte y el
+                                fitness, así que si quieres un entrenador pasional este es el ideal.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="maria_gomez" class="imagen1">
+                            <img th:src="@{/images/maria_gomez.jpg}">
+                        </div>
+                        <div class="texto-imagen">
+                            <p class="nombre_entrenador"><b>María Gómez</b> <a href="#calendario"><i
+                                        class="icono fa fa-arrow-up"></i></a></p>
+                            <p class="descripcion-entrenador">Mujer activa que dedica su tiempo libre a coreografiar los
+                                nuevos hits del mercado. Sin duda, te lo pasarás muy bien en su clase de zumba.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="andrea_salinas" class="imagen">
+                            <img th:src="@{/images/andrea_salinas.jpeg}">
+                        </div>
+                        <div class="texto-imagen">
+                            <p class="nombre_entrenador"><b>Andrea Salinas</b> <a href="#calendario"><i
+                                        class="icono fa fa-arrow-up"></i></a></p>
+                            <p class="descripcion-entrenador">Actívate con las sesiones de spinning que ofrece Andrea y
+                                conseguirás los resultados que quieres antes de lo que crees.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ***** Testimonials Starts ***** -->
-<section class="section" id="trainers">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 offset-lg-3">
-                <div class="section-heading">
-                    <h2>Nuestros <em>Profesionales</em></h2>
-                    <img th:src="@{/images/line-dec.png}" alt="">
-                </div>
+    <section class="entrenadores">
+        <div class="container">
+
+            <div class="nombre-seccion">
+                <h2>Dietistas</h2>
+            </div>
+
+            <div class="entrenadores">
+                <ul class="capa">
+                    <li>
+                        <div class="imagen">
+                            <img th:src="@{/images/carlos_rios.jpg}">
+                        </div>
+                        <div class="texto-imagen">
+                            <p class="nombre_entrenador"><b>Carlos Ríos</b></p>
+                            <p class="descripcion-entrenador">Este andaluz estudió Nutrición Humana y Dietética en la universidad Pablo de Olavide de Sevilla. Y de ahí a gurú de la comida real, influencer del buen comer y abanderado de las recetas de siempre.
+                            </p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="trainer-item">
-                    <div class="image-thumb">
-                        <img th:src="@{/images/first-trainer.jpg}" alt="">
-                    </div>
-                    <div class="down-content">
-                        <span>Entrenador</span>
-                        <h4>Sergio López</h4>
-                        <p>Informacion de los entrenadores / nutricionistas</p>
-                        <p>Graduado en CAFyD, profesional con más de 15 años de experiencia en el sector y apasionado por la enseñanza.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="trainer-item">
-                    <div class="image-thumb">
-                        <img th:src="@{/images/second-trainer.jpg}" alt="">
-                    </div>
-                    <div class="down-content">
-                        <span>Entrenador</span>
-                        <h4>Jaime Sotos</h4>
-                        <p>Informacion de los entrenadores / nutricionistas</p>
-                        <p>Técnico Superior Administrativo, pero su pasión por el deporte lo convirtió en un gran entrenador, destacado por sus nuevas metodologías y por proporcionar diversión a sus clases.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="trainer-item">
-                    <div class="image-thumb">
-                        <img th:src="@{/images/third-trainer.jpg}" alt="">
-                    </div>
-                    <div class="down-content">
-                        <span>Nutricionista</span>
-                        <h4>Alfonso Sánchez</h4>
-                        <p>Informacion de los entrenadores / nutricionistas</p>
-                        <p>Graduado en CAFyD, también proporciona algunas clases en nuestro gimnasio, pero su especialidad es el mundo de la alimentación. Resultados asegurados con su método.</p>
-                    </div>
-                </div>
-            </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Todos los derechos reservados - BELORAN SPORT (B&S)</p>
         </div>
-    </div>
-</section>
+    </footer>
 
-<footer class="footer">
-    <div class="container">
-        <p>Todos los derechos reservados - BELORAN SPORT (B&S)</p>
-    </div>
-</footer>
-
-<script src="script2.js"></script>
+    <script th:src="@{/js/script2.js}"></script>
 </body>
+
 </html>

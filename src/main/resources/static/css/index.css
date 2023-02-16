@@ -1,0 +1,136 @@
+.nombre-seccion{
+    margin-top: 1rem;
+    text-align: center;
+    color: #A13149;
+    font-size: 20;
+
+    padding: 20px 20px;
+    text-transform: uppercase;
+    text-rendering: optimizeLegibility;
+    
+    color: #EBEBEB;
+    background-color: #A13149;
+    letter-spacing: .1em;
+    text-shadow: 
+      0 -1px 0 #EBEBEB, 
+      0 1px 0 #2e2e2e, 
+      0 2px 0 #2c2c2c, 
+      0 3px 0 #2a2a2a, 
+      0 4px 0 #282828, 
+      0 5px 0 #262626, 
+      0 6px 30px rgba(0, 0, 0, 0.9);
+}
+
+.tabla-horario{
+    display: grid;
+    place-content: center;
+    margin-top: 1rem;
+}
+
+.entrenadores{
+    margin-top: 1rem;
+}
+
+table.horario {
+    border: 1px solid #3D3838;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+table.horario td,
+table.horario th {
+    border: 1px solid #3D3838;
+    padding: 5px 5px;
+}
+
+table.horario tbody td {
+    font-size: 13px;
+    color: #3D3838;
+
+}
+
+table.horario thead {
+    background: #87C3E3;
+    background: -moz-linear-gradient(top, #a5d2ea 0%, #93c9e5 66%, #87C3E3 100%);
+    background: -webkit-linear-gradient(top, #a5d2ea 0%, #93c9e5 66%, #87C3E3 100%);
+    background: linear-gradient(to bottom, #a5d2ea 0%, #93c9e5 66%, #87C3E3 100%);
+}
+
+table.horario thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #A13149;
+    text-align: center;
+    width: 110px;
+    height: 33px;
+    /* ¿Cómo que 33? */
+}
+
+.entrenadores {
+    display: center;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.entrenadores ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.entrenadores ul li {
+    display: inline-block;
+    
+}
+
+a{
+    text-decoration: none;
+    text-align: center;
+    color: #3D3838;
+    font-weight: bold;
+}
+
+.entrenadores img{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.imagen {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 100%;
+  }
+
+.imagen1 {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+.imagen1  img {
+    width: auto;
+    height: 100%;
+    margin-left: -50px;
+}
+  
+.imagen  img {
+    width: auto;
+    height: 100%;
+    margin-left: -30px;
+}
+
+.icono{
+    color:#A13149
+}
