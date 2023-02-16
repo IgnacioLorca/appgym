@@ -45,8 +45,7 @@ public class Usuario implements Serializable {
     private Date fechaModif;
     @Column(name = "BL")
     private boolean BL;
-    @Column(name = "aprobado")
-    private boolean aprobado;
+
 
     @OneToOne
     @JoinColumn(name = "id_datosbio")

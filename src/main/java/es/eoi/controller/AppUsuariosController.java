@@ -1,9 +1,11 @@
 package es.eoi.controller;
 
 
-import es.eoi.dto.*;
+import es.eoi.dto.LoginDto;
+import es.eoi.dto.UsuarioDto;
+import es.eoi.dto.UsuarioDtoPsw;
+import es.eoi.dto.UsuariosListaDto;
 import es.eoi.model.Usuario;
-import es.eoi.repository.UsuarioRepository;
 import es.eoi.service.RoleService;
 import es.eoi.service.UsuarioService;
 import org.springframework.data.domain.Page;
@@ -15,7 +17,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -25,13 +26,10 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
     private final UsuarioService service;
 
     private final RoleService roleService;
-    private final UsuarioRepository usuarioRepository;
 
-    public AppUsuariosController(UsuarioService service, RoleService roleService,
-                                 UsuarioRepository usuarioRepository) {
+    public AppUsuariosController(UsuarioService service, RoleService roleService) {
         this.service = service;
         this.roleService = roleService;
-        this.usuarioRepository = usuarioRepository;
     }
 
 
@@ -180,23 +178,4 @@ public class AppUsuariosController extends AbstractController<UsuarioDto> {
             return "usuarios/login";
         }
     }
-    @GetMapping("/usuario/registro")
-    public String vistaRegistro(Model interfazConPantalla) {
-        final UsuarioDto usuarioDto = new UsuarioDto();
-        List<UsuarioDto> usuarioList = this.service.buscarTodos();
-        interfazConPantalla.addAttribute("datos", usuarioDto);
-        interfazConPantalla.addAttribute("listadatos", usuarioList);
-        interfazConPantalla.addAttribute("listausuariospagina", usuarioList);
-        return "usuario/registro";
-    }
-
-
-
-    @PostMapping("/usuario/registro")
-    public String guardarDatos(UsuarioDto usuarioDto) throws Exception {
-        UsuarioDto usuarioGuardado =  this.service.guardar(usuarioDto);
-        Long id = usuarioGuardado.getId();
-        return String.format("redirect:/usuario/%s", id);
-    }
 }
-
